@@ -7,7 +7,7 @@ import shutil
 import subprocess
 import sys
 
-MIN_VERSION = (0, 1, 1)
+MIN_VERSION = (0, 1, 3)
 CONFIG = Path(__file__).resolve().parents[1] / "runtime.json"
 
 
@@ -53,7 +53,7 @@ def resolve():
         version = re.fullmatch(r"(\d+)\.(\d+)\.(\d+)", tested.stdout.strip())
         if tested.returncode == 0 and version and tuple(map(int, version.groups())) >= MIN_VERSION:
             return {"status": "available", "source": source, "argv": command, "version": version[0]}
-        attempts.append({"source": source, "reason": "requires EHE 0.1.1 or newer",
+        attempts.append({"source": source, "reason": "requires EHE 0.1.3 or newer",
                          "version": version[0] if version and tested.returncode == 0 else None})
     return {"status": "blocked", "reason": "No compatible EHE runtime found", "attempts": attempts}
 

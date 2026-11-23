@@ -1,0 +1,484 @@
+{
+  "version": "0.1.2",
+  "fixture": "EasyEDA/easyeda-viewer 5cdb87c9562d35d98a55317589efcf0de8d55879 RA6E2-eprj3",
+  "board": "PCB1",
+  "net": "P013",
+  "removed": "LINE e1880",
+  "runs": {
+    "baseline": {
+      "board_sha256": "6b115e6b10ff2d6b0508b108bd6fa189b7a0143444cbf2a65760c7d41002a84f",
+      "untouched": true,
+      "status": "pass",
+      "checked_snapshot_status": "pass",
+      "native_passed": true,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {
+        "pages_checked": 1,
+        "native_violations": 0,
+        "localized_violations": 0
+      },
+      "missing_evidence": [],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-fault-5_gqkgj0\\baseline\\.ehe\\reviews\\29802a35e4104b7294994e4ad6e71de7\\review.json",
+      "native_artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-fault-5_gqkgj0\\baseline\\.ehe\\reviews\\29802a35e4104b7294994e4ad6e71de7\\easyeda\\drc-dd88ba56c6a8406e84b9fe4562b25cde.json",
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-fault-5_gqkgj0\\baseline\\.ehe\\reviews\\29802a35e4104b7294994e4ad6e71de7\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    },
+    "injected": {
+      "board_sha256": "541fd74d941ed038dd7b080566682666e656fd0d69a85d4f8469861e3aacddf2",
+      "untouched": true,
+      "status": "blocked",
+      "checked_snapshot_status": null,
+      "native_passed": null,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {},
+      "missing_evidence": [
+        "EasyEDA editor startup: invoke timed out after 11750ms (budget 12000ms; gave up waiting; the code may still be running in the render, and its result will be discarded)"
+      ],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\injected\\.ehe\\reviews\\394a3eb131c44a768aca0789a2f75ecc\\review.json",
+      "native_artifact": null,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\injected\\.ehe\\reviews\\394a3eb131c44a768aca0789a2f75ecc\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    },
+    "restored": {
+      "board_sha256": "6b115e6b10ff2d6b0508b108bd6fa189b7a0143444cbf2a65760c7d41002a84f",
+      "untouched": true,
+      "status": "pass",
+      "checked_snapshot_status": "pass",
+      "native_passed": true,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {
+        "pages_checked": 1,
+        "native_violations": 0,
+        "localized_violations": 0
+      },
+      "missing_evidence": [],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\restored\\.ehe\\reviews\\4c97816b2ba841b5832b99852b12ec3f\\review.json",
+      "native_artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\restored\\.ehe\\reviews\\4c97816b2ba841b5832b99852b12ec3f\\easyeda\\drc-dd88ba56c6a8406e84b9fe4562b25cde.json",
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\restored\\.ehe\\reviews\\4c97816b2ba841b5832b99852b12ec3f\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    }
+  },
+  "original_untouched": true,
+  "verified": true,
+  "blocked_attempts": [
+    {
+      "case": "injected",
+      "board_sha256": "541fd74d941ed038dd7b080566682666e656fd0d69a85d4f8469861e3aacddf2",
+      "untouched": true,
+      "status": "blocked",
+      "checked_snapshot_status": null,
+      "native_passed": null,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {},
+      "missing_evidence": [
+        "EasyEDA editor startup: invoke timed out after 11750ms (budget 12000ms; gave up waiting; the code may still be running in the render, and its result will be discarded)"
+      ],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-fault-5_gqkgj0\\injected\\.ehe\\reviews\\d991c1676ed841d8be89e16c8485ffa1\\review.json",
+      "native_artifact": null,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-fault-5_gqkgj0\\injected\\.ehe\\reviews\\d991c1676ed841d8be89e16c8485ffa1\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    },
+    {
+      "case": "injected",
+      "board_sha256": "541fd74d941ed038dd7b080566682666e656fd0d69a85d4f8469861e3aacddf2",
+      "untouched": true,
+      "status": "blocked",
+      "checked_snapshot_status": null,
+      "native_passed": null,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {},
+      "missing_evidence": [
+        "EasyEDA editor startup: invoke timed out after 11750ms (budget 12000ms; gave up waiting; the code may still be running in the render, and its result will be discarded)"
+      ],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\injected\\.ehe\\reviews\\31a5a715ca2346e798117ad4d852c414\\review.json",
+      "native_artifact": null,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\injected\\.ehe\\reviews\\31a5a715ca2346e798117ad4d852c414\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    },
+    {
+      "case": "injected",
+      "board_sha256": "541fd74d941ed038dd7b080566682666e656fd0d69a85d4f8469861e3aacddf2",
+      "untouched": true,
+      "status": "blocked",
+      "checked_snapshot_status": null,
+      "native_passed": null,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {},
+      "missing_evidence": [
+        "EasyEDA editor startup: invoke timed out after 11750ms (budget 12000ms; gave up waiting; the code may still be running in the render, and its result will be discarded)"
+      ],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\injected\\.ehe\\reviews\\394a3eb131c44a768aca0789a2f75ecc\\review.json",
+      "native_artifact": null,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\injected\\.ehe\\reviews\\394a3eb131c44a768aca0789a2f75ecc\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    },
+    {
+      "case": "restored",
+      "board_sha256": "6b115e6b10ff2d6b0508b108bd6fa189b7a0143444cbf2a65760c7d41002a84f",
+      "untouched": true,
+      "status": "blocked",
+      "checked_snapshot_status": null,
+      "native_passed": null,
+      "native_version": "4.1.60.198f38ab",
+      "targeted_findings": [],
+      "metrics": {},
+      "missing_evidence": [
+        "EasyEDA editor startup: invoke timed out after 11750ms (budget 12000ms; gave up waiting; the code may still be running in the render, and its result will be discarded)"
+      ],
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\restored\\.ehe\\reviews\\d62b49a49d6e4ef3aef578b84854eec0\\review.json",
+      "native_artifact": null,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-012-recheck-hmimzbsy\\restored\\.ehe\\reviews\\d62b49a49d6e4ef3aef578b84854eec0\\easyeda\\session.json",
+      "modified_snapshot_files": []
+    }
+  ],
+  "in_editor_attempts": [
+    {
+      "opened": {
+        "status": "available",
+        "native": {
+          "ok": true,
+          "value": {
+            "sessionId": "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+            "renderId": 15,
+            "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-live-fault-o_8f4bck\\fixture\\RA6E2.eprj3",
+            "headless": true
+          },
+          "logs": [],
+          "durationMs": 1574
+        },
+        "execution": {
+          "argv": [
+            "D:\\lceda-pro\\lceda-pro.exe",
+            "open",
+            "--path",
+            "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-live-fault-o_8f4bck\\fixture\\RA6E2.eprj3",
+            "--headless",
+            "true"
+          ],
+          "cwd": "D:\\lceda-pro",
+          "started_at": "2026-11-23T14:11:44.710+00:00",
+          "finished_at": "2026-11-23T14:11:46.899+00:00",
+          "exit_code": 0,
+          "stdout": "\r\n{\"ok\":true,\"value\":{\"sessionId\":\"5ade0924-3b15-4c38-a7fe-d46a86c11fa1\",\"renderId\":15,\"path\":\"C:\\\\Users\\\\L\\\\AppData\\\\Local\\\\Temp\\\\ehe-easyeda-live-fault-o_8f4bck\\\\fixture\\\\RA6E2.eprj3\",\"headless\":true},\"logs\":[],\"durationMs\":1574}\n",
+          "stderr": ""
+        }
+      },
+      "readiness": [
+        {
+          "status": "available",
+          "native": {
+            "ok": true,
+            "value": {
+              "version": "4.1.60",
+              "project": null
+            },
+            "logs": [],
+            "durationMs": 167
+          },
+          "execution": {
+            "argv": [
+              "D:\\lceda-pro\\lceda-pro.exe",
+              "invoke",
+              "--session",
+              "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+              "--ext-uuid",
+              "eda",
+              "--code",
+              "const project = await eda.dmt_Project.getCurrentProjectInfo(); const version = await eda.sys_Environment.getEditorCurrentVersion(); return {version, project: project ? {name: project.name, uuid: project.uuid} : null};",
+              "--args",
+              "{}",
+              "--timeout",
+              "12000"
+            ],
+            "cwd": "D:\\lceda-pro",
+            "started_at": "2026-11-23T14:11:51.900+00:00",
+            "finished_at": "2026-11-23T14:11:52.706+00:00",
+            "exit_code": 0,
+            "stdout": "\r\n{\"ok\":true,\"value\":{\"version\":\"4.1.60\",\"project\":null},\"logs\":[],\"durationMs\":167}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "status": "available",
+          "native": {
+            "ok": true,
+            "value": {
+              "version": "4.1.60",
+              "project": null
+            },
+            "logs": [],
+            "durationMs": 29
+          },
+          "execution": {
+            "argv": [
+              "D:\\lceda-pro\\lceda-pro.exe",
+              "invoke",
+              "--session",
+              "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+              "--ext-uuid",
+              "eda",
+              "--code",
+              "const project = await eda.dmt_Project.getCurrentProjectInfo(); const version = await eda.sys_Environment.getEditorCurrentVersion(); return {version, project: project ? {name: project.name, uuid: project.uuid} : null};",
+              "--args",
+              "{}",
+              "--timeout",
+              "12000"
+            ],
+            "cwd": "D:\\lceda-pro",
+            "started_at": "2026-11-23T14:11:53.206+00:00",
+            "finished_at": "2026-11-23T14:11:53.869+00:00",
+            "exit_code": 0,
+            "stdout": "\r\n{\"ok\":true,\"value\":{\"version\":\"4.1.60\",\"project\":null},\"logs\":[],\"durationMs\":29}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "status": "available",
+          "native": {
+            "ok": true,
+            "value": {
+              "version": "4.1.60",
+              "project": {
+                "name": "/RA6E2",
+                "uuid": "b0d01a91eb9fd3c4468f9f449d7ed891556f9c4d1d4087bf48373c04969877b0"
+              }
+            },
+            "logs": [],
+            "durationMs": 62
+          },
+          "execution": {
+            "argv": [
+              "D:\\lceda-pro\\lceda-pro.exe",
+              "invoke",
+              "--session",
+              "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+              "--ext-uuid",
+              "eda",
+              "--code",
+              "const project = await eda.dmt_Project.getCurrentProjectInfo(); const version = await eda.sys_Environment.getEditorCurrentVersion(); return {version, project: project ? {name: project.name, uuid: project.uuid} : null};",
+              "--args",
+              "{}",
+              "--timeout",
+              "12000"
+            ],
+            "cwd": "D:\\lceda-pro",
+            "started_at": "2026-11-23T14:11:54.370+00:00",
+            "finished_at": "2026-11-23T14:11:55.062+00:00",
+            "exit_code": 0,
+            "stdout": "\r\n{\"ok\":true,\"value\":{\"version\":\"4.1.60\",\"project\":{\"name\":\"/RA6E2\",\"uuid\":\"b0d01a91eb9fd3c4468f9f449d7ed891556f9c4d1d4087bf48373c04969877b0\"}},\"logs\":[],\"durationMs\":62}\n",
+            "stderr": ""
+          }
+        }
+      ],
+      "scratch": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-live-fault-o_8f4bck\\fixture",
+      "baseline": {
+        "status": "pass",
+        "native_passed": true,
+        "artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-live-fault-o_8f4bck\\evidence\\drc-dd88ba56c6a8406e84b9fe4562b25cde.json",
+        "metrics": {
+          "pages_checked": 1,
+          "native_violations": 0,
+          "localized_violations": 0
+        },
+        "missing_evidence": []
+      },
+      "fault_and_repair": {
+        "status": "available",
+        "native": {
+          "ok": true,
+          "value": {
+            "stage": "checked",
+            "failed": false,
+            "afterRemoval": [
+              {
+                "name": "Connection Error",
+                "list": [
+                  {
+                    "name": "P013",
+                    "list": [
+                      {
+                        "visible": true,
+                        "errorType": "Connection Error",
+                        "errorObjType": "SMD Pad",
+                        "ruleName": "Common",
+                        "obj1": {
+                          "typeName": "SMD Pad",
+                          "suffix": "(P013): U1_40"
+                        },
+                        "isFree": false,
+                        "net": "P013",
+                        "explanation": {
+                          "str": "{obj1} is disconnected from other objects of the same network",
+                          "param": {
+                            "obj1": "Object 1",
+                            "type": "ConnectError"
+                          },
+                          "errData": {
+                            "globalIndex": "err2",
+                            "position": {
+                              "x": 518.8851763992185,
+                              "y": -277.88207133965653
+                            },
+                            "name": "Common",
+                            "obj1": "e32e92",
+                            "obj1Type": "SMD Pad",
+                            "net": "P013",
+                            "isFree": false,
+                            "layerIds": [
+                              1
+                            ],
+                            "errorType": "No Connection",
+                            "obj1Suffix": "(P013): U1_40"
+                          }
+                        },
+                        "objs": [
+                          "e32e92"
+                        ],
+                        "globalIndex": "err2",
+                        "pos": {
+                          "x": 518.8851763992185,
+                          "y": -277.88207133965653
+                        },
+                        "parentId": "DRCTab|_|Errors|_|Connection Error|_|P013"
+                      },
+                      {
+                        "visible": true,
+                        "errorType": "Connection Error",
+                        "errorObjType": "TH Pad",
+                        "ruleName": "Common",
+                        "obj1": {
+                          "typeName": "TH Pad",
+                          "suffix": "(P013): H3_8"
+                        },
+                        "isFree": false,
+                        "net": "P013",
+                        "explanation": {
+                          "str": "{obj1} is disconnected from other objects of the same network",
+                          "param": {
+                            "obj1": "Object 1",
+                            "type": "ConnectError"
+                          },
+                          "errData": {
+                            "globalIndex": "err3",
+                            "position": {
+                              "x": 535.46245,
+                              "y": -295
+                            },
+                            "name": "Common",
+                            "obj1": "e17e18",
+                            "obj1Type": "TH Pad",
+                            "net": "P013",
+                            "isFree": false,
+                            "layerIds": [
+                              12
+                            ],
+                            "errorType": "No Connection",
+                            "obj1Suffix": "(P013): H3_8"
+                          }
+                        },
+                        "objs": [
+                          "e17e18"
+                        ],
+                        "globalIndex": "err3",
+                        "pos": {
+                          "x": 535.46245,
+                          "y": -295
+                        },
+                        "parentId": "DRCTab|_|Errors|_|Connection Error|_|P013"
+                      }
+                    ],
+                    "doNotTranslate": true,
+                    "count": 2,
+                    "title": "P013 (2)",
+                    "visible": true
+                  }
+                ],
+                "visible": true,
+                "count": 2,
+                "title": [
+                  "Connection Error",
+                  "(2)"
+                ]
+              }
+            ],
+            "created": true,
+            "restored": true,
+            "afterRestore": [],
+            "sameDocument": true
+          },
+          "logs": [],
+          "durationMs": 14856
+        },
+        "execution": {
+          "argv": [
+            "D:\\lceda-pro\\lceda-pro.exe",
+            "invoke",
+            "--session",
+            "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+            "--ext-uuid",
+            "eda",
+            "--code",
+            "const target = __CLI__.args; const matches = d => d && d.uuid === target.uuid && d.parentProjectUuid === target.project && d.tabId === target.tab && d.documentType === 3; const d = await eda.dmt_SelectControl.getCurrentDocumentInfo(); if (!matches(d)) return {stage:'wrong-document'}; const before = await eda.pcb_PrimitiveLine.get(target.line); if (!before) return {stage:'missing-line'}; const removed = await eda.pcb_PrimitiveLine.delete(target.line); if (!removed) return {stage:'delete-failed'}; let failed; let afterRemoval; let created; try { failed = await eda.pcb_Drc.check(true,false,false); afterRemoval = await eda.pcb_Drc.check(true,false,true); } finally { const b = target.body; if (matches(await eda.dmt_SelectControl.getCurrentDocumentInfo())) { created = Boolean(await eda.pcb_PrimitiveLine.create(b.netName,b.layerId,b.startX,b.startY,b.endX,b.endY,b.width,b.locked)); } } const restored = created && await eda.pcb_Drc.check(true,false,false); const afterRestore = created ? await eda.pcb_Drc.check(true,false,true) : null; return {stage:'checked',failed,afterRemoval,created,restored,afterRestore, sameDocument: Boolean(matches(await eda.dmt_SelectControl.getCurrentDocumentInfo()))};",
+            "--args",
+            "{\"uuid\": \"dd88ba56c6a8406e84b9fe4562b25cde\", \"name\": \"PCB1\", \"type\": 3, \"tab\": \"dd88ba56c6a8406e84b9fe4562b25cde@b0d01a91eb9fd3c4468f9f449d7ed891556f9c4d1d4087bf48373c04969877b0\", \"project\": \"b0d01a91eb9fd3c4468f9f449d7ed891556f9c4d1d4087bf48373c04969877b0\", \"line\": \"e1880\", \"body\": {\"partitionId\": \"\", \"groupId\": 0, \"netName\": \"P013\", \"layerId\": 1, \"startX\": 5188.8518, \"startY\": -2778.8207, \"endX\": 5354.6245, \"endY\": -2944.5934, \"width\": 8, \"locked\": false, \"zIndex\": 1880}}",
+            "--timeout",
+            "30000"
+          ],
+          "cwd": "D:\\lceda-pro",
+          "started_at": "2026-11-23T14:12:09.828+00:00",
+          "finished_at": "2026-11-23T14:12:25.311+00:00",
+          "exit_code": 0,
+          "stdout": "\r\n{\"ok\":true,\"value\":{\"stage\":\"checked\",\"failed\":false,\"afterRemoval\":[{\"name\":\"Connection Error\",\"list\":[{\"name\":\"P013\",\"list\":[{\"visible\":true,\"errorType\":\"Connection Error\",\"errorObjType\":\"SMD Pad\",\"ruleName\":\"Common\",\"obj1\":{\"typeName\":\"SMD Pad\",\"suffix\":\"(P013): U1_40\"},\"isFree\":false,\"net\":\"P013\",\"explanation\":{\"str\":\"{obj1} is disconnected from other objects of the same network\",\"param\":{\"obj1\":\"Object 1\",\"type\":\"ConnectError\"},\"errData\":{\"globalIndex\":\"err2\",\"position\":{\"x\":518.8851763992185,\"y\":-277.88207133965653},\"name\":\"Common\",\"obj1\":\"e32e92\",\"obj1Type\":\"SMD Pad\",\"net\":\"P013\",\"isFree\":false,\"layerIds\":[1],\"errorType\":\"No Connection\",\"obj1Suffix\":\"(P013): U1_40\"}},\"objs\":[\"e32e92\"],\"globalIndex\":\"err2\",\"pos\":{\"x\":518.8851763992185,\"y\":-277.88207133965653},\"parentId\":\"DRCTab|_|Errors|_|Connection Error|_|P013\"},{\"visible\":true,\"errorType\":\"Connection Error\",\"errorObjType\":\"TH Pad\",\"ruleName\":\"Common\",\"obj1\":{\"typeName\":\"TH Pad\",\"suffix\":\"(P013): H3_8\"},\"isFree\":false,\"net\":\"P013\",\"explanation\":{\"str\":\"{obj1} is disconnected from other objects of the same network\",\"param\":{\"obj1\":\"Object 1\",\"type\":\"ConnectError\"},\"errData\":{\"globalIndex\":\"err3\",\"position\":{\"x\":535.46245,\"y\":-295},\"name\":\"Common\",\"obj1\":\"e17e18\",\"obj1Type\":\"TH Pad\",\"net\":\"P013\",\"isFree\":false,\"layerIds\":[12],\"errorType\":\"No Connection\",\"obj1Suffix\":\"(P013): H3_8\"}},\"objs\":[\"e17e18\"],\"globalIndex\":\"err3\",\"pos\":{\"x\":535.46245,\"y\":-295},\"parentId\":\"DRCTab|_|Errors|_|Connection Error|_|P013\"}],\"doNotTranslate\":true,\"count\":2,\"title\":\"P013 (2)\",\"visible\":true}],\"visible\":true,\"count\":2,\"title\":[\"Connection Error\",\"(2)\"]}],\"created\":true,\"restored\":true,\"afterRestore\":[],\"sameDocument\":true},\"logs\":[],\"durationMs\":14856}\n",
+          "stderr": ""
+        }
+      },
+      "p013_after_deletion": 2,
+      "p013_after_restore": 0,
+      "status": "pass",
+      "closed": {
+        "status": "available",
+        "native": {
+          "ok": true,
+          "value": {
+            "sessionId": "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+            "status": "closed",
+            "headless": true
+          },
+          "logs": [],
+          "durationMs": 3
+        },
+        "execution": {
+          "argv": [
+            "D:\\lceda-pro\\lceda-pro.exe",
+            "session",
+            "close",
+            "--session",
+            "5ade0924-3b15-4c38-a7fe-d46a86c11fa1",
+            "--destroy"
+          ],
+          "cwd": "D:\\lceda-pro",
+          "started_at": "2026-11-23T14:12:25.311+00:00",
+          "finished_at": "2026-11-23T14:12:25.941+00:00",
+          "exit_code": 0,
+          "stdout": "\r\n{\"ok\":true,\"value\":{\"sessionId\":\"5ade0924-3b15-4c38-a7fe-d46a86c11fa1\",\"status\":\"closed\",\"headless\":true},\"logs\":[],\"durationMs\":3}\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "result": {
+    "status": "pass",
+    "method": "in_editor_reconstruction_in_owned_temporary_copy",
+    "before": "pass",
+    "after_removal": "fail",
+    "p013_after_removal": 2,
+    "after_reconstruction": "pass",
+    "p013_after_reconstruction": 0
+  }
+}

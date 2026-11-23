@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ehe-engineering"
-version = "0.1.1"
+version = "0.1.3"
 description = "Evidence-first embedded hardware engineering and review runtime"
 requires-python = ">=3.11"
 license = "MIT"

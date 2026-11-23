@@ -1,0 +1,12 @@
+{
+  "width_mm": 30,
+  "height_mm": 20,
+  "gap_mm": 0.3,
+  "edge_mm": 0.8,
+  "trace_mm": 0.3,
+  "pad_mm": 1.6,
+  "nets": {
+    "SIGNAL": [[4, 5], [26, 5]],
+    "GND": [[4, 15], [26, 15]]
+  }
+}

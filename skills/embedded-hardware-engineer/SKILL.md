@@ -1,6 +1,6 @@
 ---
 name: embedded-hardware-engineer
-description: Design, review, repair and verify embedded schematics and PCBs, especially KiCad boards for NUEDC, embedded competitions and prototypes. Use for board bring-up, component choices, power and analog design, EMI and return paths, mechanical clearance, worst-case calculations, and turning findings into verifiable changes.
+description: Design, review, repair and verify embedded schematics and PCBs in KiCad and EasyEDA Pro for NUEDC, embedded competitions and prototypes. Use for board bring-up, component choices, power and analog design, EMI and return paths, mechanical clearance, worst-case calculations, and turning findings into verifiable changes.
 license: MIT
 ---
 
@@ -12,20 +12,20 @@ license: MIT
 
 从当前宿主提供的 Skill 目录定位 `scripts/run_ehe.py`，用可用的 Python 调用它并传入参数，先调用 `doctor`。安装时登记的运行器使这个入口可以在不同项目中使用。Windows 可用 `py -3` 调用。由助手执行命令并读回证据。
 
-如果启动器返回受阻，记录原因，使用当前确实可用的 KiCad CLI 和文件做能验证的检查，并列出受影响的覆盖项。原件写入、烧录、仪器操作和制造发布需要明确授权。
+从工程文件确定 EDA 工具。KiCad 工程使用 KiCad。嘉立创EDA专业版 `.eprj3` 工程按[嘉立创审查流程](references/easyeda-pro.md)选板，使用嘉立创原生检查。启动器或对应工具受阻时，记录原因并继续可验证的文件审查。原件写入、烧录、仪器操作和制造发布需要明确授权。
 
 ## 审查与整改
 
 - 整板审查运行 `review full <project>`，并使用[完整审查要求](references/full-board-review.md)核对报告。首轮答复必须覆盖 ERC/DRC、EMI/回流、板框与装配、最坏工况/器差/温升。机器能量出的板框和真实物理装配分开说明。补充模型可从独立文件通过 `--model` 提供。
 - 逐项说明已核验、仅估算、缺资料或不适用。不适用须给出项目依据。将工具运行结果、设计判断和实测分开写；用可定位的证据支持结论。优先汇报会影响功能、安全、制造或装配的发现。
 - 每条关键建议给出**位置、机理、具体改动、影响、复验**。有症状但根因未证实时，先给能区分原因的检查。按[整改方法](references/remediation.md)写出证据和判据。获得批准后，在工作副本修改并复验。
-- 只查原理图或 DRC 时分别用 `review schematic` 或 `review pcb`。只有 PCB 截图时按可见信息定位风险。多轮复验或有审批时使用 `loop run/status/resume`。
+- KiCad 定点规则检查用 `review schematic` 或 `review pcb`，多轮复验或有审批时用 `loop run/status/resume`。嘉立创从所选 PCB 的整板报告读取原生规则结果，复验时重新运行同一目标的 `review full` 并比较两轮证据。只有 PCB 截图时按可见信息定位风险。
 
 ## 从零设计
 
 阅读[新板设计流程](references/new-board-design.md)，把输入整理成目标工况、硬约束和验收标准。有实质取舍时比较两条方案。按完整料号与厂家资料确认引脚、工作条件和封装。
 
-在新工程或获批副本完成方案、KiCad 原理图、PCB、BOM 和测试点。先定板框、固定孔、接口和叠层，再放置功率闭环与敏感模拟链，最后布线。交付前执行 `design verify <project>`，结合整板审查和[验收表](assets/acceptance.md)解释每项验收状态。关键资料缺失时明确保留假设，并说明缺项会阻断的交付状态。
+在新工程或获批副本完成方案、所选 EDA 的原理图、PCB、BOM 和测试点。先定板框、固定孔、接口和叠层，再放置功率闭环与敏感模拟链，最后布线。交付前执行 `design verify <project>`，结合整板审查和[验收表](assets/acceptance.md)解释每项验收状态。嘉立创可按[生成与改版流程](references/easyeda-pro.md)生成简单的测试或转接 PCB。需要编辑原有嘉立创工程时，先生成变更预览，取得对该提案的明确审批后再提交到工作副本。关键资料缺失时明确保留假设，并说明缺项会阻断的交付状态。
 
 ## 按领域查阅
 

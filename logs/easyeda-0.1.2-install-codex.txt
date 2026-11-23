@@ -1,0 +1,10 @@
+start_utc=2026-11-23T14:10:16.290605+00:00
+end_utc=2026-11-23T14:10:16.656895+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/install_skill.py", "--scope", "user", "--host", "codex", "--codex-home", "--upgrade"]
+exit_code=0
+
+[stdout]
+codex upgraded C:\Users\L\.codex\skills\embedded-hardware-engineer
+
+[stderr]

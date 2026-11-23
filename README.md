@@ -1,7 +1,7 @@
-# Embedded Hardware Engineering System 0.1.1
+# Embedded Hardware Engineering System 0.1.3
 
 竞赛硬件工程的可运行预览版。唯一产品基线为 [PRD v3.0](docs/PRD_v3.0.md)。
-包内含 Codex / Claude Code 共享 Skill、Python CLI、独立 Loop、真实 KiCad ERC/DRC、
+包内含 Codex / Claude Code 共享 Skill、Python CLI、独立 Loop、真实 KiCad ERC/DRC、嘉立创EDA专业版只读审查、
 可追溯知识检索、参数化工程计算和独立评测。完整 PRD core 发布状态见 [覆盖矩阵](docs/requirements_coverage.md)。
 
 版本变更和验证记录见 [更新日志](CHANGELOG.md)。
@@ -62,6 +62,28 @@ ehe eval run --suite core --repeat 2
 `run.json`、`events.jsonl` 和 `artifacts.json`。源哈希变更触发影响域与关键回归，
 无新输入和可执行动作时停止。一个目录保存一个 Loop，新的独立实验可使用新的目录。
 
+### 嘉立创EDA专业版
+
+启动嘉立创客户端，在 Codex 新对话里附上本地 `.eprj3` 工程目录并说「用
+`$embedded-hardware-engineer` 完整审查这份嘉立创专业版工程的 PCB3」。
+索引和配套设计文件需在同一工程目录中；多板工程可以指定板名或 UUID。运行器触发同一条只读流程。
+
+```text
+ehe review full ./RA6E2.eprj3 --pcb PCB3
+ehe review full ./RA6E2.eprj3 --pcb PCB3 --offline
+ehe design verify ./RA6E2.eprj3 --pcb PCB3
+ehe design generate ./examples/easyeda-interconnect.json --output ./my-interconnect
+```
+
+原生原理图规则检查和 PCB DRC 使用隔离副本，原始设计文件保持不变。报告和审计日志写入
+`.ehe/reviews`。若编辑器改写副本，`checked_snapshot_status` 记录副本的检查结果，原始版本保留待核验。
+若客户端安装在自定义路径且自动探测失败，`EHE_EASYEDA_CLI` 可以指定实际的 `lceda-pro.exe`。
+多板选择、支持的几何范围和待验证项目见 [兼容性矩阵](docs/compatibility-matrix.md)。
+
+整板审查会比对所选 PCB 与单页关联原理图的原生网表，`design verify` 会额外保存所选
+PCB 的原生 BOM。新板生成器适用于给定焊盘位置的单面铜测试板或简易转接板。
+已有 PCB 的线宽调整或同 UUID 文件替换可走 [嘉立创改版与复验流程](skills/embedded-hardware-engineer/references/easyeda-pro.md)，经审批后写入版本化工作副本。
+
 ## CLI 合约
 
 | 命令 | 输入与结果 |
@@ -69,11 +91,13 @@ ehe eval run --suite core --repeat 2
 | doctor | Python、工具安装与 KiCad 实际版本 |
 | init | 创建 project.json、goal.yaml、engineering.json 和验收台账 |
 | analyze | PDF 文本层、Markdown、文本，或安装 Tesseract 后带 --ocr-lang 的受支持图像。输出候选条款、位置、冲突、追踪表 |
-| review full | 整板覆盖、原理图/PCB 一致性和带位置、机理、改法、影响及复验动作的整改提案 |
+| review full | KiCad 或嘉立创专业版文件夹工程的整板覆盖、网表一致性检查与整改建议 |
 | review schematic / pcb | 定点 ERC / DRC，输入为目录中唯一的 KiCad 原生文件或 project.json 显式选择的相对路径 |
-| design verify | 作者交付验证，额外导出 BOM 并列出缺采购料号的器件 |
+| design verify | 作者交付验证。KiCad 和嘉立创路径导出原生 BOM 并列出缺采购料号的器件 |
+| design generate | 从明确的几何和节点规格生成单面铜嘉立创测试或转接板，尝试原生 DRC |
+| change propose / decide / apply / rollback | 嘉立创 PCB 受控改版，预览、明确审批、写副本、复验与版本恢复 |
 | review export | BOM CSV/TSV、KiCad XML 网表、KiCad JSON 或 ehe-rule-report-v1。--producer 仅记录声明来源 |
-| review geometry | KiCad 板原生对象子集 |
+| review geometry | KiCad 或嘉立创专业版 PCB 的原生对象子集 |
 | budget | engineering.json。--scope core、reality、advanced、all |
 | loop run / status / resume / decide / cancel | 按 YAML/JSON 目标执行、查询、恢复、审批或取消 |
 | report | 最近一次 Loop 的中文报告，可用 --output 写入新文件 |

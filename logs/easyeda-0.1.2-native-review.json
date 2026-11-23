@@ -1,0 +1,361 @@
+{
+  "version": "0.1.2",
+  "backend": "easyeda",
+  "pcb": {
+    "uuid": "0826ab7fe62d4b7d",
+    "title": "PCB3",
+    "board": "bba5797d971f7fd8"
+  },
+  "schematics": [
+    {
+      "uuid": "7981a0a73859af77",
+      "title": "P1",
+      "schematic": "a3f02ae8238916b9"
+    }
+  ],
+  "overall": "inconclusive",
+  "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\.ehe\\reviews\\d1afc66af91e45c8af7ff0248e2af520\\review.json",
+  "coverage": {
+    "erc": {
+      "status": "inconclusive",
+      "metrics": {
+        "pages_selected": 1,
+        "pages_checked": 1
+      },
+      "missing": [
+        "Editor changed the copied input. A stable project snapshot is required."
+      ]
+    },
+    "drc": {
+      "status": "inconclusive",
+      "metrics": {
+        "pages_checked": 1,
+        "native_violations": 173,
+        "localized_violations": 173
+      },
+      "missing": [
+        "Editor changed the copied input. A stable project snapshot is required."
+      ]
+    },
+    "schematic_parity": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "需要经过实测的嘉立创原理图/PCB 网表比对"
+      ]
+    },
+    "board_outline": {
+      "status": "pass",
+      "metrics": {
+        "width_mm": 56.515,
+        "height_mm": 27.051,
+        "anchor_mm": [
+          2.413,
+          25.527
+        ],
+        "primitive_id": "4c2e538e509d839c"
+      },
+      "missing": []
+    },
+    "rails": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/rails"
+      ]
+    },
+    "pins": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/pins"
+      ]
+    },
+    "bom": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/bom"
+      ]
+    },
+    "energy": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/energy"
+      ]
+    },
+    "cost": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/cost"
+      ]
+    },
+    "mechanical": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/mechanical"
+      ]
+    },
+    "thermal": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/thermal"
+      ]
+    },
+    "transient": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/transient"
+      ]
+    },
+    "tolerance": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/tolerance"
+      ]
+    },
+    "optimization": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/optimization"
+      ]
+    },
+    "analog": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/analog"
+      ]
+    },
+    "motor": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/motor"
+      ]
+    },
+    "buck": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/buck"
+      ]
+    },
+    "realtime": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/realtime"
+      ]
+    },
+    "fault": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/fault"
+      ]
+    },
+    "return_path": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/return_path"
+      ]
+    },
+    "emi_loop": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/emi_loop"
+      ]
+    },
+    "si": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/si"
+      ]
+    },
+    "pdn": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Engineering model input: C:\\Users\\L\\AppData\\Local\\Temp\\ehe-easyeda-012-9dqlxzk8\\reference\\engineering.json#/pdn"
+      ]
+    },
+    "physical": {
+      "status": "not_run",
+      "metrics": {},
+      "missing": [
+        "Physical measurements and independent acceptance evidence"
+      ]
+    }
+  },
+  "drc_examples": [
+    {
+      "id": "No Connection",
+      "category": "pcb",
+      "severity": "P1",
+      "status": "confirmed",
+      "scope": {
+        "object": "PCB3",
+        "document": "0826ab7fe62d4b7d",
+        "net": "GND",
+        "object_ids": [
+          "316a444ead6f93b2e96"
+        ],
+        "detail": {
+          "typeName": "SMD Pad",
+          "suffix": "(GND): U1_44"
+        },
+        "layer_ids": [
+          1
+        ],
+        "native_position": {
+          "x": 113.42699999999999,
+          "y": 62.55708
+        },
+        "native_rule": "No Connection"
+      },
+      "mechanism": "{obj1} is disconnected from other objects of the same network",
+      "recommended_action": "核对所列焊盘和同网络走线，检查断点、换层过孔及铺铜。修复该网络的实际铜连接",
+      "verification_method": "运行同一 PCB 的严格 DRC，核对该网络未连接项及相邻净距",
+      "evidence_ids": [
+        "ev-bd383ded15f78f169577"
+      ],
+      "missing_evidence": [],
+      "confidence": "medium",
+      "verified_by": "EasyEDA Pro 4.1.60.198f38ab native DRC"
+    },
+    {
+      "id": "No Connection",
+      "category": "pcb",
+      "severity": "P1",
+      "status": "confirmed",
+      "scope": {
+        "object": "PCB3",
+        "document": "0826ab7fe62d4b7d",
+        "net": "GND",
+        "object_ids": [
+          "316a444ead6f93b2e95"
+        ],
+        "detail": {
+          "typeName": "SMD Pad",
+          "suffix": "(GND): U1_43"
+        },
+        "layer_ids": [
+          1
+        ],
+        "native_position": {
+          "x": 115.396,
+          "y": 62.55708
+        },
+        "native_rule": "No Connection"
+      },
+      "mechanism": "{obj1} is disconnected from other objects of the same network",
+      "recommended_action": "核对所列焊盘和同网络走线，检查断点、换层过孔及铺铜。修复该网络的实际铜连接",
+      "verification_method": "运行同一 PCB 的严格 DRC，核对该网络未连接项及相邻净距",
+      "evidence_ids": [
+        "ev-bd383ded15f78f169577"
+      ],
+      "missing_evidence": [],
+      "confidence": "medium",
+      "verified_by": "EasyEDA Pro 4.1.60.198f38ab native DRC"
+    },
+    {
+      "id": "No Connection",
+      "category": "pcb",
+      "severity": "P1",
+      "status": "confirmed",
+      "scope": {
+        "object": "PCB3",
+        "document": "0826ab7fe62d4b7d",
+        "net": "GND",
+        "object_ids": [
+          "8604b00d786ab8b9e57"
+        ],
+        "detail": {
+          "typeName": "TH Pad",
+          "suffix": "(GND): USB1_14"
+        },
+        "layer_ids": [
+          12
+        ],
+        "native_position": {
+          "x": 43.899640000000005,
+          "y": 29.472409999999996
+        },
+        "native_rule": "No Connection"
+      },
+      "mechanism": "{obj1} is disconnected from other objects of the same network",
+      "recommended_action": "核对所列焊盘和同网络走线，检查断点、换层过孔及铺铜。修复该网络的实际铜连接",
+      "verification_method": "运行同一 PCB 的严格 DRC，核对该网络未连接项及相邻净距",
+      "evidence_ids": [
+        "ev-bd383ded15f78f169577"
+      ],
+      "missing_evidence": [],
+      "confidence": "medium",
+      "verified_by": "EasyEDA Pro 4.1.60.198f38ab native DRC"
+    }
+  ],
+  "original_manifest_still_matches_input": true,
+  "modified_editor_copy_files": [
+    "RA6E2.eprj3",
+    "sch/Schematic2/Schematic2.ecfg"
+  ],
+  "native_evidence_archive": "easyeda-0.1.2-native-evidence.zip",
+  "global_native_recheck": {
+    "returncode": 3,
+    "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-final-native-bm_1xawd\\fixture\\.ehe\\reviews\\ab3baa10772b48ac93144e815a84b6df\\review.json",
+    "pcb": {
+      "uuid": "0826ab7fe62d4b7d",
+      "title": "PCB3",
+      "board": "bba5797d971f7fd8"
+    },
+    "schematics": [
+      {
+        "uuid": "7981a0a73859af77",
+        "title": "P1",
+        "schematic": "a3f02ae8238916b9"
+      }
+    ],
+    "drc": {
+      "status": "inconclusive",
+      "checked_snapshot_status": "fail",
+      "metrics": {
+        "pages_checked": 1,
+        "native_violations": 173,
+        "localized_violations": 173
+      },
+      "artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-final-native-bm_1xawd\\fixture\\.ehe\\reviews\\ab3baa10772b48ac93144e815a84b6df\\easyeda\\drc-0826ab7fe62d4b7d.json",
+      "missing_evidence": [
+        "嘉立创改写了检查副本中的文件，原生结果仅代表编辑器加载的副本。"
+      ]
+    },
+    "erc": {
+      "status": "inconclusive",
+      "checked_snapshot_status": "pass",
+      "metrics": {
+        "pages_selected": 1,
+        "pages_checked": 1
+      },
+      "artifact": null,
+      "missing_evidence": [
+        "嘉立创改写了检查副本中的文件，原生结果仅代表编辑器加载的副本。"
+      ]
+    },
+    "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-final-native-bm_1xawd\\fixture\\.ehe\\reviews\\ab3baa10772b48ac93144e815a84b6df\\easyeda\\session.json",
+    "original_unchanged": true
+  },
+  "observed_snapshot_changes": {
+    "RA6E2.eprj3": "Editor rewrote project configuration and profile metadata.",
+    "sch/Schematic2/Schematic2.ecfg": "Editor added TRACK rules copperThickness1oz and copperThickness2oz."
+  }
+}

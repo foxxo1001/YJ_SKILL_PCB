@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 from uuid import uuid4
 
 from . import advanced, reality
-from .adapters import generic, kicad
+from .adapters import easyeda_review, easyeda_source, generic, kicad
 from .doctor import kicad_probe
 from .domain import CHECKS, result, run_domain, status_of
 from .evalops.gate import native_gate
@@ -129,19 +129,51 @@ def _recommendations(coverage: dict) -> list[dict]:
     return sorted(suggestions, key=lambda row: (row["severity"], row["check"], row["finding"]))
 
 
-def full_review(root: Path, model: Path | None = None, *, design_verification=False) -> dict:
-    root = root.resolve()
+def backend_for(path: Path, backend: str) -> str:
+    if backend != "auto":
+        return backend
+    suffix = path.suffix.lower()
+    if suffix == ".eprj3":
+        return "easyeda"
+    if suffix in {".eprj", ".eprj2", ".epro", ".epro2", ".epcb2"}:
+        raise ValueError("Supply an EasyEDA Pro .eprj3 folder project index")
+    if path.is_dir() and any(path.glob("*.eprj3")):
+        if any(path.glob("*.kicad_pcb")) or any(path.glob("*.kicad_sch")):
+            raise ValueError("This directory contains KiCad and EasyEDA projects. Select --eda explicitly.")
+        return "easyeda"
+    return "kicad"
+
+
+def full_review(path: Path, model: Path | None = None, *, design_verification=False, backend="auto",
+                pcb: str | None = None, offline=False) -> dict:
+    path = path.resolve()
+    backend = backend_for(path, backend)
+    index = easyeda_source.index_at(path) if backend == "easyeda" else None
+    if index is None and (pcb is not None or offline):
+        raise ValueError("--pcb and --offline apply to EasyEDA Pro folder project reviews")
+    root = index.parent if index else path
     model = model.resolve() if model is not None else engineering_path(root)
     profile = "design_verification" if design_verification else "full"
-    sources = kicad.native_inputs(root)
-    inputs = source_manifest(root, sources)
     original_model_hash = sha256(model) if model.is_file() else None
     out = output_path(root, f"reviews/{uuid4().hex}")
-    coverage = {
-        "erc": {"topic": "原理图 ERC", **_native_review(root, "schematic", inputs)},
-        **_pcb_review(root, inputs),
-        "board_outline": {"topic": "板框坐标外形与标称板厚", **_board_outline(root)},
-    }
+    target = None
+    if index:
+        inputs, coverage, target, consistent = easyeda_review.review(index, pcb, out, design_verification, offline)
+    else:
+        sources = kicad.native_inputs(root)
+        inputs = source_manifest(root, sources)
+        coverage = {
+            "erc": {"topic": "原理图 ERC", **_native_review(root, "schematic", inputs)},
+            **_pcb_review(root, inputs),
+            "board_outline": {"topic": "板框坐标外形与标称板厚", **_board_outline(root)},
+        }
+        if design_verification:
+            try:
+                bom = _bom_export(root, out, sources, inputs)
+            except (ValueError, OSError, CsvError, KeyError) as exc:
+                bom = result("inconclusive", missing=[f"Native BOM evidence: {exc}"])
+            coverage["design_bom"] = {"topic": "KiCad BOM 与采购料号", **bom}
+        consistent = inputs == source_manifest(root, kicad.native_inputs(root))
     try:
         analyzed = run_domain(model, ALL_CHECKS)
     except (KeyError, OSError, TypeError, ValueError) as exc:
@@ -150,14 +182,7 @@ def full_review(root: Path, model: Path | None = None, *, design_verification=Fa
     coverage.update({name: {"topic": TOPICS[name], **check} for name, check in analyzed["checks"].items()})
     coverage["physical"] = {"topic": "实物验证（EMC、温升、掉压和装配等适用指标）",
                             **result("not_run", missing=["Physical measurements and independent acceptance evidence"])}
-    if design_verification:
-        try:
-            bom = _bom_export(root, out, sources, inputs)
-        except (ValueError, OSError, CsvError, KeyError) as exc:
-            bom = result("inconclusive", missing=[f"Native BOM evidence: {exc}"])
-        coverage["design_bom"] = {"topic": "KiCad BOM 与采购料号", **bom}
-    consistent = (inputs == source_manifest(root, kicad.native_inputs(root))
-                  and original_model_hash == (sha256(model) if model.is_file() else None))
+    consistent = consistent and original_model_hash == (sha256(model) if model.is_file() else None)
     if not consistent:
         coverage["revision"] = {"topic": "审查版本一致性", **result(
             "inconclusive", missing=["Project or engineering input changed during review. Review the new revision."])}
@@ -167,6 +192,7 @@ def full_review(root: Path, model: Path | None = None, *, design_verification=Fa
                       if consistent else "inconclusive") if design_verification else None
     report = {
         "status": status_of(coverage.values()), "profile": profile, "project": str(root), "eda_status": eda_status,
+        "backend": backend, **({"target": target} if target else {}),
         **({"handoff_status": handoff_status} if design_verification else {}),
         "created_at": now(), "inputs": inputs, "model": str(model), "model_sha256": original_model_hash,
         "coverage": coverage, "recommendations": _recommendations(coverage),

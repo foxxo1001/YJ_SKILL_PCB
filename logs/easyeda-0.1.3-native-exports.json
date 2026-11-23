@@ -1,0 +1,330 @@
+{
+  "attempts": [
+    {
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\review.json",
+      "board": "PCB3",
+      "checks": {
+        "drc": {
+          "topic": "嘉立创 PCB DRC",
+          "status": "inconclusive",
+          "metrics": {
+            "pages_checked": 1,
+            "native_violations": 173,
+            "localized_violations": 173
+          },
+          "missing_evidence": [
+            "嘉立创改写了检查副本中的文件，原生结果仅代表编辑器加载的副本。"
+          ],
+          "level": "E2",
+          "evidence": [
+            {
+              "id": "ev-38f6c2fbed4df4a3f65a",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\drc-0826ab7fe62d4b7d.json",
+              "sha256": "b8a772a779e0b74a0fa36142c355054dac94055a034693fb2025c1c84b71c219",
+              "locator": "EasyEDA:drc:0826ab7fe62d4b7d",
+              "kind": "tool_verified",
+              "collected_at": "2026-11-23T14:30:21.882+00:00",
+              "method": "EasyEDA editor rule API",
+              "version": "4.1.60.198f38ab"
+            }
+          ],
+          "artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\drc-0826ab7fe62d4b7d.json",
+          "document": "0826ab7fe62d4b7d",
+          "native_passed": false,
+          "export_artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-0826ab7fe62d4b7d.json",
+          "editor_project": "d0d5a5bff8680cd4b7818e73094c91a32b2bc644d1fd8218dd1e49c8ccd5d87d",
+          "session_receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\session.json",
+          "checked_snapshot_status": "fail"
+        },
+        "erc": {
+          "topic": "嘉立创原理图规则检查",
+          "status": "inconclusive",
+          "metrics": {
+            "pages_selected": 1,
+            "pages_checked": 1
+          },
+          "missing_evidence": [
+            "嘉立创改写了检查副本中的文件，原生结果仅代表编辑器加载的副本。"
+          ],
+          "evidence": [
+            {
+              "id": "ev-53da33b366aa66b15e2b",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\erc-7981a0a73859af77.json",
+              "sha256": "2de4938a70723d62db098d5ce0e413119b159bf7483a78e59e169bcdcdff92a4",
+              "locator": "EasyEDA:erc:7981a0a73859af77",
+              "kind": "tool_verified",
+              "collected_at": "2026-11-23T14:30:26.279+00:00",
+              "method": "EasyEDA editor rule API",
+              "version": "4.1.60.198f38ab"
+            }
+          ],
+          "session_receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\session.json",
+          "checked_snapshot_status": "pass"
+        },
+        "schematic_parity": {
+          "topic": "原理图与 PCB 网络及器件一致性",
+          "status": "inconclusive",
+          "metrics": {
+            "schematic_components": 0,
+            "pcb_components": 35,
+            "schematic_connected_pins": 0,
+            "pcb_connected_pins": 170
+          },
+          "missing_evidence": [
+            "嘉立创改写了检查副本中的文件，原生结果仅代表编辑器加载的副本。"
+          ],
+          "level": "E1",
+          "evidence": [
+            {
+              "id": "ev-826b82d4d4afe1204c24",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-7981a0a73859af77.json",
+              "sha256": "c178d584eb393e7be2b66a64d6cac58f6b36c0d71cb20d86067d038ec0bd5caa",
+              "locator": "EasyEDA:netlist:7981a0a73859af77",
+              "kind": "tool_verified",
+              "collected_at": "2026-11-23T14:30:26.921+00:00",
+              "method": "EasyEDA native export API",
+              "version": "4.1.60.198f38ab"
+            },
+            {
+              "id": "ev-cdcfc0ca7b3cf696f0c3",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-0826ab7fe62d4b7d.json",
+              "sha256": "de3962734f90ca5e00dfd51aa746704a976313caed02ff64a48b555a291659b1",
+              "locator": "EasyEDA:netlist:0826ab7fe62d4b7d",
+              "kind": "tool_verified",
+              "collected_at": "2026-11-23T14:30:26.920+00:00",
+              "method": "EasyEDA native export API",
+              "version": "4.1.60.198f38ab"
+            }
+          ],
+          "session_receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\session.json",
+          "checked_snapshot_status": "fail",
+          "example_findings": [
+            {
+              "id": "easyeda_component_mismatch",
+              "category": "schematic",
+              "severity": "P1",
+              "status": "confirmed",
+              "scope": {
+                "object": "C1",
+                "present_on": "pcb",
+                "input_revision": "editor_copy"
+              },
+              "mechanism": "C1 仅出现在 pcb 网表",
+              "recommended_action": "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
+              "verification_method": "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。",
+              "evidence_ids": [
+                "ev-826b82d4d4afe1204c24",
+                "ev-cdcfc0ca7b3cf696f0c3"
+              ],
+              "missing_evidence": [],
+              "confidence": "medium",
+              "verified_by": null
+            },
+            {
+              "id": "easyeda_component_mismatch",
+              "category": "schematic",
+              "severity": "P1",
+              "status": "confirmed",
+              "scope": {
+                "object": "C10",
+                "present_on": "pcb",
+                "input_revision": "editor_copy"
+              },
+              "mechanism": "C10 仅出现在 pcb 网表",
+              "recommended_action": "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
+              "verification_method": "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。",
+              "evidence_ids": [
+                "ev-826b82d4d4afe1204c24",
+                "ev-cdcfc0ca7b3cf696f0c3"
+              ],
+              "missing_evidence": [],
+              "confidence": "medium",
+              "verified_by": null
+            },
+            {
+              "id": "easyeda_component_mismatch",
+              "category": "schematic",
+              "severity": "P1",
+              "status": "confirmed",
+              "scope": {
+                "object": "C11",
+                "present_on": "pcb",
+                "input_revision": "editor_copy"
+              },
+              "mechanism": "C11 仅出现在 pcb 网表",
+              "recommended_action": "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
+              "verification_method": "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。",
+              "evidence_ids": [
+                "ev-826b82d4d4afe1204c24",
+                "ev-cdcfc0ca7b3cf696f0c3"
+              ],
+              "missing_evidence": [],
+              "confidence": "medium",
+              "verified_by": null
+            }
+          ]
+        },
+        "design_bom": {
+          "topic": "嘉立创 BOM 与采购料号",
+          "status": "inconclusive",
+          "metrics": {
+            "rows": 20,
+            "designators": 32
+          },
+          "missing_evidence": [
+            "嘉立创改写了检查副本中的文件，原生结果仅代表编辑器加载的副本。"
+          ],
+          "artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda-native-bom.tsv",
+          "level": "E1",
+          "evidence": [
+            {
+              "id": "ev-c77fa0c4db97b515cfaa",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-0826ab7fe62d4b7d.json",
+              "sha256": "de3962734f90ca5e00dfd51aa746704a976313caed02ff64a48b555a291659b1",
+              "locator": "EasyEDA:bom:0826ab7fe62d4b7d",
+              "kind": "tool_verified",
+              "collected_at": "2026-11-23T14:30:26.925+00:00",
+              "method": "EasyEDA native export API",
+              "version": "4.1.60.198f38ab"
+            }
+          ],
+          "session_receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\session.json",
+          "checked_snapshot_status": "pass",
+          "example_findings": []
+        }
+      }
+    }
+  ],
+  "original_unchanged": true,
+  "final_evaluation_of_preserved_native_outputs": {
+    "bom": {
+      "status": "pass",
+      "metrics": {
+        "rows": 20,
+        "designators": 32,
+        "expected_designators": 32
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "artifact": "build\\easyeda-013-export-recheck\\easyeda-native-bom.tsv",
+      "level": "E1",
+      "evidence": [
+        {
+          "id": "ev-c77fa0c4db97b515cfaa",
+          "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-0826ab7fe62d4b7d.json",
+          "sha256": "de3962734f90ca5e00dfd51aa746704a976313caed02ff64a48b555a291659b1",
+          "locator": "EasyEDA:bom:0826ab7fe62d4b7d",
+          "kind": "tool_verified",
+          "collected_at": "2026-11-23T14:34:55.150+00:00",
+          "method": "EasyEDA native export API",
+          "version": "4.1.60.198f38ab"
+        },
+        {
+          "id": "ev-cdcfc0ca7b3cf696f0c3",
+          "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-0826ab7fe62d4b7d.json",
+          "sha256": "de3962734f90ca5e00dfd51aa746704a976313caed02ff64a48b555a291659b1",
+          "locator": "EasyEDA:netlist:0826ab7fe62d4b7d",
+          "kind": "tool_verified",
+          "collected_at": "2026-11-23T14:34:55.154+00:00",
+          "method": "EasyEDA native export API",
+          "version": "4.1.60.198f38ab"
+        }
+      ]
+    },
+    "schematic_parity": {
+      "status": "fail",
+      "metrics": {
+        "schematic_components": 0,
+        "pcb_components": 35,
+        "schematic_connected_pins": 0,
+        "pcb_connected_pins": 170
+      },
+      "findings": [
+        {
+          "id": "easyeda_component_mismatch",
+          "category": "schematic",
+          "severity": "P1",
+          "status": "confirmed",
+          "scope": {
+            "object": "C1",
+            "present_on": "pcb"
+          },
+          "mechanism": "C1 仅出现在 pcb 网表",
+          "recommended_action": "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
+          "verification_method": "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。",
+          "evidence_ids": [
+            "ev-826b82d4d4afe1204c24",
+            "ev-cdcfc0ca7b3cf696f0c3"
+          ],
+          "missing_evidence": [],
+          "confidence": "medium",
+          "verified_by": null
+        },
+        {
+          "id": "easyeda_component_mismatch",
+          "category": "schematic",
+          "severity": "P1",
+          "status": "confirmed",
+          "scope": {
+            "object": "C10",
+            "present_on": "pcb"
+          },
+          "mechanism": "C10 仅出现在 pcb 网表",
+          "recommended_action": "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
+          "verification_method": "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。",
+          "evidence_ids": [
+            "ev-826b82d4d4afe1204c24",
+            "ev-cdcfc0ca7b3cf696f0c3"
+          ],
+          "missing_evidence": [],
+          "confidence": "medium",
+          "verified_by": null
+        },
+        {
+          "id": "easyeda_component_mismatch",
+          "category": "schematic",
+          "severity": "P1",
+          "status": "confirmed",
+          "scope": {
+            "object": "C11",
+            "present_on": "pcb"
+          },
+          "mechanism": "C11 仅出现在 pcb 网表",
+          "recommended_action": "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
+          "verification_method": "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。",
+          "evidence_ids": [
+            "ev-826b82d4d4afe1204c24",
+            "ev-cdcfc0ca7b3cf696f0c3"
+          ],
+          "missing_evidence": [],
+          "confidence": "medium",
+          "verified_by": null
+        }
+      ],
+      "missing_evidence": [],
+      "level": "E1",
+      "evidence": [
+        {
+          "id": "ev-826b82d4d4afe1204c24",
+          "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-7981a0a73859af77.json",
+          "sha256": "c178d584eb393e7be2b66a64d6cac58f6b36c0d71cb20d86067d038ec0bd5caa",
+          "locator": "EasyEDA:netlist:7981a0a73859af77",
+          "kind": "tool_verified",
+          "collected_at": "2026-11-23T14:34:55.160+00:00",
+          "method": "EasyEDA native export API",
+          "version": "4.1.60.198f38ab"
+        },
+        {
+          "id": "ev-cdcfc0ca7b3cf696f0c3",
+          "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-013-exports-6w2_sbdl\\.ehe\\reviews\\95c8acd0a0ee4955a2b1a497954d3db6\\easyeda\\export-0826ab7fe62d4b7d.json",
+          "sha256": "de3962734f90ca5e00dfd51aa746704a976313caed02ff64a48b555a291659b1",
+          "locator": "EasyEDA:netlist:0826ab7fe62d4b7d",
+          "kind": "tool_verified",
+          "collected_at": "2026-11-23T14:34:55.159+00:00",
+          "method": "EasyEDA native export API",
+          "version": "4.1.60.198f38ab"
+        }
+      ]
+    }
+  }
+}

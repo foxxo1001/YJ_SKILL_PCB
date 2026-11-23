@@ -3,9 +3,11 @@ import json
 from pathlib import Path
 import re
 import subprocess
+from tempfile import TemporaryFile
 
+from . import easyeda_source
 from ..doctor import locate, windows_install
-from ..io import load, now, sha256
+from ..io import now, sha256
 
 SCRIPT = (
     "const p = await eda.dmt_Project.getCurrentProjectInfo(); "
@@ -28,18 +30,26 @@ def call(program: Path, arguments: list[str], timeout=12) -> dict:
     argv = [str(program), *arguments]
     provenance = {"argv": argv, "cwd": str(program.parent), "started_at": now()}
     try:
-        completed = subprocess.run(argv, cwd=program.parent, capture_output=True,
-                                   encoding="utf-8", errors="replace", timeout=timeout)
+        # The editor process can inherit the CLI output handles on a cold start.
+        # Files let the timeout return even if a descendant keeps its handle open.
+        with TemporaryFile() as stdout, TemporaryFile() as stderr:
+            completed = subprocess.run(argv, cwd=program.parent, stdout=stdout, stderr=stderr, timeout=timeout)
+            stdout.seek(0)
+            stderr.seek(0)
+            output = stdout.read().decode("utf-8", errors="replace")
+            errors = stderr.read().decode("utf-8", errors="replace")
     except (OSError, subprocess.TimeoutExpired) as exc:
         return {"status": "blocked", "reason": str(exc),
                 "execution": {**provenance, "finished_at": now(), "exit_code": None}}
-    execution = {**provenance, "finished_at": now(), "exit_code": completed.returncode, "stdout": completed.stdout,
-                 "stderr": completed.stderr}
+    execution = {**provenance, "finished_at": now(), "exit_code": completed.returncode, "stdout": output,
+                 "stderr": errors}
     try:
-        envelope = json.loads(completed.stdout)
+        envelope = json.loads(output)
     except ValueError:
         return {"status": "blocked", "reason": "CLI returned no native JSON envelope", "execution": execution}
-    if not isinstance(envelope, dict) or not envelope.get("ok") or completed.returncode != 0:
+    if not isinstance(envelope, dict):
+        return {"status": "blocked", "reason": "Unexpected native JSON envelope", "execution": execution}
+    if not envelope.get("ok") or completed.returncode != 0:
         return {"status": "blocked", "reason": "Native CLI rejected the operation",
                 "execution": execution, "native": envelope}
     return {"status": "available", "native": envelope, "execution": execution}
@@ -68,7 +78,8 @@ def session_list() -> dict:
     return {**result, "tool_version": tool["version"], "level": "E0"}
 
 
-def inspect_session(session: str, expected_project: Path | None = None, *, opened: dict | None = None) -> dict:
+def inspect_session(session: str, expected_project: Path | None = None, *, opened: dict | None = None,
+                    pcb: str | None = None) -> dict:
     if re.fullmatch(r"(?:[0-9]+|[a-fA-F0-9-]{20,64})", session) is None:
         raise ValueError("Session must be a native numeric render ID or UUID")
     sessions = session_list()
@@ -85,10 +96,13 @@ def inspect_session(session: str, expected_project: Path | None = None, *, opene
                     Path(native_path).resolve() == expected_project.resolve())
     if native_path and not correct_path or not native_path and expected_project:
         return {"status": "blocked", "reason": "Expected project does not match the specified session", "level": "E0"}
-    pcbs = []
+    pcb_uuid = None
     if expected_project and expected_project.suffix.lower() == ".eprj3":
-        pcbs = [entry["id"] for entry in project_inventory(expected_project)["documents"] if entry["kind"] == "pcbs"]
-    pcb_uuid = pcbs[0] if pcbs else None
+        _, groups = easyeda_source.documents(expected_project)
+        if pcb is not None or len(groups["pcbs"]) == 1:
+            pcb_uuid = easyeda_source.selection(groups, pcb)[0].id
+    elif pcb is not None:
+        raise ValueError("--pcb requires a verified .eprj3 project index")
     program = executable()
     outcome = call(program, ["invoke", "--session", str(candidate["sessionId"]), "--ext-uuid", "eda",
                              "--timeout", "8000", "--code", SCRIPT, "--args", json.dumps({"pcbUuid": pcb_uuid})])
@@ -105,21 +119,11 @@ def inspect_session(session: str, expected_project: Path | None = None, *, opene
 
 
 def project_inventory(path: Path) -> dict:
-    if path.suffix.lower() != '.eprj3':
-        raise ValueError('Expected an EasyEDA Pro eprj3 project index')
-    data = load(path)
-    if data.get('format') != 'folder' or not isinstance(data.get('profile'), dict):
-        raise ValueError('Unsupported eprj3 project index')
-    documents = []
-    for kind in ('boards', 'schematics', 'sheets', 'pcbs', 'panels'):
-        group = data['profile'].get(kind, {})
-        if not isinstance(group, dict):
-            raise ValueError(f'Invalid eprj3 profile group {kind}')
-        for key, doc in group.items():
-            if re.fullmatch(r'[0-9a-fA-F]{16,32}', key) is None or doc.get('uuid', key) != key:
-                raise ValueError(f'Invalid eprj3 document identity in {kind}')
-            documents.append({'id': key, 'kind': kind, 'name': doc.get('title', doc.get('name')),
-                              'locator': f'/profile/{kind}/{key}'})
+    path = easyeda_source.index_at(path)
+    name, groups = easyeda_source.documents(path)
+    documents = [{'id': doc.id, 'kind': kind, 'name': doc.name, 'board': doc.board,
+                  'schematic': doc.schematic, 'locator': f'/profile/{kind}/{doc.id}'}
+                 for kind, group in groups.items() for doc in group]
     return {'status': 'parsed' if documents else 'inconclusive', 'level': 'E1', 'native_rule_checks': 'not_run',
             'evidence_kind': 'documented', 'source': str(path.resolve()), 'sha256': sha256(path),
-            'documents': documents, 'project_name': data.get('name'), 'nets': [], 'geometry': []}
+            'documents': documents, 'project_name': name, 'nets': [], 'geometry': []}

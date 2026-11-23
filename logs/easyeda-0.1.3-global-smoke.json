@@ -1,0 +1,19 @@
+{
+  "version": "0.1.3",
+  "global_skill_found": true,
+  "installed_copies_match": true,
+  "skill_sha256": "528ea77650410e1ab03c6935e7441c4786711fe2c17cdd2324276412d627f182",
+  "resolver": {
+    "status": "available",
+    "source": "installed",
+    "argv": [
+      "D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "ehe.cli"
+    ],
+    "version": "0.1.3"
+  },
+  "design_generation_visible": true,
+  "approval_workflow_visible": true
+}

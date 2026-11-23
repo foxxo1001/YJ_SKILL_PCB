@@ -1,0 +1,156 @@
+{
+  "version": "0.1.3",
+  "scratch": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d",
+  "generation": {
+    "status": "blocked",
+    "project": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\Interconnect.eprj3",
+    "pcb": "7ef66f22f33c47db827daf8093bb301b",
+    "review": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\reviews\\a14b5192dea24f0493a28d957b052e00\\review.json",
+    "drc": {
+      "topic": "嘉立创 PCB DRC",
+      "status": "blocked",
+      "metrics": {},
+      "findings": [],
+      "missing_evidence": [
+        "Could not activate EasyEDA Board (7ef66f22f33c47db827daf8093bb301b)"
+      ],
+      "artifact": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\reviews\\a14b5192dea24f0493a28d957b052e00\\easyeda\\drc-7ef66f22f33c47db827daf8093bb301b.json",
+      "session_receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\reviews\\a14b5192dea24f0493a28d957b052e00\\easyeda\\session.json"
+    },
+    "limitations": [
+      "Interconnect/test-pad boards with fixed terminals and top copper only",
+      "No schematic or component placement synthesized"
+    ]
+  },
+  "proposal": {
+    "status": "WAITING_APPROVAL",
+    "id": "eda-64bee3e232e2acfda22338f8",
+    "index": "Interconnect.eprj3",
+    "pcb": "7ef66f22f33c47db827daf8093bb301b",
+    "target": "pcb/Board.epcb2",
+    "before_sha256": "d1b5d870650bf5a61886a919f9d47feaad19a4efcc8c897cf856a5177a779ff3",
+    "candidate_sha256": "efecf742563c66d6ae11a80abbd2b2df799b910c47bb2f9330b7fa306ae91a1b",
+    "manifest": {
+      "Interconnect.eprj3": "6bc74d2d775bfaac0c8581a4289642f7ebf6ead9f32054b14568b625411006f1",
+      "pcb/Board.epcb2": "d1b5d870650bf5a61886a919f9d47feaad19a4efcc8c897cf856a5177a779ff3"
+    },
+    "preview": "--- pcb/Board.epcb2\n+++ candidate.epcb2\n@@ -13,3 +13,4 @@\n {\"type\":\"PAD\",\"ticket\":13,\"id\":\"e13\"}||{\"partitionId\":\"\",\"groupId\":0,\"locked\":false,\"layerId\":1,\"zIndex\":13,\"netName\":\"SIGNAL\",\"num\":\"13\",\"centerX\":157.480315,\"centerY\":196.850394,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"ELLIPSE\",\"width\":62.992126,\"height\":62.992126},\"specialPad\":[],\"padOffsetX\":0,\"padOffsetY\":0,\"relativeAngle\":0,\"plated\":false,\"padType\":\"TEST\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":-62.992126,\"bottomPasteExpansion\":null,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0,\"propagationDelay\":0}|\n {\"type\":\"PAD\",\"ticket\":14,\"id\":\"e14\"}||{\"partitionId\":\"\",\"groupId\":0,\"locked\":false,\"layerId\":1,\"zIndex\":14,\"netName\":\"SIGNAL\",\"num\":\"14\",\"centerX\":1023.622047,\"centerY\":196.850394,\"padAngle\":0,\"hole\":null,\"defaultPad\":{\"padType\":\"ELLIPSE\",\"width\":62.992126,\"height\":62.992126},\"specialPad\":[],\"padOffsetX\":0,\"padOffsetY\":0,\"relativeAngle\":0,\"plated\":false,\"padType\":\"TEST\",\"topSolderExpansion\":null,\"bottomSolderExpansion\":null,\"topPasteExpansion\":-62.992126,\"bottomPasteExpansion\":null,\"connectMode\":null,\"spokeSpace\":null,\"spokeWidth\":null,\"spokeAngle\":null,\"padLen\":0,\"propagationDelay\":0}|\n {\"type\":\"LINE\",\"ticket\":15,\"id\":\"e15\"}||{\"partitionId\":\"\",\"groupId\":0,\"locked\":false,\"layerId\":1,\"netName\":\"SIGNAL\",\"width\":11.811024,\"startX\":157.480315,\"startY\":196.850394,\"endX\":1023.622047,\"endY\":196.850394,\"zIndex\":15}|\n+{\"type\":\"LINE\",\"ticket\":16,\"id\":\"e15\"}||{\"partitionId\":\"\",\"groupId\":0,\"locked\":false,\"layerId\":1,\"netName\":\"SIGNAL\",\"width\":17.716535,\"startX\":157.480315,\"startY\":196.850394,\"endX\":1023.622047,\"endY\":196.850394,\"zIndex\":15}|",
+    "preview_truncated": false,
+    "impact": [
+      "electrical",
+      "emi",
+      "footprint",
+      "mechanical",
+      "pcb",
+      "pin_map",
+      "power",
+      "schematic",
+      "thermal"
+    ],
+    "rollback": "Create a separate revision with the approved baseline PCB and assets",
+    "candidate": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\easyeda-changes\\eda-64bee3e232e2acfda22338f8\\candidate.epcb2",
+    "proposal_file": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\easyeda-changes\\eda-64bee3e232e2acfda22338f8\\proposal.json"
+  },
+  "before_approval": {
+    "status": "blocked",
+    "proposal": "eda-64bee3e232e2acfda22338f8",
+    "reason": "Explicit approval for this revision is missing"
+  },
+  "approval": {
+    "status": "recorded",
+    "proposal": "eda-64bee3e232e2acfda22338f8",
+    "action": "approve",
+    "reviewer": "EHE fixture test operator",
+    "reason": "0.45 mm SIGNAL trace in generated standalone test fixture",
+    "candidate_sha256": "efecf742563c66d6ae11a80abbd2b2df799b910c47bb2f9330b7fa306ae91a1b",
+    "at": "2026-11-23T14:28:27.183+00:00",
+    "decision_file": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\easyeda-changes\\eda-64bee3e232e2acfda22338f8\\decision.json"
+  },
+  "apply": {
+    "status": "inconclusive",
+    "write_status": "applied",
+    "proposal": "eda-64bee3e232e2acfda22338f8",
+    "project": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\Interconnect.eprj3",
+    "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\change-receipt.json",
+    "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\.ehe\\reviews\\807d1e0d89fb444581b5a5d6a33abccf\\review.json",
+    "drc_status": "inconclusive",
+    "erc_status": "not_run",
+    "parity_status": "not_run"
+  },
+  "rollback": {
+    "status": "inconclusive",
+    "write_status": "rolled_back",
+    "proposal": "eda-64bee3e232e2acfda22338f8",
+    "project": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\Interconnect.eprj3",
+    "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\change-receipt.json",
+    "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\.ehe\\reviews\\113a958bc8cb47f6ada055b6da29a988\\review.json",
+    "drc_status": "inconclusive",
+    "erc_status": "not_run",
+    "parity_status": "not_run"
+  },
+  "verification": {
+    "trace": "e15",
+    "edited_width_mm": 0.45,
+    "source_unchanged": true,
+    "rollback_matches_source": true
+  },
+  "final_native_rechecks": {
+    "generation": {
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\reviews\\8696f371a7044afdadf0e8dccb6005df\\review.json",
+      "status": "pass",
+      "checked_snapshot_status": "pass",
+      "native_passed": true,
+      "native_violations": 0,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\reviews\\8696f371a7044afdadf0e8dccb6005df\\easyeda\\session.json",
+      "missing": []
+    },
+    "applied": {
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\.ehe\\reviews\\e62245d212404fb5bcfa675facb461c3\\review.json",
+      "status": "pass",
+      "checked_snapshot_status": "pass",
+      "native_passed": true,
+      "native_violations": 0,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\.ehe\\reviews\\e62245d212404fb5bcfa675facb461c3\\easyeda\\session.json",
+      "missing": []
+    },
+    "rollback": {
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\.ehe\\reviews\\5ff61e9a780c436584aefc62e8cdc795\\review.json",
+      "status": "blocked",
+      "checked_snapshot_status": null,
+      "native_passed": null,
+      "native_violations": null,
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\.ehe\\reviews\\5ff61e9a780c436584aefc62e8cdc795\\easyeda\\session.json",
+      "missing": [
+        "Could not activate EasyEDA Board (7ef66f22f33c47db827daf8093bb301b)"
+      ]
+    }
+  },
+  "backup_test": {
+    "apply": {
+      "status": "blocked",
+      "write_status": "applied",
+      "proposal": "eda-64bee3e232e2acfda22338f8",
+      "project": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\Interconnect.eprj3",
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\change-receipt.json",
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8\\.ehe\\reviews\\d45cc3abeff24951b98187394e6dfef2\\review.json",
+      "drc_status": "blocked",
+      "erc_status": "not_run",
+      "parity_status": "not_run"
+    },
+    "rollback": {
+      "status": "inconclusive",
+      "write_status": "rolled_back",
+      "proposal": "eda-64bee3e232e2acfda22338f8",
+      "project": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\Interconnect.eprj3",
+      "receipt": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\change-receipt.json",
+      "report": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-v013-acceptance-nfoc0_8d\\from-spec\\.ehe\\work\\eda-64bee3e232e2acfda22338f8-baseline\\.ehe\\reviews\\f6c356605ed64bcf98d75b21aec38c15\\review.json",
+      "drc_status": "pass",
+      "erc_status": "not_run",
+      "parity_status": "not_run"
+    },
+    "approved_baseline_restored_despite_source_edit": true,
+    "scratch_source_hash_during_rollback": "4e5b5a31c5b72a09ccce0dd9995366b330dd0674441f2dd0f303bb26fdc15bef",
+    "restored_hash": "d1b5d870650bf5a61886a919f9d47feaad19a4efcc8c897cf856a5177a779ff3",
+    "scratch_restored": true
+  }
+}

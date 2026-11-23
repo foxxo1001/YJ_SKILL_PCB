@@ -8,7 +8,7 @@ from pathlib import Path
 import yaml
 
 from . import __version__, advanced, reality
-from .adapters import altium, easyeda, generic, kicad
+from .adapters import altium, easyeda, easyeda_design, easyeda_review, easyeda_source, generic, kicad
 from .evalops.suite import run_suite
 from .knowledge import admit, claims, holdout_registry, search
 from .doctor import doctor
@@ -16,9 +16,9 @@ from .domain import run_domain
 from .io import format_json, load
 from .project import engineering_path, init_project
 from .requirements import analyze, trace
-from .review import full_review
+from .review import backend_for, full_review
 from .report import render
-from .runtime import engine
+from .runtime import easyeda_changes, engine
 from .runtime.plan import impact
 
 EXIT_CODES = {"fail": 1, "blocked": 3, "not_run": 3, "inconclusive": 3,
@@ -46,10 +46,15 @@ def parser_for_cli() -> argparse.ArgumentParser:
     review.add_argument("input", type=Path)
     review.add_argument("--producer", choices=("generic", "kicad", "easyeda", "altium"), default="generic")
     review.add_argument("--model", type=Path, help="Read a separate engineering model for a full review")
-    design = commands.add_parser("design", help="Verify an authored KiCad design and produce BOM evidence")
-    design.add_argument("action", choices=("verify",))
+    design = commands.add_parser("design", help="Generate or verify a native design and report handoff evidence")
+    design.add_argument("action", choices=("verify", "generate"))
     design.add_argument("project", type=Path)
     design.add_argument("--model", type=Path)
+    design.add_argument("--output", type=Path, help="New directory for a generated EasyEDA board")
+    for command in (review, design):
+        command.add_argument("--eda", choices=("auto", "kicad", "easyeda"), default="auto")
+        command.add_argument("--pcb", help="PCB title or UUID inside an EasyEDA Pro project")
+        command.add_argument("--offline", action="store_true", help="Read EasyEDA source without opening an editor")
     loop = commands.add_parser("loop", help="Run or resume a persisted engineering plan")
     actions = loop.add_subparsers(dest="action", required=True)
     for action in ("run", "status", "resume", "decide", "cancel"):
@@ -62,6 +67,23 @@ def parser_for_cli() -> argparse.ArgumentParser:
             command.add_argument("decision", choices=("approve", "deny"))
             command.add_argument("--reviewer", required=True)
         if action in {"decide", "cancel"}:
+            command.add_argument("--reason", required=True)
+    change = commands.add_parser("change", help="Propose and apply a scoped EasyEDA PCB revision")
+    commands_change = change.add_subparsers(dest="action", required=True)
+    for action in ("propose", "decide", "apply", "rollback"):
+        command = commands_change.add_parser(action)
+        command.add_argument("--project", required=True, type=Path)
+        if action == "propose":
+            command.add_argument("--pcb")
+            candidate = command.add_mutually_exclusive_group(required=True)
+            candidate.add_argument("--replacement", type=Path)
+            candidate.add_argument("--edits", type=Path)
+        else:
+            command.add_argument("proposal")
+        if action == "decide":
+            command.add_argument("decision", choices=("approve", "deny"))
+            command.add_argument("--reviewer", required=True)
+        if action in {"decide", "rollback"}:
             command.add_argument("--reason", required=True)
     report = commands.add_parser("report", help="Render the most recent Loop report")
     report.add_argument("--project", required=True, type=Path)
@@ -105,6 +127,7 @@ def parser_for_cli() -> argparse.ArgumentParser:
     easy.add_argument("mode", choices=("detect", "sessions", "inspect", "index"))
     easy.add_argument("--session")
     easy.add_argument("--expected-project", type=Path)
+    easy.add_argument("--pcb", help="Inspect a specified PCB title or UUID instead of an arbitrary board")
     ad = eda_backends.add_parser("altium")
     ad.add_argument("--input", type=Path)
     return parser
@@ -134,15 +157,29 @@ def dispatch(args: argparse.Namespace) -> dict:
             checks = {"reality": reality.CHECKS, "advanced": advanced.CHECKS}[args.scope]
         return run_domain(source, checks)
     if args.command == "design":
-        return full_review(args.project, args.model, design_verification=True)
+        if args.action == "generate":
+            if not args.output or args.eda == "kicad" or args.model or args.pcb or args.offline:
+                raise ValueError("Use design generate <spec> --output <new-directory> for an EasyEDA interconnect board")
+            return easyeda_design.generate(args.project, args.output)
+        if args.output:
+            raise ValueError("--output applies to design generate")
+        return full_review(args.project, args.model, design_verification=True, backend=args.eda,
+                           pcb=args.pcb, offline=args.offline)
     if args.command == "review":
         path = args.input.resolve()
         if args.domain == "full":
-            return full_review(path, args.model)
-        if args.model:
-            raise ValueError("--model is available with review full")
+            return full_review(path, args.model, backend=args.eda, pcb=args.pcb, offline=args.offline)
+        if args.model or args.offline:
+            raise ValueError("--model and --offline are available with review full")
         if args.domain == "export":
             return generic.ingest(path, args.producer)
+        backend = backend_for(path, args.eda)
+        if backend == "easyeda":
+            if args.domain != "geometry":
+                raise ValueError("Use review full for native EasyEDA Pro checks")
+            return easyeda_review.project_geometry(easyeda_source.index_at(path), args.pcb)
+        if args.pcb:
+            raise ValueError("--pcb is available for EasyEDA reviews")
         if args.domain == "geometry":
             native = kicad.geometry(path)
             return {"status": "parsed", "level": "E3", "canonical": native}
@@ -179,6 +216,16 @@ def dispatch(args: argparse.Namespace) -> dict:
             with args.output.open("x", encoding="utf-8") as target:
                 target.write(format_json(result))
         return result
+    if args.command == "change":
+        if args.action == "propose":
+            if args.edits:
+                return easyeda_changes.propose_edits(args.project, args.pcb, args.edits)
+            return easyeda_changes.propose(args.project, args.pcb, args.replacement)
+        if args.action == "decide":
+            return easyeda_changes.decide(args.project, args.proposal, args.decision, args.reviewer, args.reason)
+        if args.action == "rollback":
+            return easyeda_changes.revise(args.project, args.proposal, rollback=args.reason)
+        return easyeda_changes.revise(args.project, args.proposal)
     if args.command == "eda":
         if args.backend == "easyeda":
             if args.mode == "index":
@@ -188,7 +235,7 @@ def dispatch(args: argparse.Namespace) -> dict:
             if args.mode == "inspect":
                 if not args.session:
                     raise ValueError("EasyEDA inspect requires --session")
-                return easyeda.inspect_session(args.session, args.expected_project)
+                return easyeda.inspect_session(args.session, args.expected_project, pcb=args.pcb)
             return easyeda.detect() if args.mode == "detect" else easyeda.session_list()
         if not args.input:
             return altium.detect()

@@ -12,7 +12,7 @@
 | M3 工程 Loop | implemented | 项目内持久化、审批、DAG、预算、恢复、停滞与回归。真实整改演示、进程崩溃和原始结果篡改测试。logs/M3.txt、logs/demo |
 | M4 Reality 与高级工程 | partial | 正常和异常模型、公式、裕量、证据分级。几何精度、自动拓扑证据和实物验证缺失。logs/M4.txt、logs/M4-model.txt |
 | M5 Knowledge / EvalOps | partial | 36 个公开开发金标准、版本对照、发布阻断、PDF 和工程对象来源索引、隔离注册表。未提供独立私有盲测组。logs/M5.txt、logs/M5-run1.json、logs/release-eval.json |
-| M6 多 EDA / 受控改板 | partial | 获批原子工作副本、嘉立创真实版本与会话、eprj3 索引及 PCB 元数据读取、Altium 清单和通用导出导入。两套工具的原生 ERC/DRC 和深度仿真仍缺。logs/M6.txt、兼容矩阵 |
+| M6 多 EDA / 受控改板 | partial | 获批 KiCad 和嘉立创 PCB 工作副本，嘉立创原生网表/BOM、单面测试板生成和部分几何，Altium 清单和通用导出。通用 PCB 自动设计、Altium 原生规则和深度仿真仍缺。见兼容矩阵与 0.1.3 更新日志 |
 
 ## RQ 与硬件能力
 
@@ -27,7 +27,7 @@
 | HW-04 | partial | 最坏串行延迟和吞吐。调度证明、真实固件轨迹集成未完成 |
 | HW-05 | partial | 冷态堵转、驱动 SOA 时间与估算温升。编码器、续流和控制稳定性依赖现场数据 |
 | HW-06 | partial | Buck CCM 纹波、饱和及限流预算。Boost、补偿和磁芯的完整仿真未实现 |
-| HW-07 | partial | KiCad ERC，声明引脚及 BOM 审查。设计语义中电源域、偏置与去耦尚无全图覆盖 |
+| HW-07 | partial | KiCad ERC、嘉立创关联原理图页的原生规则、声明引脚及 BOM 审查。设计语义中电源域、偏置与去耦尚无全图覆盖 |
 | HW-08 | partial | 原生 DRC，几何及层/网/器件子集。封装、叠层材料和项目制造规则仍需用户确认 |
 | HW-09 | partial | 干扰源、耦合和受扰体、热环路面积。EMC 信号发生、频谱与认证均未运行 |
 | HW-10 | partial | 声明参考面窗口的几何定位及换层耦合，缺失证据转 inconclusive。未重建所有原生铜区的回流网络 |
@@ -57,7 +57,7 @@
 | KiCad E2 | implemented | 10.0.6 原生 JSON，输入哈希和退出码有独立复核 |
 | KiCad E3 | partial | 板对象子集，复合铜区和材料模型未闭合 |
 | KiCad E4 | partial | 审批绑定文件替换到版本副本及复验，提交至原件或任意对象写回无实现 |
-| 嘉立创EDA | partial | 真实 CLI 和 eprj3 文档索引。原生检查与完整文档对象 API 验收受版本和会话条件限制 |
+| 嘉立创EDA | partial | 实测 4.1.60 隔离副本原生 ERC/DRC、单关联页原生网表对照和 PCB BOM。支持可自动出图的单面测试板、审批后的 PCB 线宽修改和同 UUID 文件替换。多页网表、自动原理图、多层和完整器件布局仍有缺口 |
 | Altium | partial | 真实 PrjPcb 文档清单和通用导出。26.1.1.7 原生执行 blocked |
 | EDA 通用格式 | implemented | E1 CSV/TSV BOM、XML 网表、JSON 规则报告。Gerber、钻孔与其他网表未实现 |
 | Loop 权限和预算 §9 | implemented | 状态、恢复、DAG、预算、审批、日志、影响域与关键回归。审批身份作为本机审计记录 |

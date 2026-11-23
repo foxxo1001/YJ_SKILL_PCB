@@ -1,0 +1,22 @@
+start_utc=2026-11-23T14:35:53.474698+00:00
+end_utc=2026-11-23T14:35:56.574791+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "pip", "wheel", "--no-deps", "--no-build-isolation", "--wheel-dir", "dist", "."]
+exit_code=0
+
+[stdout]
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Processing .\.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: ehe-engineering
+  Building wheel for ehe-engineering (pyproject.toml): started
+  Building wheel for ehe-engineering (pyproject.toml): finished with status 'done'
+  Created wheel for ehe-engineering: filename=ehe_engineering-0.1.3-py3-none-any.whl size=117017 sha256=82845875721fb978859e378645225dab7c16d5758dd970514aaa410ddef92d43
+  Stored in directory: C:\Users\L\AppData\Local\Temp\pip-ephem-wheel-cache-xqn_k3pm\wheels\b2\a9\3b\f48d81a83c935530fb104a6c872faf915eccf7ecb015d6c474
+Successfully built ehe-engineering
+
+[stderr]
+
+[notice] A new release of pip is available: 26.1.1 -> 26.3
+[notice] To update, run: D:\AI_project\YJ_SKILLS\ehe\.venv\Scripts\python.exe -m pip install --upgrade pip

@@ -1,0 +1,42 @@
+{
+  "codex_exit": 0,
+  "codex_global_path_discovered": true,
+  "global_files_match": true,
+  "project_files_match": true,
+  "package_version": "0.1.2",
+  "launcher": "C:\\Users\\L\\.codex\\skills\\embedded-hardware-engineer\\scripts\\run_ehe.py",
+  "resolver": {
+    "status": "available",
+    "source": "installed",
+    "argv": [
+      "D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "ehe.cli"
+    ],
+    "version": "0.1.2"
+  },
+  "review": {
+    "backend": "easyeda",
+    "status": "inconclusive",
+    "pcb": {
+      "uuid": "0826ab7fe62d4b7d",
+      "title": "PCB3",
+      "board": "bba5797d971f7fd8"
+    },
+    "original_unchanged": true,
+    "board_outline": {
+      "width_mm": 56.515,
+      "height_mm": 27.051,
+      "anchor_mm": [
+        2.413,
+        25.527
+      ],
+      "primitive_id": "4c2e538e509d839c"
+    },
+    "native_drc_status": "not_run",
+    "exit_code": 3
+  },
+  "codex_reported_skill": "C:/Users/L/.codex/skills/embedded-hardware-engineer/SKILL.md",
+  "final_installed_skill_sha256": "b7693a7031027e68ad3633f3a5b7a953d2f812164a1b233ec8729474d02c11e7"
+}
