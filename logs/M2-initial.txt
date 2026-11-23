@@ -1,0 +1,36 @@
+start_utc=2026-11-23T04:14:11.436482+00:00
+end_utc=2026-11-23T04:14:13.933369+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "unittest", "discover", "-s", "tests", "-v"]
+exit_code=1
+
+[stdout]
+
+[stderr]
+test_file_evidence_and_path_scope (test_m0.BaselineTests.test_file_evidence_and_path_scope) ... ok
+test_missing_tool (test_m0.BaselineTests.test_missing_tool) ... ok
+test_pin_and_bom_faults (test_m1.CoreTests.test_pin_and_bom_faults) ... ok
+test_rail_peak_limit_boundary (test_m1.CoreTests.test_rail_peak_limit_boundary) ... ok
+test_requirements_and_conflict (test_m1.CoreTests.test_requirements_and_conflict) ... ok
+test_template_is_non_destructive (test_m1.CoreTests.test_template_is_non_destructive) ... ok
+test_export_bom_and_unstructured (test_m2.AdapterTests.test_export_bom_and_unstructured) ... ok
+test_geometry_of_native_files (test_m2.AdapterTests.test_geometry_of_native_files) ... ok
+test_real_clean_and_injected_erc_drc (test_m2.AdapterTests.test_real_clean_and_injected_erc_drc) ... FAIL
+test_sexpr_rejects_non_tree (test_m2.AdapterTests.test_sexpr_rejects_non_tree) ... ok
+
+======================================================================
+FAIL: test_real_clean_and_injected_erc_drc (test_m2.AdapterTests.test_real_clean_and_injected_erc_drc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\AI_project\YJ_SKILLS\ehe\tests\test_m2.py", line 56, in test_real_clean_and_injected_erc_drc
+    self.assertEqual(clean["status"], "pass", clean)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fail' != 'pass'
+- fail
++ pass
+ : {'status': 'fail', 'domain': 'schematic', 'check': 'erc', 'level': 'E2', 'evidence': [{'id': 'ev-c65aa53682ef967cfde3', 'path': 'C:\\Users\\L\\AppData\\Local\\Temp\\ehe-原生-kqj7tyxx\\设计 副本\\.ehe\\eda\\22106a66d2d24304b7bfb78b0b4b7bb1\\erc.json', 'sha256': '7a480c92f29abb238f858d354ef6ac83c7be1f55930a6706a395e3d0031ec33d', 'locator': 'erc/violations', 'kind': 'tool_verified', 'collected_at': '2026-11-23T04:14:13.904+00:00', 'method': 'kicad-cli erc', 'version': '10.0.6'}], 'findings': [{'id': 'footprint_link_issues', 'category': 'schematic', 'severity': 'P1', 'status': 'confirmed', 'scope': {'object': '/', 'items': [{'description': '符号 J1 [Terminal]', 'pos': {'x': 0.508, 'y': 0.508}, 'uuid': 'afeaa9b3-6ead-5d51-a883-2ac8f5a733ec'}]}, 'mechanism': "当前配置中不包含封装库 'EHE'", 'recommended_action': '定位对象并根据项目规则修正', 'verification_method': '对变更版本重新运行原生规则检查', 'evidence_ids': ['ev-c65aa53682ef967cfde3'], 'missing_evidence': [], 'confidence': 'medium', 'verified_by': 'kicad-cli 10.0.6'}, {'id': 'lib_symbol_issues', 'category': 'schematic', 'severity': 'P1', 'status': 'confirmed', 'scope': {'object': '/', 'items': [{'description': '符号 J1 [Terminal]', 'pos': {'x': 0.508, 'y': 0.508}, 'uuid': 'afeaa9b3-6ead-5d51-a883-2ac8f5a733ec'}]}, 'mechanism': "当前配置不包含符号库 'EHE'", 'recommended_action': '定位对象并根据项目规则修正', 'verification_method': '对变更版本重新运行原生规则检查', 'evidence_ids': ['ev-c65aa53682ef967cfde3'], 'missing_evidence': [], 'confidence': 'medium', 'verified_by': 'kicad-cli 10.0.6'}, {'id': 'footprint_link_issues', 'category': 'schematic', 'severity': 'P1', 'status': 'confirmed', 'scope': {'object': '/', 'items': [{'description': '符号 J2 [Terminal]', 'pos': {'x': 0.8128, 'y': 0.508}, 'uuid': '980b15ea-9812-52b2-85bb-2eced2e375ca'}]}, 'mechanism': "当前配置中不包含封装库 'EHE'", 'recommended_action': '定位对象并根据项目规则修正', 'verification_method': '对变更版本重新运行原生规则检查', 'evidence_ids': ['ev-c65aa53682ef967cfde3'], 'missing_evidence': [], 'confidence': 'medium', 'verified_by': 'kicad-cli 10.0.6'}, {'id': 'lib_symbol_issues', 'category': 'schematic', 'severity': 'P1', 'status': 'confirmed', 'scope': {'object': '/', 'items': [{'description': '符号 J2 [Terminal]', 'pos': {'x': 0.8128, 'y': 0.508}, 'uuid': '980b15ea-9812-52b2-85bb-2eced2e375ca'}]}, 'mechanism': "当前配置不包含符号库 'EHE'", 'recommended_action': '定位对象并根据项目规则修正', 'verification_method': '对变更版本重新运行原生规则检查', 'evidence_ids': ['ev-c65aa53682ef967cfde3'], 'missing_evidence': [], 'confidence': 'medium', 'verified_by': 'kicad-cli 10.0.6'}], 'missing_evidence': [], 'tool': {'path': 'D:\\KiCad\\10.0\\bin\\kicad-cli.exe', 'status': 'available', 'exit_code': 0, 'argv': ['D:\\KiCad\\10.0\\bin\\kicad-cli.exe', 'version'], 'stdout': '10.0.6', 'stderr': '', 'version': '10.0.6'}, 'execution': {'argv': ['D:\\KiCad\\10.0\\bin\\kicad-cli.exe', 'sch', 'erc', '--format', 'json', '--units', 'mm', '--severity-error', '--severity-warning', '--exit-code-violations', '--output', 'C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-kefsb0i9\\erc.json', 'continuity.kicad_sch'], 'cwd': 'C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-kefsb0i9\\project', 'started_at': '2026-11-23T04:14:12.392+00:00', 'finished_at': '2026-11-23T04:14:13.899+00:00', 'exit_code': 5, 'tool_version': '10.0.6', 'inputs': {'continuity.kicad_pcb': '4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d', 'continuity.kicad_sch': 'bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9', 'EHE.kicad_sym': 'd2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757', 'EHE.pretty/Terminal.kicad_mod': 'bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d', 'fp-lib-table': '0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54', 'sym-lib-table': 'bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539'}, 'target': 'continuity.kicad_sch', 'error': None, 'artifact': 'C:\\Users\\L\\AppData\\Local\\Temp\\ehe-原生-kqj7tyxx\\设计 副本\\.ehe\\eda\\22106a66d2d24304b7bfb78b0b4b7bb1\\erc.json'}, 'artifacts': 'C:\\Users\\L\\AppData\\Local\\Temp\\ehe-原生-kqj7tyxx\\设计 副本\\.ehe\\eda\\22106a66d2d24304b7bfb78b0b4b7bb1', 'retryable': False, 'raw_sha256': '7a480c92f29abb238f858d354ef6ac83c7be1f55930a6706a395e3d0031ec33d', 'ignored_checks': [{'description': 'Global label only appears once in the schematic', 'key': 'single_global_label'}, {'description': 'Four connection points are joined together', 'key': 'four_way_junction'}, {'description': 'SPICE model issue', 'key': 'simulation_model_issue'}, {'description': "Assigned footprint doesn't match footprint filters", 'key': 'footprint_filter'}]}
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.275s
+
+FAILED (failures=1)

@@ -1,0 +1,583 @@
+{
+  "rails": [
+    {
+      "id": "3V3",
+      "voltage_v": 3.3,
+      "typical_a": 0.09,
+      "peak_a": 0.32,
+      "limit_a": 0.5,
+      "source": "ASSUMPTIONS.md#declared-model"
+    }
+  ],
+  "pins": [
+    {
+      "device": "U1",
+      "pin": "RESET",
+      "signal_v": 3.3,
+      "allowed_v": 3.6,
+      "source": "ASSUMPTIONS.md#declared-model"
+    }
+  ],
+  "bom": [
+    {
+      "references": [
+        "R1",
+        "R2"
+      ],
+      "quantity": 2,
+      "mpn": "Example-R"
+    }
+  ],
+  "energy": {
+    "states": [
+      {
+        "id": "startup",
+        "duty": 0.01,
+        "voltage_v": 3.3,
+        "load_a": 0.25,
+        "peripheral_a": 0.01,
+        "efficiency": 0.82,
+        "input_idle_w": 0.01
+      },
+      {
+        "id": "peak",
+        "duty": 0.09,
+        "voltage_v": 3.3,
+        "load_a": 0.28,
+        "peripheral_a": 0.015,
+        "efficiency": 0.9,
+        "input_idle_w": 0.01
+      },
+      {
+        "id": "typical",
+        "duty": 0.45,
+        "voltage_v": 3.3,
+        "load_a": 0.06,
+        "peripheral_a": 0.002,
+        "efficiency": 0.88,
+        "input_idle_w": 0.006
+      },
+      {
+        "id": "idle",
+        "duty": 0.15,
+        "voltage_v": 3.3,
+        "load_a": 0.015,
+        "peripheral_a": 0.002,
+        "efficiency": 0.78,
+        "input_idle_w": 0.003
+      },
+      {
+        "id": "sleep",
+        "duty": 0.29,
+        "voltage_v": 3.3,
+        "load_a": 0.00003,
+        "peripheral_a": 0.00008,
+        "efficiency": 0.55,
+        "input_idle_w": 0.000055
+      },
+      {
+        "id": "recovery",
+        "duty": 0.01,
+        "voltage_v": 3.3,
+        "load_a": 0.06,
+        "peripheral_a": 0.01,
+        "efficiency": 0.82,
+        "input_idle_w": 0.009
+      }
+    ],
+    "battery": {
+      "usable_wh": 5,
+      "derating": 0.8,
+      "temperature_c": 5,
+      "cutoff_v": 3,
+      "load_profile": "six state budget",
+      "source": "ASSUMPTIONS.md#declared-model"
+    },
+    "min_runtime_h": 8
+  },
+  "cost": {
+    "currency": "CNY",
+    "basis": "illustrative unit cost tax+shipping included",
+    "max_total": 25,
+    "max_lead_days": 5,
+    "items": [
+      {
+        "id": "components",
+        "category": "components",
+        "quantity": 1,
+        "unit_price": 1,
+        "lead_days": 2,
+        "stock": 100,
+        "supplier": "illustrative local fixture",
+        "quote_date": "2026-11-23",
+        "source": "ASSUMPTIONS.md#declared-model"
+      },
+      {
+        "id": "pcb",
+        "category": "pcb",
+        "quantity": 1,
+        "unit_price": 2,
+        "lead_days": 2,
+        "stock": 100,
+        "supplier": "illustrative local fixture",
+        "quote_date": "2026-11-23",
+        "source": "ASSUMPTIONS.md#declared-model"
+      },
+      {
+        "id": "assembly",
+        "category": "assembly",
+        "quantity": 1,
+        "unit_price": 3,
+        "lead_days": 2,
+        "stock": 100,
+        "supplier": "illustrative local fixture",
+        "quote_date": "2026-11-23",
+        "source": "ASSUMPTIONS.md#declared-model"
+      },
+      {
+        "id": "shipping",
+        "category": "shipping",
+        "quantity": 1,
+        "unit_price": 4,
+        "lead_days": 2,
+        "stock": 100,
+        "supplier": "illustrative local fixture",
+        "quote_date": "2026-11-23",
+        "source": "ASSUMPTIONS.md#declared-model"
+      },
+      {
+        "id": "test_loss",
+        "category": "test_loss",
+        "quantity": 1,
+        "unit_price": 5,
+        "lead_days": 2,
+        "stock": 100,
+        "supplier": "illustrative local fixture",
+        "quote_date": "2026-11-23",
+        "source": "ASSUMPTIONS.md#declared-model"
+      },
+      {
+        "id": "rework",
+        "category": "rework",
+        "quantity": 1,
+        "unit_price": 6,
+        "lead_days": 2,
+        "stock": 100,
+        "supplier": "illustrative local fixture",
+        "quote_date": "2026-11-23",
+        "source": "ASSUMPTIONS.md#declared-model"
+      }
+    ]
+  },
+  "mechanical": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "coordinate_frame": "enclosure floor origin",
+    "enclosure": {
+      "id": "lid",
+      "min_mm": [
+        0,
+        0,
+        0
+      ],
+      "max_mm": [
+        50,
+        35,
+        12
+      ],
+      "tolerance_mm": [
+        0.2,
+        0.2,
+        0.2
+      ]
+    },
+    "board": {
+      "id": "pcb",
+      "min_mm": [
+        3,
+        3,
+        1
+      ],
+      "max_mm": [
+        45,
+        30,
+        2.6
+      ],
+      "tolerance_mm": [
+        0.1,
+        0.1,
+        0.1
+      ]
+    },
+    "parts": [
+      {
+        "id": "J1",
+        "min_mm": [
+          39,
+          10,
+          2.6
+        ],
+        "max_mm": [
+          44,
+          14,
+          5
+        ]
+      },
+      {
+        "id": "C1",
+        "min_mm": [
+          12,
+          12,
+          2.6
+        ],
+        "max_mm": [
+          16,
+          16,
+          9
+        ],
+        "tolerance_mm": [
+          0.2,
+          0.2,
+          0.3
+        ]
+      }
+    ],
+    "connector_sweep": [
+      {
+        "id": "J1-plug",
+        "min_mm": [
+          38,
+          9,
+          2.6
+        ],
+        "max_mm": [
+          48,
+          15,
+          6
+        ],
+        "owner": "J1"
+      }
+    ],
+    "harness": [],
+    "tool_access": [],
+    "keepouts": [],
+    "mass_g": 34,
+    "limit_mass_g": 50
+  },
+  "thermal": {
+    "devices": [
+      {
+        "id": "Q1",
+        "dissipation_w": 0.2,
+        "rms_a": 2,
+        "rds_on_hot_ohm": 0.05,
+        "switching_loss_w": 0.2,
+        "theta_effective_c_per_w": 45,
+        "ambient_max_c": 50,
+        "limit_tj_c": 125,
+        "source": "ASSUMPTIONS.md#declared-model",
+        "conditions": "illustrative effective theta / stationary air"
+      }
+    ]
+  },
+  "transient": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "conditions": "illustrative cell at 5 C, low SOC and startup peak",
+    "open_circuit_min_v": 3.6,
+    "battery_max_ohm": 0.15,
+    "harness_max_ohm": 0.04,
+    "connector_max_ohm": 0.02,
+    "peak_input_a": 1.2,
+    "required_min_v": 3.1
+  },
+  "tolerance": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "upper": {
+      "ohm": 10000,
+      "tolerance": 0.01,
+      "tempco_abs_ppm_per_c": 100
+    },
+    "lower": {
+      "ohm": 10000,
+      "tolerance": 0.01,
+      "tempco_abs_ppm_per_c": 100
+    },
+    "v_in_min": 3.25,
+    "v_in_max": 3.35,
+    "delta_temp_c": 45,
+    "required_min_v": 1.58,
+    "required_max_v": 1.72
+  },
+  "optimization": {
+    "candidates": [
+      {
+        "id": "A",
+        "metrics": {
+          "cost": 19,
+          "weight_g": 40,
+          "power_w": 0.6,
+          "lead_days": 3
+        },
+        "sources": {
+          "cost": "ASSUMPTIONS.md#declared-model",
+          "weight_g": "ASSUMPTIONS.md#declared-model",
+          "power_w": "ASSUMPTIONS.md#declared-model",
+          "lead_days": "ASSUMPTIONS.md#declared-model"
+        }
+      },
+      {
+        "id": "B",
+        "metrics": {
+          "cost": 23,
+          "weight_g": 34,
+          "power_w": 0.4,
+          "lead_days": 4
+        },
+        "sources": {
+          "cost": "ASSUMPTIONS.md#declared-model",
+          "weight_g": "ASSUMPTIONS.md#declared-model",
+          "power_w": "ASSUMPTIONS.md#declared-model",
+          "lead_days": "ASSUMPTIONS.md#declared-model"
+        }
+      },
+      {
+        "id": "C",
+        "metrics": {
+          "cost": 25,
+          "weight_g": 41,
+          "power_w": 0.8,
+          "lead_days": 2
+        },
+        "sources": {
+          "cost": "ASSUMPTIONS.md#declared-model",
+          "weight_g": "ASSUMPTIONS.md#declared-model",
+          "power_w": "ASSUMPTIONS.md#declared-model",
+          "lead_days": "ASSUMPTIONS.md#declared-model"
+        }
+      },
+      {
+        "id": "late",
+        "metrics": {
+          "cost": 9,
+          "weight_g": 32,
+          "power_w": 0.33,
+          "lead_days": 12
+        },
+        "sources": {
+          "cost": "ASSUMPTIONS.md#declared-model",
+          "weight_g": "ASSUMPTIONS.md#declared-model",
+          "power_w": "ASSUMPTIONS.md#declared-model",
+          "lead_days": "ASSUMPTIONS.md#declared-model"
+        }
+      }
+    ],
+    "objectives": {
+      "cost": "min",
+      "weight_g": "min",
+      "power_w": "min"
+    },
+    "hard_constraints": {
+      "lead_days": {
+        "max": 5
+      },
+      "cost": {
+        "max": 26
+      },
+      "weight_g": {
+        "max": 50
+      }
+    }
+  },
+  "analog": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "conditions": "declared resistive load and 3.3 V supply",
+    "common_mode": {
+      "actual_min_v": 0.5,
+      "actual_max_v": 2.6,
+      "limit_min_v": 0.2,
+      "limit_max_v": 2.9
+    },
+    "output": {
+      "actual_min_v": 0.5,
+      "actual_max_v": 2.6,
+      "limit_min_v": 0.2,
+      "limit_max_v": 3
+    },
+    "signal_hz": 1000,
+    "amplitude_v": 1,
+    "adc_bits": 12,
+    "equivalent_rc_s": 1e-7,
+    "acquisition_s": 0.000002,
+    "slew_v_per_s": 1000000,
+    "gbw_hz": 1000000,
+    "noise_gain": 2,
+    "bandwidth_margin": 10,
+    "absolute_errors_v": {
+      "offset": 0.0003,
+      "gain": 0.0004,
+      "reference": 0.0006,
+      "drift": 0.0002
+    },
+    "max_error_v": 0.002
+  },
+  "motor": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "soa_locator": "declared SOA point",
+    "max_supply_v": 6,
+    "min_winding_ohm": 3,
+    "peak_limit_a": 3,
+    "protection_clearing_s": 0.03,
+    "soa_duration_s": 0.1,
+    "hot_path_on_ohm": 0.2,
+    "ambient_c": 50,
+    "transient_theta_c_per_w": 5,
+    "limit_tj_c": 125
+  },
+  "buck": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "vin_max_v": 8.4,
+    "vout_v": 3.3,
+    "min_h": 0.000008,
+    "min_hz": 250000,
+    "load_a": 0.8,
+    "inductor_sat_a": 2,
+    "switch_limit_a": 2
+  },
+  "realtime": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "stages": [
+      {
+        "name": "ADC",
+        "worst_us": 4,
+        "jitter_us": 0.2
+      },
+      {
+        "name": "ISR",
+        "worst_us": 8,
+        "jitter_us": 1
+      },
+      {
+        "name": "PWM",
+        "worst_us": 12,
+        "jitter_us": 0.3
+      }
+    ],
+    "deadline_us": 30,
+    "link": {
+      "frames_per_s": 100,
+      "encoded_bits": 120,
+      "bits_per_s": 115200
+    }
+  },
+  "fault": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "curve_locator": "declared curve point",
+    "clearing_max_s": 0.005,
+    "clearing_current_min_a": 2,
+    "max_i2t_a2s": 1,
+    "supply_max_v": 6,
+    "supply_min_v": 5,
+    "path_min_ohm": 0.6,
+    "path_max_ohm": 1,
+    "safe_peak_a": 15
+  },
+  "return_path": {
+    "geometry_source": "ASSUMPTIONS.md#declared-model",
+    "stackup_source": "ASSUMPTIONS.md#declared-model",
+    "plane_model_complete": true,
+    "gaps_by_reference": {
+      "GND1": [],
+      "GND2": []
+    },
+    "routes": [
+      {
+        "id": "SCK",
+        "segments": [
+          {
+            "reference": "GND1",
+            "start_mm": [
+              0,
+              0
+            ],
+            "end_mm": [
+              8,
+              0
+            ]
+          }
+        ],
+        "transition_inventory_complete": true,
+        "transitions": [
+          {
+            "from_reference": "GND1",
+            "to_reference": "GND2",
+            "effective_coupling": true,
+            "source": "ASSUMPTIONS.md#declared-model"
+          }
+        ]
+      }
+    ]
+  },
+  "emi_loop": {
+    "geometry_source": "ASSUMPTIONS.md#declared-model",
+    "topology_source": "ASSUMPTIONS.md#declared-model",
+    "coupling_path": "near-field inductive",
+    "source_node": "Q1-HF-loop",
+    "victim_node": "ADC",
+    "path_mm": [
+      [
+        0,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "target_max_mm2": 8
+  },
+  "si": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "net": "SCK",
+    "length_m": 0.1,
+    "velocity_m_per_s": 160000000,
+    "rise_s": 1e-9,
+    "z0_ohm": 50,
+    "load_ohm": 50,
+    "source_ohm": 25,
+    "step_v": 3.3,
+    "max_flight_to_rise_ratio": 0.3,
+    "max_first_reflection_v": 0.4
+  },
+  "pdn": {
+    "source": "ASSUMPTIONS.md#declared-model",
+    "allowed_ripple_v": 0.08,
+    "step_a": 0.5,
+    "source_ohm": 0.025,
+    "source_h": 5e-9,
+    "frequencies_hz": [
+      10000,
+      100000,
+      1000000,
+      5000000
+    ],
+    "branches": [
+      {
+        "cap_f": 0.00001,
+        "esr_ohm": 0.02,
+        "loop_esl_h": 1e-9
+      },
+      {
+        "cap_f": 1e-7,
+        "esr_ohm": 0.02,
+        "loop_esl_h": 5e-10
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+start_utc=2026-11-23T04:38:15.422774+00:00
+end_utc=2026-11-23T04:38:15.712979+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "eda", "altium"]
+exit_code=0
+
+[stdout]
+{
+  "status": "installed_unverified",
+  "path": "D:\\BaiduNetdiskDownload\\AD26\\X2.EXE",
+  "native_rule_checks": "blocked",
+  "level": "E1",
+  "native_writeback": false,
+  "reason": "No native scripting or validated licensing session is enabled"
+}
+
+[stderr]

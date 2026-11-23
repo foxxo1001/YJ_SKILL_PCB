@@ -1,0 +1,10 @@
+start_utc=2026-11-23T04:22:07.785470+00:00
+end_utc=2026-11-23T04:22:26.872197+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/demo_loop.py", "logs/demo", "--external-demo", "D:/KiCad/10.0/share/kicad/demos/stickhub"]
+exit_code=0
+
+[stdout]
+{"states": ["REVISE", "PAUSED", "PASSED"], "l5": "not_run", "output": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo"}
+
+[stderr]

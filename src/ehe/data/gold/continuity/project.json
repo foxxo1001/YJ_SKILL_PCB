@@ -1,0 +1,6 @@
+{
+  "name": "Continuity coupon",
+  "mode": "general",
+  "schematic": "continuity.kicad_sch",
+  "pcb": "continuity.kicad_pcb"
+}

@@ -1,0 +1,623 @@
+{
+  "run_id": "ea3a8223-14a0-43c9-9110-b4208e1424c4",
+  "project": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design",
+  "plan": {
+    "name": "连通性验证原生样板",
+    "physical_required": false,
+    "max_rounds": 5,
+    "max_stalled": 3,
+    "tool_retries": 2,
+    "max_calls": 30,
+    "max_seconds": 600,
+    "tasks": [
+      {
+        "id": "erc",
+        "kind": "schematic",
+        "depends_on": []
+      },
+      {
+        "id": "drc",
+        "kind": "pcb",
+        "depends_on": []
+      }
+    ],
+    "required": [
+      "erc",
+      "drc"
+    ],
+    "critical": [
+      "erc",
+      "drc"
+    ]
+  },
+  "state": "PASSED",
+  "round": 2,
+  "calls": 4,
+  "spent_seconds": 11.916234100004658,
+  "results": {
+    "erc": {
+      "kind": "schematic",
+      "fingerprint": "e37373fce0be443c3ecc371fb17e577ce95e81b51cac285ad24a243fc369c7e1",
+      "inputs": {
+        "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+        "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+        "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+        "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+        "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+        "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+        "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+      },
+      "result": {
+        "status": "pass",
+        "domain": "schematic",
+        "check": "erc",
+        "level": "E2",
+        "evidence": [
+          {
+            "id": "ev-9126a4be69a9db09bee2",
+            "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\67812457a3d94049a426c21e00464d4e\\erc.json",
+            "sha256": "de5024ac61de5eddc83ec1c532ed95b0efeca8e0228ee018d61a4aa919345e50",
+            "locator": "erc/violations",
+            "kind": "tool_verified",
+            "collected_at": "2026-11-23T04:22:18.552+00:00",
+            "method": "kicad-cli erc",
+            "version": "10.0.6"
+          }
+        ],
+        "findings": [],
+        "missing_evidence": [],
+        "tool": {
+          "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+          "status": "available",
+          "exit_code": 0,
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "version"
+          ],
+          "stdout": "10.0.6",
+          "stderr": "",
+          "version": "10.0.6"
+        },
+        "execution": {
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "sch",
+            "erc",
+            "--format",
+            "json",
+            "--units",
+            "mm",
+            "--severity-error",
+            "--severity-warning",
+            "--exit-code-violations",
+            "--output",
+            "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-l0fpyp4s\\erc.json",
+            "continuity.kicad_sch"
+          ],
+          "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-l0fpyp4s\\project",
+          "started_at": "2026-11-23T04:22:16.271+00:00",
+          "finished_at": "2026-11-23T04:22:18.542+00:00",
+          "exit_code": 0,
+          "tool_version": "10.0.6",
+          "inputs": {
+            "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+            "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+            "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+            "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+            "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+            "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+            "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+          },
+          "target": "continuity.kicad_sch",
+          "error": null,
+          "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\67812457a3d94049a426c21e00464d4e\\erc.json"
+        },
+        "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\67812457a3d94049a426c21e00464d4e",
+        "retryable": false,
+        "raw_sha256": "de5024ac61de5eddc83ec1c532ed95b0efeca8e0228ee018d61a4aa919345e50",
+        "ignored_checks": [
+          {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+          },
+          {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+          },
+          {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+          },
+          {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+          }
+        ]
+      }
+    },
+    "drc": {
+      "kind": "pcb",
+      "fingerprint": "07d345c4a47f823ae47bafba66e21d1a0760b9355167d792edab3973625b1e65",
+      "inputs": {
+        "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+        "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+        "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+        "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+        "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+        "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+        "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+      },
+      "result": {
+        "status": "pass",
+        "domain": "pcb",
+        "check": "drc",
+        "level": "E2",
+        "evidence": [
+          {
+            "id": "ev-cca6a4b57036d6724787",
+            "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\f7eb85a24a0a47fabfecdb63c4c19996\\drc.json",
+            "sha256": "5a229ea8d11b210c1b70c5c49bf0bb2ff1d941ba7e2e6b2f7cf473f1f3fd2a5b",
+            "locator": "drc/violations",
+            "kind": "tool_verified",
+            "collected_at": "2026-11-23T04:22:21.144+00:00",
+            "method": "kicad-cli drc",
+            "version": "10.0.6"
+          }
+        ],
+        "findings": [],
+        "missing_evidence": [],
+        "tool": {
+          "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+          "status": "available",
+          "exit_code": 0,
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "version"
+          ],
+          "stdout": "10.0.6",
+          "stderr": "",
+          "version": "10.0.6"
+        },
+        "execution": {
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "pcb",
+            "drc",
+            "--format",
+            "json",
+            "--units",
+            "mm",
+            "--severity-error",
+            "--severity-warning",
+            "--exit-code-violations",
+            "--output",
+            "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-j5yswmu4\\drc.json",
+            "continuity.kicad_pcb"
+          ],
+          "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-j5yswmu4\\project",
+          "started_at": "2026-11-23T04:22:19.081+00:00",
+          "finished_at": "2026-11-23T04:22:21.135+00:00",
+          "exit_code": 0,
+          "tool_version": "10.0.6",
+          "inputs": {
+            "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+            "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+            "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+            "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+            "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+            "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+            "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+          },
+          "target": "continuity.kicad_pcb",
+          "error": null,
+          "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\f7eb85a24a0a47fabfecdb63c4c19996\\drc.json"
+        },
+        "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\f7eb85a24a0a47fabfecdb63c4c19996",
+        "retryable": false,
+        "raw_sha256": "5a229ea8d11b210c1b70c5c49bf0bb2ff1d941ba7e2e6b2f7cf473f1f3fd2a5b",
+        "ignored_checks": [
+          {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+          },
+          {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+          },
+          {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+          },
+          {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+          },
+          {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+          }
+        ]
+      }
+    }
+  },
+  "active": null,
+  "snapshot": {
+    "files": {
+      "schematic": {
+        "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+        "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+        "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+        "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+        "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+        "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+        "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+      },
+      "pcb": {
+        "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+        "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+        "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+        "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+        "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+        "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+        "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+      }
+    },
+    "tool": {
+      "status": "available",
+      "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "version": "10.0.6"
+    },
+    "project": {
+      "name": "Continuity coupon",
+      "mode": "general",
+      "schematic": "continuity.kicad_sch",
+      "pcb": "continuity.kicad_pcb"
+    }
+  },
+  "attempts": {
+    "erc": 1,
+    "drc": 1
+  },
+  "queue": [],
+  "gates": [
+    {
+      "id": "erc",
+      "status": "pass",
+      "evidence_ids": [
+        "ev-9126a4be69a9db09bee2"
+      ],
+      "reason": "Native rules verified",
+      "verified_by": "ehe-independent-gate",
+      "missing_evidence": []
+    },
+    {
+      "id": "drc",
+      "status": "pass",
+      "evidence_ids": [
+        "ev-cca6a4b57036d6724787"
+      ],
+      "reason": "Native rules verified",
+      "verified_by": "ehe-independent-gate",
+      "missing_evidence": []
+    }
+  ],
+  "change": null,
+  "created_at": "2026-11-23T04:22:07.999+00:00",
+  "cost": {
+    "tokens": "unknown",
+    "external": "unknown"
+  },
+  "updated_at": "2026-11-23T04:22:21.189+00:00",
+  "regressions": [
+    "electrical",
+    "emi",
+    "footprint",
+    "mechanical",
+    "pcb",
+    "pin_map",
+    "power",
+    "schematic",
+    "thermal"
+  ],
+  "prior_results": {
+    "erc": {
+      "kind": "schematic",
+      "fingerprint": "916c8b1f67b8e57a0f1e28cbc4bbfd86c64558adc690c7394f0c38d747f0c13c",
+      "inputs": {
+        "continuity.kicad_pcb": "7fe07736591ef312336c0e409856b2ef992248b438d67054510c0f85849d0d54",
+        "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+        "continuity.kicad_sch": "f2dc41bc5e8cb3c5ba73c5c10406c0382f89cfaebce44030a5571a0d178d4bdc",
+        "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+        "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+        "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+        "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+      },
+      "result": {
+        "status": "fail",
+        "domain": "schematic",
+        "check": "erc",
+        "level": "E2",
+        "evidence": [
+          {
+            "id": "ev-e9abc70c9bd6a2793066",
+            "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\389e280620c0473c9984eb6d1f1430be\\erc.json",
+            "sha256": "12bc82b4ba52e31a0caa42af3ad545a7f997bd790c4494b22f93d28530529a5f",
+            "locator": "erc/violations",
+            "kind": "tool_verified",
+            "collected_at": "2026-11-23T04:22:11.547+00:00",
+            "method": "kicad-cli erc",
+            "version": "10.0.6"
+          }
+        ],
+        "findings": [
+          {
+            "id": "pin_not_connected",
+            "category": "schematic",
+            "severity": "P0",
+            "status": "confirmed",
+            "scope": {
+              "object": "/",
+              "items": [
+                {
+                  "description": "Symbol J1 引脚 1 [1, Passive, Line]",
+                  "pos": {
+                    "x": 0.5334,
+                    "y": 0.508
+                  },
+                  "uuid": "927fa780-0611-58d3-a4d8-8cc2dfb64ee8"
+                }
+              ]
+            },
+            "mechanism": "Pin not connected",
+            "recommended_action": "定位对象并根据项目规则修正",
+            "verification_method": "对变更版本重新运行原生规则检查",
+            "evidence_ids": [
+              "ev-e9abc70c9bd6a2793066"
+            ],
+            "missing_evidence": [],
+            "confidence": "medium",
+            "verified_by": "kicad-cli 10.0.6"
+          },
+          {
+            "id": "pin_not_connected",
+            "category": "schematic",
+            "severity": "P0",
+            "status": "confirmed",
+            "scope": {
+              "object": "/",
+              "items": [
+                {
+                  "description": "Symbol J2 引脚 1 [1, Passive, Line]",
+                  "pos": {
+                    "x": 0.7874,
+                    "y": 0.508
+                  },
+                  "uuid": "889ad5a0-65fc-59fe-8786-edb7d5f4acc6"
+                }
+              ]
+            },
+            "mechanism": "Pin not connected",
+            "recommended_action": "定位对象并根据项目规则修正",
+            "verification_method": "对变更版本重新运行原生规则检查",
+            "evidence_ids": [
+              "ev-e9abc70c9bd6a2793066"
+            ],
+            "missing_evidence": [],
+            "confidence": "medium",
+            "verified_by": "kicad-cli 10.0.6"
+          }
+        ],
+        "missing_evidence": [],
+        "tool": {
+          "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+          "status": "available",
+          "exit_code": 0,
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "version"
+          ],
+          "stdout": "10.0.6",
+          "stderr": "",
+          "version": "10.0.6"
+        },
+        "execution": {
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "sch",
+            "erc",
+            "--format",
+            "json",
+            "--units",
+            "mm",
+            "--severity-error",
+            "--severity-warning",
+            "--exit-code-violations",
+            "--output",
+            "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-7jqheqkx\\erc.json",
+            "continuity.kicad_sch"
+          ],
+          "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-7jqheqkx\\project",
+          "started_at": "2026-11-23T04:22:08.953+00:00",
+          "finished_at": "2026-11-23T04:22:11.536+00:00",
+          "exit_code": 5,
+          "tool_version": "10.0.6",
+          "inputs": {
+            "continuity.kicad_pcb": "7fe07736591ef312336c0e409856b2ef992248b438d67054510c0f85849d0d54",
+            "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+            "continuity.kicad_sch": "f2dc41bc5e8cb3c5ba73c5c10406c0382f89cfaebce44030a5571a0d178d4bdc",
+            "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+            "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+            "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+            "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+          },
+          "target": "continuity.kicad_sch",
+          "error": null,
+          "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\389e280620c0473c9984eb6d1f1430be\\erc.json"
+        },
+        "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\389e280620c0473c9984eb6d1f1430be",
+        "retryable": false,
+        "raw_sha256": "12bc82b4ba52e31a0caa42af3ad545a7f997bd790c4494b22f93d28530529a5f",
+        "ignored_checks": [
+          {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+          },
+          {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+          },
+          {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+          },
+          {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+          }
+        ]
+      }
+    },
+    "drc": {
+      "kind": "pcb",
+      "fingerprint": "ae97e3c12d889037d11e11d543aa6b2f4fa8a55c6c49f9db6161c7cb2f8ecba2",
+      "inputs": {
+        "continuity.kicad_pcb": "7fe07736591ef312336c0e409856b2ef992248b438d67054510c0f85849d0d54",
+        "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+        "continuity.kicad_sch": "f2dc41bc5e8cb3c5ba73c5c10406c0382f89cfaebce44030a5571a0d178d4bdc",
+        "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+        "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+        "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+        "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+      },
+      "result": {
+        "status": "fail",
+        "domain": "pcb",
+        "check": "drc",
+        "level": "E2",
+        "evidence": [
+          {
+            "id": "ev-8f1fdfac0b50f8499f7b",
+            "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\57bc04da8a514545b2c13c71f92e4104\\drc.json",
+            "sha256": "5aebc2b79489e811ef7faf563365873450cfdb03aadfeb4b97c3940c3b0f18cf",
+            "locator": "drc/violations",
+            "kind": "tool_verified",
+            "collected_at": "2026-11-23T04:22:14.868+00:00",
+            "method": "kicad-cli drc",
+            "version": "10.0.6"
+          }
+        ],
+        "findings": [
+          {
+            "id": "unconnected_items",
+            "category": "pcb",
+            "severity": "P0",
+            "status": "confirmed",
+            "scope": {
+              "object": "unconnected_items",
+              "items": [
+                {
+                  "description": "J1 的PTH 焊盘 1 [LINK]",
+                  "pos": {
+                    "x": 30.0,
+                    "y": 30.0
+                  },
+                  "uuid": "f585f41d-23f1-5d60-bea9-6d487feaa948"
+                },
+                {
+                  "description": "J2 的PTH 焊盘 1 [LINK]",
+                  "pos": {
+                    "x": 40.0,
+                    "y": 30.0
+                  },
+                  "uuid": "4de21c8d-f9ee-592f-a802-16b84f40aac6"
+                }
+              ]
+            },
+            "mechanism": "Missing connection between items",
+            "recommended_action": "定位对象并根据项目规则修正",
+            "verification_method": "对变更版本重新运行原生规则检查",
+            "evidence_ids": [
+              "ev-8f1fdfac0b50f8499f7b"
+            ],
+            "missing_evidence": [],
+            "confidence": "medium",
+            "verified_by": "kicad-cli 10.0.6"
+          }
+        ],
+        "missing_evidence": [],
+        "tool": {
+          "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+          "status": "available",
+          "exit_code": 0,
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "version"
+          ],
+          "stdout": "10.0.6",
+          "stderr": "",
+          "version": "10.0.6"
+        },
+        "execution": {
+          "argv": [
+            "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+            "pcb",
+            "drc",
+            "--format",
+            "json",
+            "--units",
+            "mm",
+            "--severity-error",
+            "--severity-warning",
+            "--exit-code-violations",
+            "--output",
+            "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-0enqm_pd\\drc.json",
+            "continuity.kicad_pcb"
+          ],
+          "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-0enqm_pd\\project",
+          "started_at": "2026-11-23T04:22:12.120+00:00",
+          "finished_at": "2026-11-23T04:22:14.860+00:00",
+          "exit_code": 5,
+          "tool_version": "10.0.6",
+          "inputs": {
+            "continuity.kicad_pcb": "7fe07736591ef312336c0e409856b2ef992248b438d67054510c0f85849d0d54",
+            "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+            "continuity.kicad_sch": "f2dc41bc5e8cb3c5ba73c5c10406c0382f89cfaebce44030a5571a0d178d4bdc",
+            "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+            "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+            "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+            "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+          },
+          "target": "continuity.kicad_pcb",
+          "error": null,
+          "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\57bc04da8a514545b2c13c71f92e4104\\drc.json"
+        },
+        "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\57bc04da8a514545b2c13c71f92e4104",
+        "retryable": false,
+        "raw_sha256": "5aebc2b79489e811ef7faf563365873450cfdb03aadfeb4b97c3940c3b0f18cf",
+        "ignored_checks": [
+          {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+          },
+          {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+          },
+          {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+          },
+          {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+          },
+          {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+          }
+        ]
+      }
+    }
+  },
+  "edit_proposals": []
+}

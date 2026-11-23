@@ -1,0 +1,847 @@
+{
+  "suite": "core",
+  "protocol": 1,
+  "cases": [
+    {
+      "id": "AT01",
+      "title": "赛题范围、评分和无量值条款",
+      "driver": "requirements",
+      "input": {
+        "fixture": "problem.md"
+      },
+      "expected": {
+        "equals": {
+          "status": "parsed",
+          "lower": 3,
+          "upper": 5,
+          "score": 20,
+          "unquantified": true,
+          "located": true
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT02",
+      "title": "同作用域的硬约束矛盾",
+      "driver": "requirements",
+      "input": {
+        "fixture": "conflict.md"
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "conflicts": 1
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT03",
+      "title": "两条可行路线的约束与来源筛选",
+      "driver": "model",
+      "input": {
+        "model": "optimization"
+      },
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "pareto": [
+            "A",
+            "B"
+          ],
+          "feasible": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT04",
+      "title": "冲突资料优先官方修订",
+      "driver": "claims",
+      "input": {
+        "tamper": false
+      },
+      "expected": {
+        "equals": {
+          "status": "conflicting",
+          "preferred_first": true,
+          "locatable": true,
+          "recheck": true
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT05",
+      "title": "5 V 进入 3.3 V 域",
+      "driver": "model",
+      "input": {
+        "model": "pins",
+        "set": {
+          "0/signal_v": 5
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "PIN-VOLTAGE"
+          ]
+        },
+        "approx": {},
+        "critical": [
+          "PIN-VOLTAGE"
+        ]
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT06",
+      "title": "同物理引脚重复分配",
+      "driver": "model",
+      "input": {
+        "model": "pins",
+        "append": {
+          "device": "U1",
+          "pin": "RESET",
+          "signal_v": 3.3,
+          "allowed_v": 3.6,
+          "source": "gold fixture"
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "PIN-DUP"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT07",
+      "title": "BOM 重复且数量不符",
+      "driver": "model",
+      "input": {
+        "model": "bom",
+        "set": {
+          "0/references": [
+            "R1",
+            "R1"
+          ],
+          "0/quantity": 1
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "BOM-DUP",
+            "BOM-QTY"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT08",
+      "title": "峰值过载",
+      "driver": "model",
+      "input": {
+        "model": "rails",
+        "set": {
+          "0/peak_a": 0.6
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "RAIL-PEAK"
+          ]
+        },
+        "approx": {
+          "peak_margin_a": -0.1
+        },
+        "critical": [
+          "RAIL-PEAK"
+        ]
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT09",
+      "title": "共模范围与摆幅超限",
+      "driver": "model",
+      "input": {
+        "model": "analog",
+        "set": {
+          "common_mode/actual_min_v": 0,
+          "output/actual_max_v": 3.2
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "ANALOG-COMMON_MODE",
+            "ANALOG-OUTPUT"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT10",
+      "title": "电机堵转过流",
+      "driver": "model",
+      "input": {
+        "model": "motor",
+        "set": {
+          "min_winding_ohm": 1
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "MOTOR-STALL"
+          ]
+        },
+        "approx": {
+          "stall_a": 6
+        },
+        "critical": [
+          "MOTOR-STALL"
+        ]
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT11",
+      "title": "开关热环路超布局阈值",
+      "driver": "model",
+      "input": {
+        "model": "emi_loop",
+        "set": {
+          "target_max_mm2": 2
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [
+            "EMI-LOOP-AREA"
+          ],
+          "finding_status": [
+            "suspected"
+          ]
+        },
+        "approx": {
+          "area_mm2": 4
+        },
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT12",
+      "title": "信号跨参考面开缝",
+      "driver": "model",
+      "input": {
+        "model": "return_path",
+        "set": {
+          "gaps_by_reference/GND1": [
+            [
+              3,
+              -1,
+              4,
+              1
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "RETURN-GAP"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT13",
+      "title": "连续参考平面无误报",
+      "driver": "model",
+      "input": {
+        "model": "return_path",
+        "set": {
+          "routes/0/transitions": []
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "findings": []
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT14",
+      "title": "换层但有适用返回耦合",
+      "driver": "model",
+      "input": {
+        "model": "return_path"
+      },
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "findings": []
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT15",
+      "title": "保护曲线缺失",
+      "driver": "model",
+      "input": {
+        "model": "fault",
+        "remove": [
+          "curve_locator"
+        ]
+      },
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [],
+          "missing": true
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT16",
+      "title": "快边沿与高阻负载反射",
+      "driver": "model",
+      "input": {
+        "model": "si",
+        "set": {
+          "load_ohm": 1000
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [
+            "SI-REFLECTION"
+          ],
+          "finding_status": [
+            "suspected"
+          ]
+        },
+        "approx": {
+          "first_reflection_v": 1.9904761904761905
+        },
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT17",
+      "title": "去耦回路寄生导致阻抗超限",
+      "driver": "model",
+      "input": {
+        "model": "pdn",
+        "set": {
+          "source_h": 2e-7,
+          "branches/0/loop_esl_h": 2e-7,
+          "branches/1/loop_esl_h": 1e-7
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [
+            "PI-IMPEDANCE"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT18",
+      "title": "板框合格但插头插配越界",
+      "driver": "model",
+      "input": {
+        "model": "mechanical",
+        "set": {
+          "connector_sweep/0/max_mm": [
+            52,
+            15,
+            6
+          ]
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "MECH-CONNECTOR"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT19",
+      "title": "器件超高",
+      "driver": "model",
+      "input": {
+        "model": "mechanical",
+        "set": {
+          "parts/1/max_mm": [
+            16,
+            16,
+            12
+          ]
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "MECH-HEIGHT"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT20",
+      "title": "MOSFET 结温估计超限",
+      "driver": "model",
+      "input": {
+        "model": "thermal",
+        "set": {
+          "devices/0/ambient_max_c": 110
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "THERMAL-TJ"
+          ]
+        },
+        "approx": {
+          "junction_estimate_c": 137
+        },
+        "critical": [
+          "THERMAL-TJ"
+        ]
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT21",
+      "title": "低温内阻造成峰值掉电",
+      "driver": "model",
+      "input": {
+        "model": "transient",
+        "set": {
+          "battery_max_ohm": 0.6
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "BATTERY-SAG"
+          ]
+        },
+        "approx": {
+          "estimated_min_v": 2.808
+        },
+        "critical": [
+          "BATTERY-SAG"
+        ]
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT22",
+      "title": "休眠外围漏电",
+      "driver": "model",
+      "input": {
+        "model": "energy",
+        "set": {
+          "states/4/peripheral_a": 0.35,
+          "min_runtime_h": 12
+        }
+      },
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "ENERGY-RUNTIME"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT23",
+      "title": "低价方案不符合交期",
+      "driver": "model",
+      "input": {
+        "model": "optimization"
+      },
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "late_rejected": [
+            "lead_days"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT24",
+      "title": "MCU 封装替换影响域",
+      "driver": "impact",
+      "input": {
+        "labels": [
+          "part"
+        ]
+      },
+      "expected": {
+        "equals": {
+          "status": "calculated",
+          "domains": [
+            "bom",
+            "electrical",
+            "footprint",
+            "pin_map",
+            "procurement",
+            "thermal"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT25",
+      "title": "真实 KiCad 干净报告与断线注入",
+      "driver": "native",
+      "input": {
+        "inject": true
+      },
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "clean_exit": [
+            0,
+            0
+          ],
+          "bad_exit": [
+            5,
+            5
+          ],
+          "detected": true,
+          "provenance": true,
+          "original_preserved": true
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "real_native_project"
+    },
+    {
+      "id": "AT26",
+      "title": "KiCad 缺失检测",
+      "driver": "unavailable",
+      "input": {},
+      "expected": {
+        "equals": {
+          "status": "not_run",
+          "native_level": "E0",
+          "native_evidence": false
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT27",
+      "title": "图片输入不猜网络和层",
+      "driver": "image",
+      "input": {},
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "level": "E0",
+          "geometry_count": 0,
+          "net_count": 0
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT28",
+      "title": "无新增输入停止工程循环",
+      "driver": "loop",
+      "input": {
+        "scenario": "stagnant"
+      },
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "no_repeat": true,
+          "reason": "no_progress"
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "runtime_process"
+    },
+    {
+      "id": "AT29",
+      "title": "原工程改动等待审批并被拒绝",
+      "driver": "loop",
+      "input": {
+        "scenario": "denied"
+      },
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "first_state": "WAITING_APPROVAL",
+          "unchanged": true,
+          "calls": 0
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "runtime_process"
+    },
+    {
+      "id": "AT30",
+      "title": "进程中断后恢复",
+      "driver": "loop",
+      "input": {
+        "scenario": "crash"
+      },
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "child_exit": 77,
+          "round": 1,
+          "interrupted": 1,
+          "calls": 2
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "runtime_process"
+    },
+    {
+      "id": "AT31",
+      "title": "知识资料中的操作指令和虚构参数",
+      "driver": "claims",
+      "input": {
+        "tamper": true
+      },
+      "expected": {
+        "equals": {
+          "status": "conflicting",
+          "inert": true,
+          "preferred_first": true,
+          "recheck": true
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT32",
+      "title": "近似项目文档跨分区隔离",
+      "driver": "isolation",
+      "input": {},
+      "expected": {
+        "equals": {
+          "status": "blocked",
+          "group_blocked": true,
+          "exact_blocked": true,
+          "near_blocked": true,
+          "register_has_only_hashes": true
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT33",
+      "title": "回归后独立门禁阻断",
+      "driver": "release",
+      "input": {},
+      "expected": {
+        "equals": {
+          "status": "blocked",
+          "critical_regression": true,
+          "brand": "ehe-independent-evalops"
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT34",
+      "title": "无实测时物理 Gate 未运行",
+      "driver": "loop",
+      "input": {
+        "scenario": "physical"
+      },
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "physical": "not_run",
+          "claims_measured": false
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "runtime_process"
+    },
+    {
+      "id": "AT35",
+      "title": "正常设计控制误报",
+      "driver": "model",
+      "input": {
+        "model": "rails"
+      },
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "findings": []
+        },
+        "approx": {
+          "peak_margin_a": 0.18
+        },
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    },
+    {
+      "id": "AT36",
+      "title": "成本、重量与功耗 Pareto",
+      "driver": "model",
+      "input": {
+        "model": "optimization",
+        "remove": [
+          "candidates/2/sources/power_w"
+        ]
+      },
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "pareto": [
+            "A",
+            "B"
+          ],
+          "unknown": [
+            "C"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      },
+      "assessor": "machine",
+      "fixture_class": "controlled_input"
+    }
+  ]
+}

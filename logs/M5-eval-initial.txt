@@ -1,0 +1,22 @@
+start_utc=2026-11-23T04:33:35.032888+00:00
+end_utc=2026-11-23T04:33:35.284733+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "eval", "run", "--suite", "core", "--output", "logs/M5-try.json"]
+exit_code=1
+
+[stdout]
+
+[stderr]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\AI_project\YJ_SKILLS\ehe\src\ehe\cli.py", line 10, in <module>
+    from .evalops.suite import run_suite
+  File "D:\AI_project\YJ_SKILLS\ehe\src\ehe\evalops\suite.py", line 13, in <module>
+    from .drivers import DRIVERS
+  File "D:\AI_project\YJ_SKILLS\ehe\src\ehe\evalops\drivers.py", line 14, in <module>
+    from ..knowledge import admit, claims, holdout_registry, search
+  File "D:\AI_project\YJ_SKILLS\ehe\src\ehe\knowledge.py", line 215
+    def search(db_path: Path, query: str, *, year=None, track=None, kind=None, limit=12) -> dict:
+                                                                                                 ^
+IndentationError: unindent does not match any outer indentation level

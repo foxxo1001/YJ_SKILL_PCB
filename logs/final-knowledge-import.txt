@@ -1,0 +1,16 @@
+start_utc=2026-11-23T04:50:40.145432+00:00
+end_utc=2026-11-23T04:50:40.441966+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "knowledge", "import", "examples/knowledge/case.md", "--metadata", "examples/knowledge/metadata.json", "--db", "build/verified-cases.sqlite3"]
+exit_code=0
+
+[stdout]
+{
+  "status": "imported",
+  "id": "kb-698c264b18fa34aba50c8c0e01e127e5aba573d017ccf2f8093acdc7e8b755e2",
+  "sha256": "698c264b18fa34aba50c8c0e01e127e5aba573d017ccf2f8093acdc7e8b755e2",
+  "passages": 3,
+  "limitations": []
+}
+
+[stderr]

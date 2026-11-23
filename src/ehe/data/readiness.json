@@ -1,0 +1,8 @@
+{
+  "core_readiness": {
+    "source_coverage_and_requirements_extraction": "partial",
+    "full_design_to_evidence_traceability": "partial",
+    "physical_acceptance_workflow": "partial",
+    "multiplatform_execution": "partial"
+  }
+}

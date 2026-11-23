@@ -1,0 +1,11 @@
+name: 经审批修复工作副本中的 PCB
+physical_required: false
+tasks:
+  - {id: drc, kind: pcb}
+required: [drc]
+change_request:
+  operation: workcopy_replace
+  target: continuity.kicad_pcb
+  replacement: proposals/fixed.kicad_pcb
+  description: 恢复已审查的连接轨迹
+  impact: [pcb]

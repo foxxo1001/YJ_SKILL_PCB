@@ -1,0 +1,100 @@
+start_utc=2026-11-23T04:15:29.184321+00:00
+end_utc=2026-11-23T04:15:31.272193+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "review", "pcb", "examples/continuity"]
+exit_code=0
+
+[stdout]
+{
+  "status": "pass",
+  "domain": "pcb",
+  "check": "drc",
+  "level": "E2",
+  "evidence": [
+    {
+      "id": "ev-062f86565ac4da6f6d9d",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\continuity\\.ehe\\eda\\79eadeb04a034e91b64abf3ff8fb498a\\drc.json",
+      "sha256": "c41a015236b9f7e2777b4f1e996a41c860759b0fe8803fd283c44b7a7b2e2ac2",
+      "locator": "drc/violations",
+      "kind": "tool_verified",
+      "collected_at": "2026-11-23T04:15:31.254+00:00",
+      "method": "kicad-cli drc",
+      "version": "10.0.6"
+    }
+  ],
+  "findings": [],
+  "missing_evidence": [],
+  "tool": {
+    "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+    "status": "available",
+    "exit_code": 0,
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "version"
+    ],
+    "stdout": "10.0.6",
+    "stderr": "",
+    "version": "10.0.6"
+  },
+  "execution": {
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "pcb",
+      "drc",
+      "--format",
+      "json",
+      "--units",
+      "mm",
+      "--severity-error",
+      "--severity-warning",
+      "--exit-code-violations",
+      "--output",
+      "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-08nzd50l\\drc.json",
+      "continuity.kicad_pcb"
+    ],
+    "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-08nzd50l\\project",
+    "started_at": "2026-11-23T04:15:29.779+00:00",
+    "finished_at": "2026-11-23T04:15:31.247+00:00",
+    "exit_code": 0,
+    "tool_version": "10.0.6",
+    "inputs": {
+      "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+      "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+      "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+      "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+      "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+      "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+      "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+    },
+    "target": "continuity.kicad_pcb",
+    "error": null,
+    "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\continuity\\.ehe\\eda\\79eadeb04a034e91b64abf3ff8fb498a\\drc.json"
+  },
+  "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\continuity\\.ehe\\eda\\79eadeb04a034e91b64abf3ff8fb498a",
+  "retryable": false,
+  "raw_sha256": "c41a015236b9f7e2777b4f1e996a41c860759b0fe8803fd283c44b7a7b2e2ac2",
+  "ignored_checks": [
+    {
+      "description": "Footprint has no courtyard defined",
+      "key": "missing_courtyard"
+    },
+    {
+      "description": "Track endpoint not centered on via",
+      "key": "track_not_centered_on_via"
+    },
+    {
+      "description": "Tuning profile track geometries",
+      "key": "tuning_profile_track_geometries"
+    },
+    {
+      "description": "Footprint doesn't match symbol's footprint filters",
+      "key": "footprint_filters_mismatch"
+    },
+    {
+      "description": "Footprint component type doesn't match footprint pads",
+      "key": "footprint_type_mismatch"
+    }
+  ]
+}
+
+[stderr]

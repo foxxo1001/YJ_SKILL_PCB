@@ -1,0 +1,7 @@
+name: 工程工况计算演示
+physical_required: true
+tasks:
+  - {id: budget, kind: budget}
+  - {id: reality, kind: reality, depends_on: [budget]}
+  - {id: advanced, kind: advanced, depends_on: [budget]}
+required: [budget, reality, advanced]

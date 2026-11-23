@@ -1,0 +1,96 @@
+start_utc=2026-11-23T04:15:26.919838+00:00
+end_utc=2026-11-23T04:15:29.087534+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "review", "schematic", "examples/continuity"]
+exit_code=0
+
+[stdout]
+{
+  "status": "pass",
+  "domain": "schematic",
+  "check": "erc",
+  "level": "E2",
+  "evidence": [
+    {
+      "id": "ev-b2625a7ed328c7cd3399",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\continuity\\.ehe\\eda\\68b2ccd36cf5405fb7f5bd569d7119f7\\erc.json",
+      "sha256": "50628b9c6704a8450d64511bcd1a4aedcaafe69aaff24eff237d958f9f9584a3",
+      "locator": "erc/violations",
+      "kind": "tool_verified",
+      "collected_at": "2026-11-23T04:15:29.069+00:00",
+      "method": "kicad-cli erc",
+      "version": "10.0.6"
+    }
+  ],
+  "findings": [],
+  "missing_evidence": [],
+  "tool": {
+    "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+    "status": "available",
+    "exit_code": 0,
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "version"
+    ],
+    "stdout": "10.0.6",
+    "stderr": "",
+    "version": "10.0.6"
+  },
+  "execution": {
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "sch",
+      "erc",
+      "--format",
+      "json",
+      "--units",
+      "mm",
+      "--severity-error",
+      "--severity-warning",
+      "--exit-code-violations",
+      "--output",
+      "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-ow0o4qcc\\erc.json",
+      "continuity.kicad_sch"
+    ],
+    "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-ow0o4qcc\\project",
+    "started_at": "2026-11-23T04:15:27.527+00:00",
+    "finished_at": "2026-11-23T04:15:29.063+00:00",
+    "exit_code": 0,
+    "tool_version": "10.0.6",
+    "inputs": {
+      "continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+      "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+      "continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+      "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+      "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+      "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+      "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+    },
+    "target": "continuity.kicad_sch",
+    "error": null,
+    "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\continuity\\.ehe\\eda\\68b2ccd36cf5405fb7f5bd569d7119f7\\erc.json"
+  },
+  "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\continuity\\.ehe\\eda\\68b2ccd36cf5405fb7f5bd569d7119f7",
+  "retryable": false,
+  "raw_sha256": "50628b9c6704a8450d64511bcd1a4aedcaafe69aaff24eff237d958f9f9584a3",
+  "ignored_checks": [
+    {
+      "description": "Global label only appears once in the schematic",
+      "key": "single_global_label"
+    },
+    {
+      "description": "Four connection points are joined together",
+      "key": "four_way_junction"
+    },
+    {
+      "description": "SPICE model issue",
+      "key": "simulation_model_issue"
+    },
+    {
+      "description": "Assigned footprint doesn't match footprint filters",
+      "key": "footprint_filter"
+    }
+  ]
+}
+
+[stderr]

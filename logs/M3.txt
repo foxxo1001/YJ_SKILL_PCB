@@ -1,0 +1,29 @@
+start_utc=2026-11-23T04:22:07.785293+00:00
+end_utc=2026-11-23T04:22:31.517833+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "unittest", "discover", "-s", "tests", "-v"]
+exit_code=0
+
+[stdout]
+
+[stderr]
+test_file_evidence_and_path_scope (test_m0.BaselineTests.test_file_evidence_and_path_scope) ... ok
+test_missing_tool (test_m0.BaselineTests.test_missing_tool) ... ok
+test_pin_and_bom_faults (test_m1.CoreTests.test_pin_and_bom_faults) ... ok
+test_rail_peak_limit_boundary (test_m1.CoreTests.test_rail_peak_limit_boundary) ... ok
+test_requirements_and_conflict (test_m1.CoreTests.test_requirements_and_conflict) ... ok
+test_template_is_non_destructive (test_m1.CoreTests.test_template_is_non_destructive) ... ok
+test_export_bom_and_unstructured (test_m2.AdapterTests.test_export_bom_and_unstructured) ... ok
+test_geometry_of_native_files (test_m2.AdapterTests.test_geometry_of_native_files) ... ok
+test_real_clean_and_injected_erc_drc (test_m2.AdapterTests.test_real_clean_and_injected_erc_drc) ... ok
+test_sexpr_rejects_non_tree (test_m2.AdapterTests.test_sexpr_rejects_non_tree) ... ok
+test_actual_readonly_repair_and_gate_tamper (test_m3.LoopTests.test_actual_readonly_repair_and_gate_tamper) ... ok
+test_budget_exhaustion_before_effect (test_m3.LoopTests.test_budget_exhaustion_before_effect) ... ok
+test_cycle_rejected (test_m3.LoopTests.test_cycle_rejected) ... ok
+test_lock_and_after_process_crash (test_m3.LoopTests.test_lock_and_after_process_crash) ... ok
+test_unauthorized_original_and_rejection (test_m3.LoopTests.test_unauthorized_original_and_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 23.459s
+
+OK

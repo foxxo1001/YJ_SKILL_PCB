@@ -1,0 +1,143 @@
+start_utc=2026-11-23T04:46:49.037628+00:00
+end_utc=2026-11-23T04:46:57.596335+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/probe_easyeda.py", "--project-copy", "build/easyeda-reference/RA6E2.eprj3"]
+exit_code=3
+
+[stdout]
+{
+  "detected": {
+    "status": "available",
+    "path": "D:\\lceda-pro\\lceda-pro.exe",
+    "version": "4.1.60.198f38ab",
+    "level": "E0",
+    "probe": {
+      "status": "available",
+      "native": {
+        "ok": true,
+        "value": {
+          "endpoint": "JLCEDAPro6364a4ad",
+          "connected": true,
+          "bridgeVersion": "4.1.60.198f38ab",
+          "versionMatch": true,
+          "resultChannel": null
+        },
+        "logs": [],
+        "durationMs": 73
+      },
+      "execution": {
+        "argv": [
+          "D:\\lceda-pro\\lceda-pro.exe",
+          "doctor"
+        ],
+        "cwd": "D:\\lceda-pro",
+        "started_at": "2026-11-23T04:46:49.152+00:00",
+        "finished_at": "2026-11-23T04:46:49.867+00:00",
+        "exit_code": 0,
+        "stdout": "\n{\"ok\":true,\"value\":{\"endpoint\":\"JLCEDAPro6364a4ad\",\"connected\":true,\"bridgeVersion\":\"4.1.60.198f38ab\",\"versionMatch\":true,\"resultChannel\":null},\"logs\":[],\"durationMs\":73}\n",
+        "stderr": ""
+      }
+    },
+    "native_rule_checks": "not_run",
+    "native_writeback": false
+  },
+  "active_design_read": "not_run",
+  "project_sha256_before_open": "5e2e4f5efa0791e825f5db2a85f25821ba44afe7710ee9eacef0f11875fada28",
+  "session_open": {
+    "status": "available",
+    "native": {
+      "ok": true,
+      "value": {
+        "sessionId": "c475e845-26ab-4274-919c-c4b676cd3352",
+        "renderId": 6,
+        "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3",
+        "headless": true
+      },
+      "logs": [],
+      "durationMs": 1253
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "open",
+        "--headless",
+        "true",
+        "--path",
+        "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:46:51.251+00:00",
+      "finished_at": "2026-11-23T04:46:53.141+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"sessionId\":\"c475e845-26ab-4274-919c-c4b676cd3352\",\"renderId\":6,\"path\":\"D:\\\\AI_project\\\\YJ_SKILLS\\\\ehe\\\\build\\\\easyeda-reference\\\\RA6E2.eprj3\",\"headless\":true},\"logs\":[],\"durationMs\":1253}\n",
+      "stderr": ""
+    }
+  },
+  "read_only_api": {
+    "status": "blocked",
+    "reason": "Native CLI rejected the operation",
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "invoke",
+        "--session",
+        "c475e845-26ab-4274-919c-c4b676cd3352",
+        "--ext-uuid",
+        "eda",
+        "--timeout",
+        "8000",
+        "--code",
+        "const p = await eda.dmt_Project.getCurrentProjectInfo(); const d = await eda.dmt_SelectControl.getCurrentDocumentInfo(); const v = await eda.sys_Environment.getEditorCurrentVersion(); const pcbUuid = __CLI__.args?.pcbUuid; const pcb = pcbUuid ? await eda.dmt_Pcb.getPcbInfo(pcbUuid) : null; return {editorVersion: v, project: p ? {uuid: p.uuid, name: p.name} : null, document: d ? {uuid: d.uuid, documentType: d.documentType} : null, indexedPcb: pcb ? {uuid: pcb.uuid, title: pcb.title ?? pcb.name} : null};",
+        "--args",
+        "{\"pcbUuid\": \"0826ab7fe62d4b7d\"}"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:46:54.662+00:00",
+      "finished_at": "2026-11-23T04:46:56.636+00:00",
+      "exit_code": 1,
+      "stdout": "\n{\"ok\":false,\"error\":{\"code\":\"EXECUTION_ERROR\",\"message\":\"Cannot read properties of undefined (reading 'find')\"}}\n",
+      "stderr": "EXECUTION_ERROR: Cannot read properties of undefined (reading 'find')\n"
+    },
+    "native": {
+      "ok": false,
+      "error": {
+        "code": "EXECUTION_ERROR",
+        "message": "Cannot read properties of undefined (reading 'find')"
+      }
+    },
+    "level": "E0"
+  },
+  "session_close": {
+    "status": "available",
+    "native": {
+      "ok": true,
+      "value": {
+        "sessionId": "c475e845-26ab-4274-919c-c4b676cd3352",
+        "status": "closed",
+        "headless": true
+      },
+      "logs": [],
+      "durationMs": 6
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "session",
+        "close",
+        "--session",
+        "c475e845-26ab-4274-919c-c4b676cd3352",
+        "--destroy"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:46:56.636+00:00",
+      "finished_at": "2026-11-23T04:46:57.563+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"sessionId\":\"c475e845-26ab-4274-919c-c4b676cd3352\",\"status\":\"closed\",\"headless\":true},\"logs\":[],\"durationMs\":6}\n",
+      "stderr": ""
+    }
+  },
+  "project_sha256_after_close": "5e2e4f5efa0791e825f5db2a85f25821ba44afe7710ee9eacef0f11875fada28"
+}
+
+
+[stderr]

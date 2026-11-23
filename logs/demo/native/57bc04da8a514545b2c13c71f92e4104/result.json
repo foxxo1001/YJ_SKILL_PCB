@@ -1,0 +1,128 @@
+{
+  "status": "fail",
+  "domain": "pcb",
+  "check": "drc",
+  "level": "E2",
+  "evidence": [
+    {
+      "id": "ev-8f1fdfac0b50f8499f7b",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\57bc04da8a514545b2c13c71f92e4104\\drc.json",
+      "sha256": "5aebc2b79489e811ef7faf563365873450cfdb03aadfeb4b97c3940c3b0f18cf",
+      "locator": "drc/violations",
+      "kind": "tool_verified",
+      "collected_at": "2026-11-23T04:22:14.868+00:00",
+      "method": "kicad-cli drc",
+      "version": "10.0.6"
+    }
+  ],
+  "findings": [
+    {
+      "id": "unconnected_items",
+      "category": "pcb",
+      "severity": "P0",
+      "status": "confirmed",
+      "scope": {
+        "object": "unconnected_items",
+        "items": [
+          {
+            "description": "J1 的PTH 焊盘 1 [LINK]",
+            "pos": {
+              "x": 30.0,
+              "y": 30.0
+            },
+            "uuid": "f585f41d-23f1-5d60-bea9-6d487feaa948"
+          },
+          {
+            "description": "J2 的PTH 焊盘 1 [LINK]",
+            "pos": {
+              "x": 40.0,
+              "y": 30.0
+            },
+            "uuid": "4de21c8d-f9ee-592f-a802-16b84f40aac6"
+          }
+        ]
+      },
+      "mechanism": "Missing connection between items",
+      "recommended_action": "定位对象并根据项目规则修正",
+      "verification_method": "对变更版本重新运行原生规则检查",
+      "evidence_ids": [
+        "ev-8f1fdfac0b50f8499f7b"
+      ],
+      "missing_evidence": [],
+      "confidence": "medium",
+      "verified_by": "kicad-cli 10.0.6"
+    }
+  ],
+  "missing_evidence": [],
+  "tool": {
+    "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+    "status": "available",
+    "exit_code": 0,
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "version"
+    ],
+    "stdout": "10.0.6",
+    "stderr": "",
+    "version": "10.0.6"
+  },
+  "execution": {
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "pcb",
+      "drc",
+      "--format",
+      "json",
+      "--units",
+      "mm",
+      "--severity-error",
+      "--severity-warning",
+      "--exit-code-violations",
+      "--output",
+      "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-0enqm_pd\\drc.json",
+      "continuity.kicad_pcb"
+    ],
+    "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-0enqm_pd\\project",
+    "started_at": "2026-11-23T04:22:12.120+00:00",
+    "finished_at": "2026-11-23T04:22:14.860+00:00",
+    "exit_code": 5,
+    "tool_version": "10.0.6",
+    "inputs": {
+      "continuity.kicad_pcb": "7fe07736591ef312336c0e409856b2ef992248b438d67054510c0f85849d0d54",
+      "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+      "continuity.kicad_sch": "f2dc41bc5e8cb3c5ba73c5c10406c0382f89cfaebce44030a5571a0d178d4bdc",
+      "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+      "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+      "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+      "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+    },
+    "target": "continuity.kicad_pcb",
+    "error": null,
+    "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\57bc04da8a514545b2c13c71f92e4104\\drc.json"
+  },
+  "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\57bc04da8a514545b2c13c71f92e4104",
+  "retryable": false,
+  "raw_sha256": "5aebc2b79489e811ef7faf563365873450cfdb03aadfeb4b97c3940c3b0f18cf",
+  "ignored_checks": [
+    {
+      "description": "Footprint has no courtyard defined",
+      "key": "missing_courtyard"
+    },
+    {
+      "description": "Track endpoint not centered on via",
+      "key": "track_not_centered_on_via"
+    },
+    {
+      "description": "Tuning profile track geometries",
+      "key": "tuning_profile_track_geometries"
+    },
+    {
+      "description": "Footprint doesn't match symbol's footprint filters",
+      "key": "footprint_filters_mismatch"
+    },
+    {
+      "description": "Footprint component type doesn't match footprint pads",
+      "key": "footprint_type_mismatch"
+    }
+  ]
+}

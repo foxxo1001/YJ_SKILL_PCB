@@ -1,0 +1,31 @@
+start_utc=2026-11-23T04:42:36.945215+00:00
+end_utc=2026-11-23T04:42:37.350817+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "eda", "altium", "--input", "build/STM32F103C8T6.PrjPcb"]
+exit_code=0
+
+[stdout]
+{
+  "status": "parsed",
+  "level": "E0",
+  "sha256": "a61c97788e76bcd9f6447d7724e4ef2bea5d4ec77f3f013d1d53c791a7e42d3e",
+  "source": "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\STM32F103C8T6.PrjPcb",
+  "evidence_kind": "documented",
+  "documents": [
+    {
+      "locator": "section:Document1/DocumentPath",
+      "path": "STM32F103C8T6.SchDoc",
+      "in_project": true
+    },
+    {
+      "locator": "section:Document2/DocumentPath",
+      "path": "STM32F103C8T6.PcbDoc",
+      "in_project": true
+    }
+  ],
+  "native_rule_checks": "not_run",
+  "geometry": [],
+  "nets": []
+}
+
+[stderr]

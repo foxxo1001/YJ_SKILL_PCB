@@ -1,0 +1,114 @@
+start_utc=2026-11-23T04:41:36.076049+00:00
+end_utc=2026-11-23T04:41:43.637029+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/probe_easyeda.py", "--project-copy", "build/easyeda-reference/RA6E2.eprj3"]
+exit_code=3
+
+[stdout]
+{
+  "detected": {
+    "status": "available",
+    "path": "D:\\lceda-pro\\lceda-pro.exe",
+    "version": "4.1.60.198f38ab",
+    "level": "E0",
+    "probe": {
+      "status": "available",
+      "native": {
+        "ok": true,
+        "value": {
+          "endpoint": "JLCEDAPro6364a4ad",
+          "connected": true,
+          "bridgeVersion": "4.1.60.198f38ab",
+          "versionMatch": true,
+          "resultChannel": null
+        },
+        "logs": [],
+        "durationMs": 90
+      },
+      "execution": {
+        "argv": [
+          "D:\\lceda-pro\\lceda-pro.exe",
+          "doctor"
+        ],
+        "cwd": "D:\\lceda-pro",
+        "started_at": "2026-11-23T04:41:36.210+00:00",
+        "finished_at": "2026-11-23T04:41:37.026+00:00",
+        "exit_code": 0,
+        "stdout": "\n{\"ok\":true,\"value\":{\"endpoint\":\"JLCEDAPro6364a4ad\",\"connected\":true,\"bridgeVersion\":\"4.1.60.198f38ab\",\"versionMatch\":true,\"resultChannel\":null},\"logs\":[],\"durationMs\":90}\n",
+        "stderr": ""
+      }
+    },
+    "native_rule_checks": "not_run",
+    "native_writeback": false
+  },
+  "active_design_read": "not_run",
+  "project_sha256_before_open": "5e2e4f5efa0791e825f5db2a85f25821ba44afe7710ee9eacef0f11875fada28",
+  "session_open": {
+    "status": "available",
+    "native": {
+      "ok": true,
+      "value": {
+        "sessionId": "dc465853-2752-4e53-a4b5-a9e7dbb1608b",
+        "renderId": 3,
+        "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3",
+        "headless": true
+      },
+      "logs": [],
+      "durationMs": 2027
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "open",
+        "--headless",
+        "true",
+        "--path",
+        "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:41:38.725+00:00",
+      "finished_at": "2026-11-23T04:41:41.427+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"sessionId\":\"dc465853-2752-4e53-a4b5-a9e7dbb1608b\",\"renderId\":3,\"path\":\"D:\\\\AI_project\\\\YJ_SKILLS\\\\ehe\\\\build\\\\easyeda-reference\\\\RA6E2.eprj3\",\"headless\":true},\"logs\":[],\"durationMs\":2027}\n",
+      "stderr": ""
+    }
+  },
+  "read_only_api": {
+    "status": "blocked",
+    "reason": "Expected project does not match the specified session",
+    "level": "E0"
+  },
+  "session_close": {
+    "status": "available",
+    "native": {
+      "ok": true,
+      "value": {
+        "sessionId": "dc465853-2752-4e53-a4b5-a9e7dbb1608b",
+        "status": "closed",
+        "headless": true
+      },
+      "logs": [],
+      "durationMs": 5
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "session",
+        "close",
+        "--session",
+        "dc465853-2752-4e53-a4b5-a9e7dbb1608b",
+        "--destroy"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:41:42.924+00:00",
+      "finished_at": "2026-11-23T04:41:43.621+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"sessionId\":\"dc465853-2752-4e53-a4b5-a9e7dbb1608b\",\"status\":\"closed\",\"headless\":true},\"logs\":[],\"durationMs\":5}\n",
+      "stderr": ""
+    }
+  },
+  "project_sha256_after_close": "5e2e4f5efa0791e825f5db2a85f25821ba44afe7710ee9eacef0f11875fada28"
+}
+
+
+[stderr]

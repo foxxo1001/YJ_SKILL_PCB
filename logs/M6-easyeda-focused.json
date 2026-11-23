@@ -1,0 +1,129 @@
+{
+  "native_open": {
+    "status": "available",
+    "native": {
+      "ok": true,
+      "value": {
+        "sessionId": "8628391c-5194-4fc5-ad62-c0054e0c4117",
+        "renderId": 7,
+        "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3",
+        "headless": true
+      },
+      "logs": [],
+      "durationMs": 1249
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "open",
+        "--path",
+        "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3",
+        "--headless",
+        "true"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:47:54.152+00:00",
+      "finished_at": "2026-11-23T04:47:56.051+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"sessionId\":\"8628391c-5194-4fc5-ad62-c0054e0c4117\",\"renderId\":7,\"path\":\"D:\\\\AI_project\\\\YJ_SKILLS\\\\ehe\\\\build\\\\easyeda-reference\\\\RA6E2.eprj3\",\"headless\":true},\"logs\":[],\"durationMs\":1249}\n",
+      "stderr": ""
+    }
+  },
+  "document_tab": {
+    "status": "blocked",
+    "reason": "Command '['D:\\\\lceda-pro\\\\lceda-pro.exe', 'invoke', '--session', '8628391c-5194-4fc5-ad62-c0054e0c4117', '--ext-uuid', 'eda', '--code', 'return await eda.dmt_EditorControl.openDocument(__CLI__.args.pcbUuid);', '--args', '{\"pcbUuid\": \"0826ab7fe62d4b7d\"}']' timed out after 12 seconds",
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "invoke",
+        "--session",
+        "8628391c-5194-4fc5-ad62-c0054e0c4117",
+        "--ext-uuid",
+        "eda",
+        "--code",
+        "return await eda.dmt_EditorControl.openDocument(__CLI__.args.pcbUuid);",
+        "--args",
+        "{\"pcbUuid\": \"0826ab7fe62d4b7d\"}"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:47:56.053+00:00",
+      "finished_at": "2026-11-23T04:48:08.134+00:00",
+      "exit_code": null
+    }
+  },
+  "inspect": {
+    "status": "inspected",
+    "native": {
+      "ok": true,
+      "value": {
+        "editorVersion": "4.1.60",
+        "project": {
+          "uuid": "2f7e1595bb200c10049ea201f8f2ede98937d6c5637f742379920f1d4fec8b1d",
+          "name": "/RA6E2"
+        },
+        "document": null,
+        "indexedPcb": {
+          "uuid": "0826ab7fe62d4b7d",
+          "title": "PCB3"
+        }
+      },
+      "logs": [],
+      "durationMs": 16
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "invoke",
+        "--session",
+        "8628391c-5194-4fc5-ad62-c0054e0c4117",
+        "--ext-uuid",
+        "eda",
+        "--timeout",
+        "8000",
+        "--code",
+        "const p = await eda.dmt_Project.getCurrentProjectInfo(); const d = await eda.dmt_SelectControl.getCurrentDocumentInfo(); const v = await eda.sys_Environment.getEditorCurrentVersion(); const pcbUuid = __CLI__.args?.pcbUuid; const pcb = pcbUuid ? await eda.dmt_Pcb.getPcbInfo(pcbUuid) : null; return {editorVersion: v, project: p ? {uuid: p.uuid, name: p.name} : null, document: d ? {uuid: d.uuid, documentType: d.documentType} : null, indexedPcb: pcb ? {uuid: pcb.uuid, title: pcb.title ?? pcb.name} : null};",
+        "--args",
+        "{\"pcbUuid\": \"0826ab7fe62d4b7d\"}"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:48:09.534+00:00",
+      "finished_at": "2026-11-23T04:48:10.242+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"editorVersion\":\"4.1.60\",\"project\":{\"uuid\":\"2f7e1595bb200c10049ea201f8f2ede98937d6c5637f742379920f1d4fec8b1d\",\"name\":\"/RA6E2\"},\"document\":null,\"indexedPcb\":{\"uuid\":\"0826ab7fe62d4b7d\",\"title\":\"PCB3\"}},\"logs\":[],\"durationMs\":16}\n",
+      "stderr": ""
+    },
+    "level": "E1",
+    "tool_version": "4.1.60.198f38ab",
+    "reason": ""
+  },
+  "closed": {
+    "status": "available",
+    "native": {
+      "ok": true,
+      "value": {
+        "sessionId": "8628391c-5194-4fc5-ad62-c0054e0c4117",
+        "status": "closed",
+        "headless": true
+      },
+      "logs": [],
+      "durationMs": 5
+    },
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "session",
+        "close",
+        "--session",
+        "8628391c-5194-4fc5-ad62-c0054e0c4117",
+        "--destroy"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:48:10.243+00:00",
+      "finished_at": "2026-11-23T04:48:10.933+00:00",
+      "exit_code": 0,
+      "stdout": "\n{\"ok\":true,\"value\":{\"sessionId\":\"8628391c-5194-4fc5-ad62-c0054e0c4117\",\"status\":\"closed\",\"headless\":true},\"logs\":[],\"durationMs\":5}\n",
+      "stderr": ""
+    }
+  },
+  "source_preserved": true
+}

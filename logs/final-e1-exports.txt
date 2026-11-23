@@ -1,0 +1,194 @@
+start_utc=2026-11-23T04:50:38.943654+00:00
+end_utc=2026-11-23T04:50:40.048457+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/probe_kicad_exports.py"]
+exit_code=0
+
+[stdout]
+{
+  "status": "pass",
+  "tool": "10.0.6",
+  "execution": [
+    {
+      "argv": [
+        "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+        "sch",
+        "export",
+        "netlist",
+        "--format",
+        "kicadxml",
+        "-o",
+        "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-ki-exports-pxmsosl9\\export.xml",
+        "continuity.kicad_sch"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "import": {
+        "status": "imported",
+        "level": "E1",
+        "kind": "netlist",
+        "canonical": {
+          "project": {
+            "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-ki-exports-pxmsosl9\\export.xml",
+            "sha256": "c321e7b4241c37dca8392347f72df3aeda1595e42a5a1dd5eba554529639a748",
+            "producer_claim": "kicad"
+          },
+          "components": [
+            {
+              "id": "J1",
+              "reference": "J1",
+              "value": "Terminal",
+              "footprint": "EHE:Terminal"
+            },
+            {
+              "id": "J2",
+              "reference": "J2",
+              "value": "Terminal",
+              "footprint": "EHE:Terminal"
+            }
+          ],
+          "parts": [],
+          "pins": [
+            {
+              "id": "J1:1",
+              "component_id": "J1",
+              "number": "1",
+              "net": "/LINK",
+              "type": "passive"
+            },
+            {
+              "id": "J2:1",
+              "component_id": "J2",
+              "number": "1",
+              "net": "/LINK",
+              "type": "passive"
+            }
+          ],
+          "nets": [
+            {
+              "id": "/LINK",
+              "name": "/LINK"
+            }
+          ],
+          "layers": [],
+          "geometry": [],
+          "evidence": [
+            {
+              "id": "ev-e02fba42a8c33feb5f56",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-ki-exports-pxmsosl9\\export.xml",
+              "sha256": "c321e7b4241c37dca8392347f72df3aeda1595e42a5a1dd5eba554529639a748",
+              "locator": "file",
+              "kind": "documented",
+              "collected_at": "2026-11-23T04:50:39.675+00:00",
+              "method": "eda_export_import",
+              "version": null
+            }
+          ],
+          "measurements": [],
+          "limitations": [
+            "Export provenance is supplied by the caller. No native execution or full board geometry."
+          ]
+        }
+      }
+    },
+    {
+      "argv": [
+        "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+        "sch",
+        "export",
+        "bom",
+        "-o",
+        "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-ki-exports-pxmsosl9\\export.csv",
+        "continuity.kicad_sch"
+      ],
+      "exit_code": 0,
+      "stdout": "写入物料清单到 'C:/Users/L/AppData/Local/Temp/ehe-ki-exports-pxmsosl9/export.csv'。\n",
+      "stderr": "",
+      "import": {
+        "status": "pass",
+        "level": "E1",
+        "kind": "bom",
+        "evaluation": {
+          "status": "pass",
+          "metrics": {
+            "unique_refs": 2
+          },
+          "findings": [],
+          "missing_evidence": []
+        },
+        "rows": [
+          {
+            "references": [
+              "J1"
+            ],
+            "quantity": 1,
+            "mpn": "",
+            "value": "Terminal",
+            "footprint": "EHE:Terminal",
+            "locator": "line:2"
+          },
+          {
+            "references": [
+              "J2"
+            ],
+            "quantity": 1,
+            "mpn": "",
+            "value": "Terminal",
+            "footprint": "EHE:Terminal",
+            "locator": "line:3"
+          }
+        ],
+        "canonical": {
+          "project": {
+            "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-ki-exports-pxmsosl9\\export.csv",
+            "sha256": "99d4c526b5248d6cdc0620414a7000211da0d80c8d73d1386b06c0af70ae6399",
+            "producer_claim": "kicad"
+          },
+          "components": [
+            {
+              "id": "J1",
+              "reference": "J1",
+              "mpn": "",
+              "value": "Terminal",
+              "footprint": "EHE:Terminal",
+              "locator": "line:2"
+            },
+            {
+              "id": "J2",
+              "reference": "J2",
+              "mpn": "",
+              "value": "Terminal",
+              "footprint": "EHE:Terminal",
+              "locator": "line:3"
+            }
+          ],
+          "parts": [],
+          "pins": [],
+          "nets": [],
+          "layers": [],
+          "geometry": [],
+          "evidence": [
+            {
+              "id": "ev-82e39000d7187561a1ac",
+              "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-ki-exports-pxmsosl9\\export.csv",
+              "sha256": "99d4c526b5248d6cdc0620414a7000211da0d80c8d73d1386b06c0af70ae6399",
+              "locator": "file",
+              "kind": "documented",
+              "collected_at": "2026-11-23T04:50:40.030+00:00",
+              "method": "eda_export_import",
+              "version": null
+            }
+          ],
+          "measurements": [],
+          "limitations": [
+            "Export provenance is supplied by the caller. No native execution or full board geometry."
+          ]
+        }
+      }
+    }
+  ],
+  "source_sha256": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9"
+}
+
+[stderr]

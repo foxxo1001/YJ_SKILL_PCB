@@ -1,0 +1,583 @@
+start_utc=2026-11-23T04:27:03.616996+00:00
+end_utc=2026-11-23T04:27:03.900922+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "budget", "examples/engineering-model", "--scope", "all"]
+exit_code=0
+
+[stdout]
+{
+  "status": "pass",
+  "checks": {
+    "rails": {
+      "status": "pass",
+      "metrics": {
+        "3V3": {
+          "peak_margin_a": 0.18,
+          "peak_load_w": 1.056,
+          "typical_load_w": 0.297
+        }
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-3e1491784b28a246a04e"
+      ]
+    },
+    "pins": {
+      "status": "pass",
+      "metrics": {
+        "assignments": 1
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-7a2496fdfd0efee24f7e"
+      ]
+    },
+    "bom": {
+      "status": "pass",
+      "metrics": {
+        "unique_refs": 2
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-6f92d60d60330411b5e9"
+      ]
+    },
+    "energy": {
+      "status": "pass",
+      "metrics": {
+        "average_input_w": 0.2304912993433396,
+        "state_input_w": {
+          "startup": 1.0563414634146342,
+          "peak": 1.0916666666666668,
+          "typical": 0.2385,
+          "idle": 0.07492307692307693,
+          "sleep": 0.0007149999999999999,
+          "recovery": 0.2907073170731707
+        },
+        "runtime_estimate_h": 17.354234243964257,
+        "runtime_margin_h": 9.354234243964257
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-273c6cea4bb7b69b1e90"
+      ]
+    },
+    "cost": {
+      "status": "pass",
+      "metrics": {
+        "total": 21.0,
+        "currency": "CNY",
+        "lead_days": 2.0,
+        "basis": "illustrative unit cost tax+shipping included",
+        "max_total_margin": 4.0,
+        "max_lead_days_margin": 3.0
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-15b299cf1f45454f7d15"
+      ]
+    },
+    "mechanical": {
+      "status": "pass",
+      "metrics": {
+        "board_envelope_mm": [
+          42.2,
+          27.200000000000003,
+          1.8000000000000003
+        ],
+        "board_box_mm3": 2066.1120000000005,
+        "enclosure_usable_mm": [
+          49.599999999999994,
+          34.599999999999994,
+          11.600000000000001
+        ],
+        "connector_sweep_boxes_mm": {
+          "J1-plug": [
+            [
+              38.0,
+              9.0,
+              2.6
+            ],
+            [
+              48.0,
+              15.0,
+              6.0
+            ]
+          ]
+        },
+        "min_clearance_mm": {
+          "board": 0.7,
+          "J1": 2.4,
+          "C1": 2.1,
+          "J1-plug": 1.7999999999999972
+        },
+        "model": "axis-aligned envelopes",
+        "mass_margin_g": 16.0
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-9319aaee8336d29c94dc"
+      ]
+    },
+    "thermal": {
+      "status": "pass",
+      "metrics": {
+        "Q1": {
+          "junction_estimate_c": 77.0,
+          "margin_c": 48.0,
+          "dissipation_w": 0.6000000000000001,
+          "sensitivity_c_per_w": 45.0,
+          "conditions": "illustrative effective theta / stationary air"
+        }
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-c9cf8b71f8e59f9f7692"
+      ]
+    },
+    "transient": {
+      "status": "pass",
+      "metrics": {
+        "estimated_min_v": 3.348,
+        "margin_v": 0.24799999999999978,
+        "resistive_drop_v": 0.252,
+        "additional_droop_v": 0.0,
+        "sensitivity_v_per_ohm": -1.2,
+        "conditions": "illustrative cell at 5 C, low SOC and startup peak"
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-3147bcfa84e420865480"
+      ]
+    },
+    "tolerance": {
+      "status": "pass",
+      "metrics": {
+        "min_v": 1.6014375,
+        "max_v": 1.6992875,
+        "lower_margin_v": 0.021437499999999998,
+        "upper_margin_v": 0.02071249999999991
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-a5cf4f4708c2cc89262b"
+      ]
+    },
+    "optimization": {
+      "status": "pass",
+      "metrics": {
+        "pareto": [
+          "A",
+          "B"
+        ],
+        "feasible": [
+          "A",
+          "B",
+          "C"
+        ],
+        "rejected": {
+          "late": [
+            "lead_days"
+          ]
+        },
+        "unknown": {},
+        "constraint_margins": {
+          "A": {
+            "lead_days": {
+              "max": 2.0
+            },
+            "cost": {
+              "max": 7.0
+            },
+            "weight_g": {
+              "max": 10.0
+            }
+          },
+          "B": {
+            "lead_days": {
+              "max": 1.0
+            },
+            "cost": {
+              "max": 3.0
+            },
+            "weight_g": {
+              "max": 16.0
+            }
+          },
+          "C": {
+            "lead_days": {
+              "max": 3.0
+            },
+            "cost": {
+              "max": 1.0
+            },
+            "weight_g": {
+              "max": 9.0
+            }
+          },
+          "late": {
+            "lead_days": {
+              "max": -7.0
+            },
+            "cost": {
+              "max": 17.0
+            },
+            "weight_g": {
+              "max": 18.0
+            }
+          }
+        },
+        "objectives": {
+          "cost": "min",
+          "weight_g": "min",
+          "power_w": "min"
+        }
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-d8ebb0c285ae02840304"
+      ]
+    },
+    "analog": {
+      "status": "pass",
+      "metrics": {
+        "common_mode_margin_v": 0.2999999999999998,
+        "output_margin_v": 0.3,
+        "slew_margin_v_per_s": 993716.8146928204,
+        "settling_margin_s": 1.098908665272071e-06,
+        "gbw_margin_hz": 980000.0,
+        "error_margin_v": 0.0005,
+        "required_slew_v_per_s": 6283.185307179586,
+        "half_lsb_settle_s": 9.010913347279288e-07,
+        "total_abs_error_v": 0.0015
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-740f761fc3d8065e2283"
+      ]
+    },
+    "motor": {
+      "status": "pass",
+      "metrics": {
+        "stall_a": 2.0,
+        "loss_w": 0.8,
+        "tj_estimate_c": 54.0,
+        "current_margin_a": 1.0,
+        "soa_time_margin_s": 0.07,
+        "thermal_margin_c": 71.0
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-367f04fb5cf88e2298f2"
+      ]
+    },
+    "buck": {
+      "status": "pass",
+      "metrics": {
+        "ripple_pp_a": 1.0017857142857143,
+        "peak_a": 1.3008928571428573,
+        "peak_margin_a": 0.6991071428571427,
+        "ideal_duty": 0.3928571428571428
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-1b8785bf59f950c3c93b"
+      ]
+    },
+    "realtime": {
+      "status": "pass",
+      "metrics": {
+        "worst_latency_us": 25.5,
+        "deadline_margin_us": 4.5,
+        "link_utilization": 0.10416666666666667
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-8fa2453eea2957f4a3da"
+      ]
+    },
+    "fault": {
+      "status": "pass",
+      "metrics": {
+        "prospective_min_a": 5.0,
+        "prospective_max_a": 10.0,
+        "i2t_bound_a2s": 0.5
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-493912b49263d94677c1"
+      ]
+    },
+    "return_path": {
+      "status": "pass",
+      "metrics": {
+        "routes_checked": 1,
+        "model": "trace-center / rectangular gaps"
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-25387dda5911918aa15e"
+      ]
+    },
+    "emi_loop": {
+      "status": "pass",
+      "metrics": {
+        "area_mm2": 4.0,
+        "layout_margin_mm2": 4.0,
+        "victim": "ADC",
+        "coupling_path": "near-field inductive"
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-dc2d59f25b279f87b36a"
+      ]
+    },
+    "si": {
+      "status": "pass",
+      "metrics": {
+        "one_way_s": 6.25e-10,
+        "gamma_load": 0.0,
+        "gamma_source": -0.3333333333333333,
+        "first_reflection_v": 0.0,
+        "electrically_long": true
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-5d3e37487b8ef40a685a"
+      ]
+    },
+    "pdn": {
+      "status": "pass",
+      "metrics": {
+        "target_ohm": 0.16,
+        "worst_sample_hz": 5000000.0,
+        "worst_ohm": 0.03126093469259961,
+        "sample_ohm": {
+          "10000.0": 0.024998876342922933,
+          "100000.0": 0.024885884231959348,
+          "1000000.0": 0.017823041387724815,
+          "5000000.0": 0.03126093469259961
+        }
+      },
+      "findings": [],
+      "missing_evidence": [],
+      "evidence_ids": [
+        "ev-14f72b8b96de8ee04ac9"
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "id": "ev-3e1491784b28a246a04e",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/rails",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.878+00:00",
+      "method": "ehe.rails",
+      "version": null
+    },
+    {
+      "id": "ev-7a2496fdfd0efee24f7e",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/pins",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.879+00:00",
+      "method": "ehe.pins",
+      "version": null
+    },
+    {
+      "id": "ev-6f92d60d60330411b5e9",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/bom",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.879+00:00",
+      "method": "ehe.bom",
+      "version": null
+    },
+    {
+      "id": "ev-273c6cea4bb7b69b1e90",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/energy",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.879+00:00",
+      "method": "ehe.energy",
+      "version": null
+    },
+    {
+      "id": "ev-15b299cf1f45454f7d15",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/cost",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.879+00:00",
+      "method": "ehe.cost",
+      "version": null
+    },
+    {
+      "id": "ev-9319aaee8336d29c94dc",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/mechanical",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.880+00:00",
+      "method": "ehe.mechanical",
+      "version": null
+    },
+    {
+      "id": "ev-c9cf8b71f8e59f9f7692",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/thermal",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.880+00:00",
+      "method": "ehe.thermal",
+      "version": null
+    },
+    {
+      "id": "ev-3147bcfa84e420865480",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/transient",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.880+00:00",
+      "method": "ehe.transient",
+      "version": null
+    },
+    {
+      "id": "ev-a5cf4f4708c2cc89262b",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/tolerance",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.880+00:00",
+      "method": "ehe.tolerance",
+      "version": null
+    },
+    {
+      "id": "ev-d8ebb0c285ae02840304",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/optimization",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.880+00:00",
+      "method": "ehe.optimization",
+      "version": null
+    },
+    {
+      "id": "ev-740f761fc3d8065e2283",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/analog",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.analog",
+      "version": null
+    },
+    {
+      "id": "ev-367f04fb5cf88e2298f2",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/motor",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.motor",
+      "version": null
+    },
+    {
+      "id": "ev-1b8785bf59f950c3c93b",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/buck",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.buck",
+      "version": null
+    },
+    {
+      "id": "ev-8fa2453eea2957f4a3da",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/realtime",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.realtime",
+      "version": null
+    },
+    {
+      "id": "ev-493912b49263d94677c1",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/fault",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.fault",
+      "version": null
+    },
+    {
+      "id": "ev-25387dda5911918aa15e",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/return_path",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.return_path",
+      "version": null
+    },
+    {
+      "id": "ev-dc2d59f25b279f87b36a",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/emi_loop",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.881+00:00",
+      "method": "ehe.emi_loop",
+      "version": null
+    },
+    {
+      "id": "ev-5d3e37487b8ef40a685a",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/si",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.882+00:00",
+      "method": "ehe.si",
+      "version": null
+    },
+    {
+      "id": "ev-14f72b8b96de8ee04ac9",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\engineering-model\\engineering.json",
+      "sha256": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+      "locator": "/pdn",
+      "kind": "derived",
+      "collected_at": "2026-11-23T04:27:03.882+00:00",
+      "method": "ehe.pdn",
+      "version": null
+    }
+  ],
+  "findings": [],
+  "missing_evidence": []
+}
+
+[stderr]

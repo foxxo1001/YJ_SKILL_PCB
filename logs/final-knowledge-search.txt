@@ -1,0 +1,48 @@
+start_utc=2026-11-23T04:50:40.613982+00:00
+end_utc=2026-11-23T04:50:40.946242+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "knowledge", "search", "低功耗 供电 瞬态 去耦", "--db", "build/verified-cases.sqlite3", "--year", "2026"]
+exit_code=0
+
+[stdout]
+{
+  "status": "retrieved",
+  "hits": [
+    {
+      "id": "kb-698c264b18fa34aba50c8c0e01e127e5aba573d017ccf2f8093acdc7e8b755e2",
+      "sha256": "698c264b18fa34aba50c8c0e01e127e5aba573d017ccf2f8093acdc7e8b755e2",
+      "source": "examples/knowledge/case.md",
+      "revision": "1",
+      "accessed_on": "2026-11-23",
+      "local_path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\knowledge\\case.md",
+      "locator": "line:5",
+      "excerpt": "原理图审查应核对瞬态去耦和返回路径。使用热阻估算结温，随后再安排有校准记录的测量。",
+      "role": "author_claim",
+      "kind": "retrospective",
+      "year": 2026,
+      "track": "general",
+      "score": 1.0,
+      "handling": "untrusted_data",
+      "requires_applicable_official_recheck": true
+    },
+    {
+      "id": "kb-698c264b18fa34aba50c8c0e01e127e5aba573d017ccf2f8093acdc7e8b755e2",
+      "sha256": "698c264b18fa34aba50c8c0e01e127e5aba573d017ccf2f8093acdc7e8b755e2",
+      "source": "examples/knowledge/case.md",
+      "revision": "1",
+      "accessed_on": "2026-11-23",
+      "local_path": "D:\\AI_project\\YJ_SKILLS\\ehe\\examples\\knowledge\\case.md",
+      "locator": "line:3",
+      "excerpt": "试验记录提出，低温峰值工况发生复位。供电路径中包含电池内阻、线束、电源连接器与开关。测量条件尚未独立复核。",
+      "role": "author_claim",
+      "kind": "retrospective",
+      "year": 2026,
+      "track": "general",
+      "score": 0.2,
+      "handling": "untrusted_data",
+      "requires_applicable_official_recheck": true
+    }
+  ]
+}
+
+[stderr]

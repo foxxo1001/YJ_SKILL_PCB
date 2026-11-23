@@ -1,0 +1,144 @@
+{
+  "status": "fail",
+  "domain": "schematic",
+  "check": "erc",
+  "level": "E2",
+  "evidence": [
+    {
+      "id": "ev-e9abc70c9bd6a2793066",
+      "path": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\389e280620c0473c9984eb6d1f1430be\\erc.json",
+      "sha256": "12bc82b4ba52e31a0caa42af3ad545a7f997bd790c4494b22f93d28530529a5f",
+      "locator": "erc/violations",
+      "kind": "tool_verified",
+      "collected_at": "2026-11-23T04:22:11.547+00:00",
+      "method": "kicad-cli erc",
+      "version": "10.0.6"
+    }
+  ],
+  "findings": [
+    {
+      "id": "pin_not_connected",
+      "category": "schematic",
+      "severity": "P0",
+      "status": "confirmed",
+      "scope": {
+        "object": "/",
+        "items": [
+          {
+            "description": "Symbol J1 引脚 1 [1, Passive, Line]",
+            "pos": {
+              "x": 0.5334,
+              "y": 0.508
+            },
+            "uuid": "927fa780-0611-58d3-a4d8-8cc2dfb64ee8"
+          }
+        ]
+      },
+      "mechanism": "Pin not connected",
+      "recommended_action": "定位对象并根据项目规则修正",
+      "verification_method": "对变更版本重新运行原生规则检查",
+      "evidence_ids": [
+        "ev-e9abc70c9bd6a2793066"
+      ],
+      "missing_evidence": [],
+      "confidence": "medium",
+      "verified_by": "kicad-cli 10.0.6"
+    },
+    {
+      "id": "pin_not_connected",
+      "category": "schematic",
+      "severity": "P0",
+      "status": "confirmed",
+      "scope": {
+        "object": "/",
+        "items": [
+          {
+            "description": "Symbol J2 引脚 1 [1, Passive, Line]",
+            "pos": {
+              "x": 0.7874,
+              "y": 0.508
+            },
+            "uuid": "889ad5a0-65fc-59fe-8786-edb7d5f4acc6"
+          }
+        ]
+      },
+      "mechanism": "Pin not connected",
+      "recommended_action": "定位对象并根据项目规则修正",
+      "verification_method": "对变更版本重新运行原生规则检查",
+      "evidence_ids": [
+        "ev-e9abc70c9bd6a2793066"
+      ],
+      "missing_evidence": [],
+      "confidence": "medium",
+      "verified_by": "kicad-cli 10.0.6"
+    }
+  ],
+  "missing_evidence": [],
+  "tool": {
+    "path": "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+    "status": "available",
+    "exit_code": 0,
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "version"
+    ],
+    "stdout": "10.0.6",
+    "stderr": "",
+    "version": "10.0.6"
+  },
+  "execution": {
+    "argv": [
+      "D:\\KiCad\\10.0\\bin\\kicad-cli.exe",
+      "sch",
+      "erc",
+      "--format",
+      "json",
+      "--units",
+      "mm",
+      "--severity-error",
+      "--severity-warning",
+      "--exit-code-violations",
+      "--output",
+      "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-7jqheqkx\\erc.json",
+      "continuity.kicad_sch"
+    ],
+    "cwd": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-kicad-7jqheqkx\\project",
+    "started_at": "2026-11-23T04:22:08.953+00:00",
+    "finished_at": "2026-11-23T04:22:11.536+00:00",
+    "exit_code": 5,
+    "tool_version": "10.0.6",
+    "inputs": {
+      "continuity.kicad_pcb": "7fe07736591ef312336c0e409856b2ef992248b438d67054510c0f85849d0d54",
+      "continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+      "continuity.kicad_sch": "f2dc41bc5e8cb3c5ba73c5c10406c0382f89cfaebce44030a5571a0d178d4bdc",
+      "EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+      "EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+      "fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+      "sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539"
+    },
+    "target": "continuity.kicad_sch",
+    "error": null,
+    "artifact": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\389e280620c0473c9984eb6d1f1430be\\erc.json"
+  },
+  "artifacts": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\demo\\design\\.ehe\\eda\\389e280620c0473c9984eb6d1f1430be",
+  "retryable": false,
+  "raw_sha256": "12bc82b4ba52e31a0caa42af3ad545a7f997bd790c4494b22f93d28530529a5f",
+  "ignored_checks": [
+    {
+      "description": "Global label only appears once in the schematic",
+      "key": "single_global_label"
+    },
+    {
+      "description": "Four connection points are joined together",
+      "key": "four_way_junction"
+    },
+    {
+      "description": "SPICE model issue",
+      "key": "simulation_model_issue"
+    },
+    {
+      "description": "Assigned footprint doesn't match footprint filters",
+      "key": "footprint_filter"
+    }
+  ]
+}

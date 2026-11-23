@@ -1,0 +1,88 @@
+start_utc=2026-11-23T04:46:48.729047+00:00
+end_utc=2026-11-23T04:46:48.945721+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "ehe.cli", "eda", "easyeda", "index", "--expected-project", "build/easyeda-reference/RA6E2.eprj3"]
+exit_code=0
+
+[stdout]
+{
+  "status": "parsed",
+  "level": "E1",
+  "native_rule_checks": "not_run",
+  "evidence_kind": "documented",
+  "source": "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\easyeda-reference\\RA6E2.eprj3",
+  "sha256": "5e2e4f5efa0791e825f5db2a85f25821ba44afe7710ee9eacef0f11875fada28",
+  "documents": [
+    {
+      "id": "0d6fdceced7bb345",
+      "kind": "boards",
+      "name": "地奇星RA6E2",
+      "locator": "/profile/boards/0d6fdceced7bb345"
+    },
+    {
+      "id": "bba5797d971f7fd8",
+      "kind": "boards",
+      "name": "Board1",
+      "locator": "/profile/boards/bba5797d971f7fd8"
+    },
+    {
+      "id": "cb80613e63c347e58ccbc447b4a65b2a",
+      "kind": "schematics",
+      "name": "Schematic1",
+      "locator": "/profile/schematics/cb80613e63c347e58ccbc447b4a65b2a"
+    },
+    {
+      "id": "a3f02ae8238916b9",
+      "kind": "schematics",
+      "name": "Schematic2",
+      "locator": "/profile/schematics/a3f02ae8238916b9"
+    },
+    {
+      "id": "7981a0a73859af77",
+      "kind": "sheets",
+      "name": "P1",
+      "locator": "/profile/sheets/7981a0a73859af77"
+    },
+    {
+      "id": "e6a2528e624140759706b28dea1a71e6",
+      "kind": "sheets",
+      "name": "P1",
+      "locator": "/profile/sheets/e6a2528e624140759706b28dea1a71e6"
+    },
+    {
+      "id": "0826ab7fe62d4b7d",
+      "kind": "pcbs",
+      "name": "PCB3",
+      "locator": "/profile/pcbs/0826ab7fe62d4b7d"
+    },
+    {
+      "id": "ea7c232c881335e0",
+      "kind": "pcbs",
+      "name": "PCB2",
+      "locator": "/profile/pcbs/ea7c232c881335e0"
+    },
+    {
+      "id": "dd88ba56c6a8406e84b9fe4562b25cde",
+      "kind": "pcbs",
+      "name": "PCB1",
+      "locator": "/profile/pcbs/dd88ba56c6a8406e84b9fe4562b25cde"
+    },
+    {
+      "id": "69a86c8ee108645c",
+      "kind": "pcbs",
+      "name": "PCB1_1",
+      "locator": "/profile/pcbs/69a86c8ee108645c"
+    },
+    {
+      "id": "3716daec909b6e58",
+      "kind": "panels",
+      "name": "Panel1",
+      "locator": "/profile/panels/3716daec909b6e58"
+    }
+  ],
+  "project_name": "RA6E2",
+  "nets": [],
+  "geometry": []
+}
+
+[stderr]

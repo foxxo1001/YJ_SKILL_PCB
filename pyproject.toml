@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools==82.0.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ehe-engineering"
+version = "0.1.0"
+description = "Evidence-first embedded hardware engineering and review runtime"
+requires-python = ">=3.11"
+license = "MIT"
+readme = "README.md"
+dependencies = ["PyYAML==6.0.3", "pypdf==6.12.1"]
+
+[project.optional-dependencies]
+test = ["jsonschema==4.26.0"]
+
+[project.scripts]
+ehe = "ehe.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ehe = ["data/*.json", "data/*.md", "data/gold/*.*", "data/gold/continuity/*",
+       "data/gold/continuity/EHE.pretty/*"]

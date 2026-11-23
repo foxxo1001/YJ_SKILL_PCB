@@ -1,0 +1,18 @@
+start_utc=2026-11-23T04:14:22.672546+00:00
+end_utc=2026-11-23T04:14:30.927462+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "unittest", "discover", "-s", "tests", "-p", "test_m2.py", "-v"]
+exit_code=0
+
+[stdout]
+
+[stderr]
+test_export_bom_and_unstructured (test_m2.AdapterTests.test_export_bom_and_unstructured) ... ok
+test_geometry_of_native_files (test_m2.AdapterTests.test_geometry_of_native_files) ... ok
+test_real_clean_and_injected_erc_drc (test_m2.AdapterTests.test_real_clean_and_injected_erc_drc) ... ok
+test_sexpr_rejects_non_tree (test_m2.AdapterTests.test_sexpr_rejects_non_tree) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.102s
+
+OK

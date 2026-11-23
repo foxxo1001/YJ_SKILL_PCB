@@ -1,0 +1,29 @@
+start_utc=2026-11-23T04:38:15.372142+00:00
+end_utc=2026-11-23T04:38:29.925611+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/probe_hosts.py", "--claude"]
+exit_code=0
+
+[stdout]
+{
+  "codex": {
+    "status": "discovered",
+    "exit_code": 0,
+    "version": "codex-cli 0.171.0",
+    "skill": "embedded-hardware-engineer",
+    "discovered": true,
+    "activation": "not_run",
+    "reason": ""
+  },
+  "claude": {
+    "status": "discovered",
+    "exit_code": 1,
+    "version": "2.1.330 (Claude Code)",
+    "skill": "embedded-hardware-engineer",
+    "discovered": true,
+    "activation": "not_run",
+    "reason": ""
+  }
+}
+
+[stderr]

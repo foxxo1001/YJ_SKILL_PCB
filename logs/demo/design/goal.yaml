@@ -1,0 +1,7 @@
+name: 连通性验证原生样板
+tasks:
+  - {id: erc, kind: schematic, depends_on: []}
+  - {id: drc, kind: pcb, depends_on: []}
+required: [erc, drc]
+max_rounds: 5
+physical_required: false

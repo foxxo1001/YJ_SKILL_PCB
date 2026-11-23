@@ -1,0 +1,11 @@
+{
+  "name": "项目只读审查",
+  "tasks": [{"id": "budgets", "kind": "budget", "depends_on": []}],
+  "required": ["budgets"],
+  "max_rounds": 5,
+  "max_stalled": 3,
+  "tool_retries": 2,
+  "max_calls": 30,
+  "max_seconds": 600,
+  "physical_required": true
+}

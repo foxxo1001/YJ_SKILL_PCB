@@ -1,0 +1,16 @@
+start_utc=2026-11-23T04:06:30.474813+00:00
+end_utc=2026-11-23T04:06:30.708802+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "unittest", "discover", "-s", "tests", "-v"]
+exit_code=0
+
+[stdout]
+
+[stderr]
+test_file_evidence_and_path_scope (test_m0.BaselineTests.test_file_evidence_and_path_scope) ... ok
+test_missing_tool (test_m0.BaselineTests.test_missing_tool) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.007s
+
+OK

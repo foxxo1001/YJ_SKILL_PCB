@@ -1,0 +1,73 @@
+start_utc=2026-11-23T04:38:15.373482+00:00
+end_utc=2026-11-23T04:38:19.418629+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/probe_easyeda.py", "--bare-session"]
+exit_code=3
+
+[stdout]
+{
+  "detected": {
+    "status": "available",
+    "path": "D:\\lceda-pro\\lceda-pro.exe",
+    "version": "4.1.60.198f38ab",
+    "level": "E0",
+    "probe": {
+      "status": "available",
+      "native": {
+        "ok": true,
+        "value": {
+          "endpoint": "JLCEDAPro6364a4ad",
+          "connected": true,
+          "bridgeVersion": "4.1.60.198f38ab",
+          "versionMatch": true,
+          "resultChannel": null
+        },
+        "logs": [],
+        "durationMs": 220
+      },
+      "execution": {
+        "argv": [
+          "D:\\lceda-pro\\lceda-pro.exe",
+          "doctor"
+        ],
+        "cwd": "D:\\lceda-pro",
+        "started_at": "2026-11-23T04:38:15.564+00:00",
+        "finished_at": "2026-11-23T04:38:16.768+00:00",
+        "exit_code": 0,
+        "stdout": "\n{\"ok\":true,\"value\":{\"endpoint\":\"JLCEDAPro6364a4ad\",\"connected\":true,\"bridgeVersion\":\"4.1.60.198f38ab\",\"versionMatch\":true,\"resultChannel\":null},\"logs\":[],\"durationMs\":220}\n",
+        "stderr": ""
+      }
+    },
+    "native_rule_checks": "not_run",
+    "native_writeback": false
+  },
+  "active_design_read": "not_run",
+  "session_open": {
+    "status": "blocked",
+    "reason": "Native CLI rejected the operation",
+    "execution": {
+      "argv": [
+        "D:\\lceda-pro\\lceda-pro.exe",
+        "open",
+        "--headless",
+        "true"
+      ],
+      "cwd": "D:\\lceda-pro",
+      "started_at": "2026-11-23T04:38:18.587+00:00",
+      "finished_at": "2026-11-23T04:38:19.396+00:00",
+      "exit_code": 1,
+      "stdout": "\n{\"ok\":false,\"error\":{\"code\":\"INVALID_ARGS\",\"message\":\"path is required\"}}\n",
+      "stderr": "INVALID_ARGS: path is required\n"
+    },
+    "native": {
+      "ok": false,
+      "error": {
+        "code": "INVALID_ARGS",
+        "message": "path is required"
+      }
+    }
+  }
+}
+
+
+[stderr]
