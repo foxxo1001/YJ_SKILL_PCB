@@ -1,0 +1,8 @@
+{
+  "implementation_commit": "3489b0f08357cf790ed2c27ca8dd5717c28fb6b4",
+  "tested_source_sha256": "eff2bd4a92af31dd7d015da17f2805011fe1bb1df5221029808cc82db5ac0b03",
+  "wheel_sha256": "49870c254967483fc284801a94a1c70009551a8e811e4f10f8ca4607408db4a3",
+  "commit_scope": "source and tests before final evidence capture",
+  "report": "release-eval.json",
+  "wheel_report": "wheel-eval.json"
+}

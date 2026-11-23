@@ -1,0 +1,23 @@
+start_utc=2026-11-23T04:51:08.149682+00:00
+end_utc=2026-11-23T04:51:12.999169+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\build\\py311\\Scripts\\python.exe", "-m", "pip", "wheel", "--disable-pip-version-check", "--no-deps", "--wheel-dir", "dist", "."]
+exit_code=0
+
+[stdout]
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Processing d:\ai_project\yj_skills\ehe
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: ehe-engineering
+  Building wheel for ehe-engineering (pyproject.toml): started
+  Building wheel for ehe-engineering (pyproject.toml): finished with status 'done'
+  Created wheel for ehe-engineering: filename=ehe_engineering-0.1.0-py3-none-any.whl size=86023 sha256=49870c254967483fc284801a94a1c70009551a8e811e4f10f8ca4607408db4a3
+  Stored in directory: C:\Users\L\AppData\Local\Temp\pip-ephem-wheel-cache-808tb3gi\wheels\90\dc\94\18143f1aaa9af6e915130bd1146267b17e172ab28f911ce3bf
+Successfully built ehe-engineering
+
+[stderr]

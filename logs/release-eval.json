@@ -1,0 +1,1303 @@
+{
+  "status": "pass",
+  "suite": "core",
+  "started_at": "2026-11-23T04:51:08.363+00:00",
+  "finished_at": "2026-11-23T04:51:26.820+00:00",
+  "dataset_sha256": "160c896f1d8b803e79c152eb793ae9e640333e68563b719c1502fc39518cf447",
+  "input_hashes": {
+    "community-fixture.md": "26682d09bc929dd65ccdf23c99484abfe9b87adc3f848043ba5682d979f5bde6",
+    "conflict.md": "56829d18425d8f286f87d05de676e7a66a5f27d8ef81d284a63a91636dbdb9bd",
+    "continuity/continuity.kicad_pcb": "4ce4f273b1ff5c730fe0093602ffb6b687b3b33147a3008dcb78cc1d6f7a4b5d",
+    "continuity/continuity.kicad_pro": "8029405a0001a659c7b2398257e1a45554dfac22da44fb579af7155aaa76a21e",
+    "continuity/continuity.kicad_sch": "bb73600ea08f8e77f4bf918563379ad046815fcb32668d6f6cb853e1755e7fa9",
+    "continuity/EHE.kicad_sym": "d2b86c7b2b60c3a2a251a9fef8109bb6b01d9fff3b20935817f9b82bdcbf6757",
+    "continuity/EHE.pretty/Terminal.kicad_mod": "bdd55abb1a3521b4b4577e67c8779b31acb2783588dfaaf9885bc65925b7a52d",
+    "continuity/fp-lib-table": "0a9277c2815beef5c81eefc3f2b5f898adc75c6ac30dde1c9dfa4e85d2352a54",
+    "continuity/goal.yaml": "b7256b3991c721db3ba1029e4247d5de35f1bfa8ce365aa4fa6b69e56c7a3fb3",
+    "continuity/project.json": "ba99ec06209152f1bb8e6ef84a922e4d0ddd9923d2c5ad04d60c9bd9c06deb1d",
+    "continuity/sym-lib-table": "bf463c0b83017cc179b1352c8486bdc412273802a73903fb4cc4a799f1f71539",
+    "core.json": "6ebf53665a44c4dc65a6ab8c3990a43db8af7d52d9233d6b5391b57b38ea58f0",
+    "holdout-fixture.md": "08ba8a0b807e4114c3ff277181ca7e89c74fb69729f5294afe6085874a3d2b76",
+    "malicious-fixture.md": "a949f794ce159e43b1b09c6f563dfeccfb0640bf14a832ab8a4dad4ad0886298",
+    "models.json": "e43a7d89fe456ce2d73a061eeaffec835ed1d2faa5358fbf4a8ec66a5ab7975e",
+    "official-fixture.md": "f0e6b4d305e47ab01d449cd6be7681223552a4e4a42301cbb28cb616b6cf839e",
+    "problem.md": "ca03bef4d3e23e15f97cc1e86cbe36104551ad10bb4957030a26a728e64d6625"
+  },
+  "version": "0.1.0",
+  "source_sha256": "eff2bd4a92af31dd7d015da17f2805011fe1bb1df5221029808cc82db5ac0b03",
+  "git_commit": null,
+  "git_dirty": null,
+  "python": "3.14.5",
+  "model": "deterministic_no_model",
+  "tools": {
+    "kicad": "10.0.6",
+    "kicad_status": "available"
+  },
+  "config": {
+    "repeat": 2,
+    "seed": null
+  },
+  "counts": {
+    "pass": 36,
+    "fail": 0,
+    "not_run": 0
+  },
+  "cases": [
+    {
+      "id": "AT01",
+      "title": "赛题范围、评分和无量值条款",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "parsed",
+        "conflicts": 0,
+        "lower": 3.0,
+        "upper": 5.0,
+        "score": 20.0,
+        "unquantified": true,
+        "located": true
+      },
+      "input_sha256": "201d4624803b1906a3ef43ee84e021421967e236415d5a8d6f5c8379fd60c419",
+      "expected": {
+        "equals": {
+          "status": "parsed",
+          "lower": 3,
+          "upper": 5,
+          "score": 20,
+          "unquantified": true,
+          "located": true
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT02",
+      "title": "同作用域的硬约束矛盾",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "conflicts": 1,
+        "lower": 5.0,
+        "upper": null,
+        "score": null,
+        "unquantified": false,
+        "located": true
+      },
+      "input_sha256": "5e482fc7fe5b7f6586bdc02454840e78e44a65952258cbddc5ad8e22e8fb1e99",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "conflicts": 1
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT03",
+      "title": "两条可行路线的约束与来源筛选",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "pass",
+        "findings": [],
+        "finding_status": [],
+        "missing": false,
+        "pareto": [
+          "A",
+          "B"
+        ],
+        "feasible": [
+          "A",
+          "B",
+          "C"
+        ],
+        "late_rejected": [
+          "lead_days"
+        ],
+        "unknown": []
+      },
+      "input_sha256": "82ef5c3d620d1214af1a410f9db8850f1a79864355a16fe543c025d4290e1452",
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "pareto": [
+            "A",
+            "B"
+          ],
+          "feasible": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT04",
+      "title": "冲突资料优先官方修订",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "conflicting",
+        "preferred_first": true,
+        "locatable": true,
+        "recheck": true,
+        "inert": false,
+        "claim_count": 2
+      },
+      "input_sha256": "8dafea65f5fb4417d68e631fed0d62270d80552213ab86f456f70019964aeff3",
+      "expected": {
+        "equals": {
+          "status": "conflicting",
+          "preferred_first": true,
+          "locatable": true,
+          "recheck": true
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT05",
+      "title": "5 V 进入 3.3 V 域",
+      "verdict": "pass",
+      "critical": [
+        "PIN-VOLTAGE"
+      ],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "PIN-VOLTAGE"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "assignments": 1,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "07c78cdb36aee9b4a01b3a2d3b9b0c3c49d4308d5e63dc4a6f748b058b1863fd",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "PIN-VOLTAGE"
+          ]
+        },
+        "approx": {},
+        "critical": [
+          "PIN-VOLTAGE"
+        ]
+      }
+    },
+    {
+      "id": "AT06",
+      "title": "同物理引脚重复分配",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "PIN-DUP"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "assignments": 1,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "406338b2eb5f782f70b20acfdbde5ffe9ae23413f4aa0056717046a8c09fd63a",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "PIN-DUP"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT07",
+      "title": "BOM 重复且数量不符",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "BOM-DUP",
+          "BOM-QTY"
+        ],
+        "finding_status": [
+          "confirmed",
+          "confirmed"
+        ],
+        "missing": false,
+        "unique_refs": 1,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "36795adc92f4a453eccd700d9176116bd73d81e38568e9d66f23fc6f52024b88",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "BOM-DUP",
+            "BOM-QTY"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT08",
+      "title": "峰值过载",
+      "verdict": "pass",
+      "critical": [
+        "RAIL-PEAK"
+      ],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "RAIL-PEAK"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "peak_margin_a": -0.09999999999999998,
+        "peak_load_w": 1.9799999999999998,
+        "typical_load_w": 0.297,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "92c1fae61782c30215c2b684f141577b6fe387dc8bcf3f5436fde35f6fe7a607",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "RAIL-PEAK"
+          ]
+        },
+        "approx": {
+          "peak_margin_a": -0.1
+        },
+        "critical": [
+          "RAIL-PEAK"
+        ]
+      }
+    },
+    {
+      "id": "AT09",
+      "title": "共模范围与摆幅超限",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "ANALOG-COMMON_MODE",
+          "ANALOG-OUTPUT"
+        ],
+        "finding_status": [
+          "confirmed",
+          "confirmed"
+        ],
+        "missing": false,
+        "common_mode_margin_v": -0.2,
+        "output_margin_v": -0.20000000000000018,
+        "slew_margin_v_per_s": 993716.8146928204,
+        "settling_margin_s": 1.098908665272071e-06,
+        "gbw_margin_hz": 980000.0,
+        "error_margin_v": 0.0005,
+        "required_slew_v_per_s": 6283.185307179586,
+        "half_lsb_settle_s": 9.010913347279288e-07,
+        "total_abs_error_v": 0.0015,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "5adb6d672fdee9ac6d1a42c8ccf383e67a75e2bd6ae44a81548ca91095813efe",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "ANALOG-COMMON_MODE",
+            "ANALOG-OUTPUT"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT10",
+      "title": "电机堵转过流",
+      "verdict": "pass",
+      "critical": [
+        "MOTOR-STALL"
+      ],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "MOTOR-STALL"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "stall_a": 6.0,
+        "loss_w": 7.2,
+        "tj_estimate_c": 86.0,
+        "current_margin_a": -3.0,
+        "soa_time_margin_s": 0.07,
+        "thermal_margin_c": 39.0,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "985203132d33ed2882bc4d8dfddfdc34dd09a4c72604052ad9a0c97461848597",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "MOTOR-STALL"
+          ]
+        },
+        "approx": {
+          "stall_a": 6
+        },
+        "critical": [
+          "MOTOR-STALL"
+        ]
+      }
+    },
+    {
+      "id": "AT11",
+      "title": "开关热环路超布局阈值",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "inconclusive",
+        "findings": [
+          "EMI-LOOP-AREA"
+        ],
+        "finding_status": [
+          "suspected"
+        ],
+        "missing": false,
+        "area_mm2": 4.0,
+        "layout_margin_mm2": -2.0,
+        "victim": "ADC",
+        "coupling_path": "near-field inductive",
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "9121373bd577a66bf5ced420d4d6d5c0dd1dd64f803cf0717e1242793cfdaa45",
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [
+            "EMI-LOOP-AREA"
+          ],
+          "finding_status": [
+            "suspected"
+          ]
+        },
+        "approx": {
+          "area_mm2": 4
+        },
+        "critical": []
+      }
+    },
+    {
+      "id": "AT12",
+      "title": "信号跨参考面开缝",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "RETURN-GAP"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "routes_checked": 1,
+        "model": "trace-center / rectangular gaps",
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "8c9c1c22b2c7ee79a9a34c3a75f00f9144aacd27e16acb5c04f3592deb7010be",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "RETURN-GAP"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT13",
+      "title": "连续参考平面无误报",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "pass",
+        "findings": [],
+        "finding_status": [],
+        "missing": false,
+        "routes_checked": 1,
+        "model": "trace-center / rectangular gaps",
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "8a6c6128157aad2ec9b368fa3f3afaee75fa59ee9e76cacadc987c78c69ab371",
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "findings": []
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT14",
+      "title": "换层但有适用返回耦合",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "pass",
+        "findings": [],
+        "finding_status": [],
+        "missing": false,
+        "routes_checked": 1,
+        "model": "trace-center / rectangular gaps",
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "2658cd42305a931ef971149ef88c43c90ce287558440d8e1464425133e07a5eb",
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "findings": []
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT15",
+      "title": "保护曲线缺失",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "inconclusive",
+        "findings": [],
+        "finding_status": [],
+        "missing": true,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "4c021f7834145e4f14e2da56eada6882e371490bb7ce61fb0210265d486b771e",
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [],
+          "missing": true
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT16",
+      "title": "快边沿与高阻负载反射",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "inconclusive",
+        "findings": [
+          "SI-REFLECTION"
+        ],
+        "finding_status": [
+          "suspected"
+        ],
+        "missing": false,
+        "one_way_s": 6.25e-10,
+        "gamma_load": 0.9047619047619048,
+        "gamma_source": -0.3333333333333333,
+        "first_reflection_v": 1.9904761904761907,
+        "electrically_long": true,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "08930f3fd9be958b5db75959d82d1b7fb29960fc09c584108db691c029d3f44f",
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [
+            "SI-REFLECTION"
+          ],
+          "finding_status": [
+            "suspected"
+          ]
+        },
+        "approx": {
+          "first_reflection_v": 1.9904761904761905
+        },
+        "critical": []
+      }
+    },
+    {
+      "id": "AT17",
+      "title": "去耦回路寄生导致阻抗超限",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "inconclusive",
+        "findings": [
+          "PI-IMPEDANCE"
+        ],
+        "finding_status": [
+          "suspected"
+        ],
+        "missing": false,
+        "10000.0": 0.02819786586261335,
+        "100000.0": 0.04862270713563067,
+        "1000000.0": 1.76755356323665,
+        "5000000.0": 1.486820476946401,
+        "target_ohm": 0.16,
+        "worst_sample_hz": 1000000.0,
+        "worst_ohm": 1.76755356323665,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "cbca31e560ac44a0920ea3d24737635856562bf1e57672308e7e2f3f07ec40a7",
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "findings": [
+            "PI-IMPEDANCE"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT18",
+      "title": "板框合格但插头插配越界",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "MECH-CONNECTOR"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "board": 0.7,
+        "J1": 2.4,
+        "C1": 2.1,
+        "J1-plug": -2.200000000000003,
+        "board_envelope_mm": [
+          42.2,
+          27.200000000000003,
+          1.8000000000000003
+        ],
+        "board_box_mm3": 2066.1120000000005,
+        "enclosure_usable_mm": [
+          49.599999999999994,
+          34.599999999999994,
+          11.600000000000001
+        ],
+        "model": "axis-aligned envelopes",
+        "mass_margin_g": 16.0,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "eca6dad888eba9dc2c0151e86fa30c9dc58628baf55fa89ebe9f5a1a809026f2",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "MECH-CONNECTOR"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT19",
+      "title": "器件超高",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "MECH-HEIGHT"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "board": 0.7,
+        "J1": 2.4,
+        "C1": -0.5,
+        "J1-plug": 1.7999999999999972,
+        "board_envelope_mm": [
+          42.2,
+          27.200000000000003,
+          1.8000000000000003
+        ],
+        "board_box_mm3": 2066.1120000000005,
+        "enclosure_usable_mm": [
+          49.599999999999994,
+          34.599999999999994,
+          11.600000000000001
+        ],
+        "model": "axis-aligned envelopes",
+        "mass_margin_g": 16.0,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "1ea54494eaa12485851d7ce9be91cf07e16b3a972a5b37827208e3ff62e48bf3",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "MECH-HEIGHT"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT20",
+      "title": "MOSFET 结温估计超限",
+      "verdict": "pass",
+      "critical": [
+        "THERMAL-TJ"
+      ],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "THERMAL-TJ"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "junction_estimate_c": 137.0,
+        "margin_c": -12.0,
+        "dissipation_w": 0.6000000000000001,
+        "sensitivity_c_per_w": 45.0,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "e61602d177fd26faa80365fa2716b37970b8d8f1b77c4fe3e206c97a134af6c4",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "THERMAL-TJ"
+          ]
+        },
+        "approx": {
+          "junction_estimate_c": 137
+        },
+        "critical": [
+          "THERMAL-TJ"
+        ]
+      }
+    },
+    {
+      "id": "AT21",
+      "title": "低温内阻造成峰值掉电",
+      "verdict": "pass",
+      "critical": [
+        "BATTERY-SAG"
+      ],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "BATTERY-SAG"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "estimated_min_v": 2.808,
+        "margin_v": -0.29200000000000026,
+        "resistive_drop_v": 0.792,
+        "additional_droop_v": 0.0,
+        "sensitivity_v_per_ohm": -1.2,
+        "conditions": "illustrative cell at 5 C, low SOC and startup peak",
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "3f64e7bb1f51ade62b8e95448b9f94cc5f838abefb7f5d83a169c56c706520fc",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "BATTERY-SAG"
+          ]
+        },
+        "approx": {
+          "estimated_min_v": 2.808
+        },
+        "critical": [
+          "BATTERY-SAG"
+        ]
+      }
+    },
+    {
+      "id": "AT22",
+      "title": "休眠外围漏电",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "fail",
+        "findings": [
+          "ENERGY-RUNTIME"
+        ],
+        "finding_status": [
+          "confirmed"
+        ],
+        "missing": false,
+        "startup": 1.0563414634146342,
+        "peak": 1.0916666666666668,
+        "typical": 0.2385,
+        "idle": 0.07492307692307693,
+        "sleep": 2.1002349999999996,
+        "recovery": 0.2907073170731707,
+        "average_input_w": 0.8393520993433394,
+        "runtime_estimate_h": 4.765580503258845,
+        "runtime_margin_h": -7.234419496741155,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "b4de053c8dcbf33dc728ea5658c971b4f2f98d855d9e527cb5334d7d19699f47",
+      "expected": {
+        "equals": {
+          "status": "fail",
+          "findings": [
+            "ENERGY-RUNTIME"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT23",
+      "title": "低价方案不符合交期",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "pass",
+        "findings": [],
+        "finding_status": [],
+        "missing": false,
+        "pareto": [
+          "A",
+          "B"
+        ],
+        "feasible": [
+          "A",
+          "B",
+          "C"
+        ],
+        "late_rejected": [
+          "lead_days"
+        ],
+        "unknown": []
+      },
+      "input_sha256": "82ef5c3d620d1214af1a410f9db8850f1a79864355a16fe543c025d4290e1452",
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "late_rejected": [
+            "lead_days"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT24",
+      "title": "MCU 封装替换影响域",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "calculated",
+        "domains": [
+          "bom",
+          "electrical",
+          "footprint",
+          "pin_map",
+          "procurement",
+          "thermal"
+        ]
+      },
+      "input_sha256": "510f3dded82afaff9961e739ba684b4a42aac7e5bd6abb0913bb35b7745a79d9",
+      "expected": {
+        "equals": {
+          "status": "calculated",
+          "domains": [
+            "bom",
+            "electrical",
+            "footprint",
+            "pin_map",
+            "procurement",
+            "thermal"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT25",
+      "title": "真实 KiCad 干净报告与断线注入",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "pass",
+        "clean_exit": [
+          0,
+          0
+        ],
+        "bad_exit": [
+          5,
+          5
+        ],
+        "detected": true,
+        "provenance": true,
+        "original_preserved": true
+      },
+      "input_sha256": "6a8786b6d92f840eb7bd49e509d00d5025d6f10725493fcd55b018205df8bab5",
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "clean_exit": [
+            0,
+            0
+          ],
+          "bad_exit": [
+            5,
+            5
+          ],
+          "detected": true,
+          "provenance": true,
+          "original_preserved": true
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT26",
+      "title": "KiCad 缺失检测",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "not_run",
+        "native_level": "E0",
+        "native_evidence": false
+      },
+      "input_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "expected": {
+        "equals": {
+          "status": "not_run",
+          "native_level": "E0",
+          "native_evidence": false
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT27",
+      "title": "图片输入不猜网络和层",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "inconclusive",
+        "level": "E0",
+        "geometry_count": 0,
+        "net_count": 0
+      },
+      "input_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "level": "E0",
+          "geometry_count": 0,
+          "net_count": 0
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT28",
+      "title": "无新增输入停止工程循环",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "PAUSED",
+        "calls": 1,
+        "round": 1,
+        "interrupted": 0,
+        "child_exit": null,
+        "physical": "not_run",
+        "claims_measured": false,
+        "first_state": "REVISE",
+        "unchanged": true,
+        "no_repeat": true,
+        "reason": "no_progress"
+      },
+      "input_sha256": "ac2da365ebda8277474a7e7b7953d11a1b98aaf103171a09e9239a14e678ce84",
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "no_repeat": true,
+          "reason": "no_progress"
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT29",
+      "title": "原工程改动等待审批并被拒绝",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "PAUSED",
+        "calls": 0,
+        "round": 0,
+        "interrupted": 0,
+        "child_exit": null,
+        "physical": null,
+        "claims_measured": false,
+        "first_state": "WAITING_APPROVAL",
+        "unchanged": true,
+        "no_repeat": true,
+        "reason": null
+      },
+      "input_sha256": "36881a6ec9d35b92e5dc45708cdb673faa8e8c1a46cbf6f384bf3759139e63c0",
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "first_state": "WAITING_APPROVAL",
+          "unchanged": true,
+          "calls": 0
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT30",
+      "title": "进程中断后恢复",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "PAUSED",
+        "calls": 2,
+        "round": 1,
+        "interrupted": 1,
+        "child_exit": 77,
+        "physical": "not_run",
+        "claims_measured": false,
+        "first_state": null,
+        "unchanged": true,
+        "no_repeat": false,
+        "reason": null
+      },
+      "input_sha256": "f5b3dbbda3292e8cdd7d641427af3cbd68e35a8b81c10e51ff8c5064ecf4348c",
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "child_exit": 77,
+          "round": 1,
+          "interrupted": 1,
+          "calls": 2
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT31",
+      "title": "知识资料中的操作指令和虚构参数",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "conflicting",
+        "preferred_first": true,
+        "locatable": true,
+        "recheck": true,
+        "inert": true,
+        "claim_count": 2
+      },
+      "input_sha256": "f00929d897f5714ded7240293bbb1ef5f6af0e13029b656cc2b950a3f81d6459",
+      "expected": {
+        "equals": {
+          "status": "conflicting",
+          "inert": true,
+          "preferred_first": true,
+          "recheck": true
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT32",
+      "title": "近似项目文档跨分区隔离",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "blocked",
+        "exact_blocked": true,
+        "group_blocked": true,
+        "near_blocked": true,
+        "register_has_only_hashes": true
+      },
+      "input_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "expected": {
+        "equals": {
+          "status": "blocked",
+          "group_blocked": true,
+          "exact_blocked": true,
+          "near_blocked": true,
+          "register_has_only_hashes": true
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT33",
+      "title": "回归后独立门禁阻断",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "blocked",
+        "critical_regression": true,
+        "regressions": [
+          "known_critical_problem"
+        ],
+        "brand": "ehe-independent-evalops"
+      },
+      "input_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "expected": {
+        "equals": {
+          "status": "blocked",
+          "critical_regression": true,
+          "brand": "ehe-independent-evalops"
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT34",
+      "title": "无实测时物理 Gate 未运行",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "PAUSED",
+        "calls": 1,
+        "round": 1,
+        "interrupted": 0,
+        "child_exit": null,
+        "physical": "not_run",
+        "claims_measured": false,
+        "first_state": "PAUSED",
+        "unchanged": true,
+        "no_repeat": true,
+        "reason": null
+      },
+      "input_sha256": "f24533c2173237c21257068b2ce336ed1e391b7e676adc51f6f1b543862eb2dc",
+      "expected": {
+        "equals": {
+          "status": "PAUSED",
+          "physical": "not_run",
+          "claims_measured": false
+        },
+        "approx": {},
+        "critical": []
+      }
+    },
+    {
+      "id": "AT35",
+      "title": "正常设计控制误报",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "pass",
+        "findings": [],
+        "finding_status": [],
+        "missing": false,
+        "peak_margin_a": 0.18,
+        "peak_load_w": 1.056,
+        "typical_load_w": 0.297,
+        "late_rejected": [],
+        "unknown": []
+      },
+      "input_sha256": "349e6ddb81b1d033b2c69f26ea557229511711d42ad65c8dcc1338b49c65002a",
+      "expected": {
+        "equals": {
+          "status": "pass",
+          "findings": []
+        },
+        "approx": {
+          "peak_margin_a": 0.18
+        },
+        "critical": []
+      }
+    },
+    {
+      "id": "AT36",
+      "title": "成本、重量与功耗 Pareto",
+      "verdict": "pass",
+      "critical": [],
+      "errors": [],
+      "observed": {
+        "status": "inconclusive",
+        "findings": [],
+        "finding_status": [],
+        "missing": true,
+        "pareto": [
+          "A",
+          "B"
+        ],
+        "feasible": [
+          "A",
+          "B"
+        ],
+        "late_rejected": [
+          "lead_days"
+        ],
+        "unknown": [
+          "C"
+        ]
+      },
+      "input_sha256": "6e742497bf3f1c19574980b8fd86c231b217752ff16bc3de1056773f76304f74",
+      "expected": {
+        "equals": {
+          "status": "inconclusive",
+          "pareto": [
+            "A",
+            "B"
+          ],
+          "unknown": [
+            "C"
+          ]
+        },
+        "approx": {},
+        "critical": []
+      }
+    }
+  ],
+  "kpi": {
+    "critical_missed": [],
+    "critical_detected": 5,
+    "critical_truth": 5,
+    "critical_recall_wilson_95": [
+      0.5655175352168251,
+      1.0
+    ],
+    "diagnosis_precision": 1.0,
+    "precision_numerator": 17,
+    "precision_denominator": 17,
+    "numeric_correct": 7,
+    "numeric_checks": 7,
+    "scope": "Only enumerated gold observations; physical acceptance and population performance unmeasured"
+  },
+  "variation": {
+    "repeats": 2,
+    "different_cases": []
+  },
+  "physical_acceptance": "not_run",
+  "quality_gate": {
+    "status": "pass",
+    "verified_by": "ehe-independent-evalops",
+    "reasons": [],
+    "comparison": {
+      "status": "pass",
+      "critical_regression": false,
+      "regressions": []
+    }
+  },
+  "release_gate": {
+    "status": "blocked",
+    "verified_by": "ehe-independent-evalops",
+    "profile": "read-only-preview",
+    "incomplete": [
+      "full_design_to_evidence_traceability",
+      "multiplatform_execution",
+      "physical_acceptance_workflow",
+      "source_coverage_and_requirements_extraction"
+    ],
+    "reason": "PRD core readiness conditions remain open"
+  }
+}

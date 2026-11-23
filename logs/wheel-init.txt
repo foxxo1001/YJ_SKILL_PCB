@@ -1,0 +1,19 @@
+start_utc=2026-11-23T04:52:50.346307+00:00
+end_utc=2026-11-23T04:52:50.558396+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\build\\wheel311\\Scripts\\ehe.exe", "init", "build/wheel-init-project"]
+exit_code=0
+
+[stdout]
+{
+  "status": "created",
+  "project": "D:\\AI_project\\YJ_SKILLS\\ehe\\build\\wheel-init-project",
+  "files": [
+    "project.json",
+    "goal.yaml",
+    "engineering.json",
+    "acceptance.md"
+  ]
+}
+
+[stderr]

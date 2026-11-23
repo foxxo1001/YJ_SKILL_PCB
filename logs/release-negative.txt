@@ -1,0 +1,10 @@
+start_utc=2026-11-23T04:51:38.811794+00:00
+end_utc=2026-11-23T04:51:49.007291+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/verify_regression.py", "--baseline", "logs/M5-run1.json", "--output", "logs/release-negative.json"]
+exit_code=0
+
+[stdout]
+{"status": "pass", "candidate_exit_code": 1, "comparison": {"status": "blocked", "critical_regression": true, "regressions": ["AT08"]}, "output": "D:\\AI_project\\YJ_SKILLS\\ehe\\logs\\release-negative.json"}
+
+[stderr]
