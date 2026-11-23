@@ -1,0 +1,174 @@
+{
+  "codex_discovered_on_new_project": true,
+  "launcher": "C:\\Users\\L\\.codex\\skills\\embedded-hardware-engineer\\scripts\\run_ehe.py",
+  "resolver": {
+    "status": "available",
+    "source": "installed",
+    "argv": [
+      "D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "ehe.cli"
+    ],
+    "version": "0.1.1"
+  },
+  "full_review": {
+    "exit_code": 1,
+    "status": "fail",
+    "eda_status": "fail",
+    "coverage": {
+      "erc": "pass",
+      "drc": "pass",
+      "schematic_parity": "fail",
+      "board_outline": "pass",
+      "rails": "not_run",
+      "pins": "not_run",
+      "bom": "not_run",
+      "energy": "not_run",
+      "cost": "not_run",
+      "mechanical": "not_run",
+      "thermal": "not_run",
+      "transient": "not_run",
+      "tolerance": "not_run",
+      "optimization": "not_run",
+      "analog": "not_run",
+      "motor": "not_run",
+      "buck": "not_run",
+      "realtime": "not_run",
+      "fault": "not_run",
+      "return_path": "not_run",
+      "emi_loop": "not_run",
+      "si": "not_run",
+      "pdn": "not_run",
+      "physical": "not_run"
+    },
+    "outline": {
+      "min_mm": [
+        26.0,
+        25.0
+      ],
+      "max_mm": [
+        44.0,
+        35.0
+      ],
+      "width_mm": 18.0,
+      "height_mm": 10.0,
+      "nominal_board_thickness_mm": 1.6
+    },
+    "recommendations": [
+      {
+        "check": "schematic_parity",
+        "finding": "net_conflict",
+        "severity": "P1",
+        "where": {
+          "object": "schematic_parity",
+          "items": [
+            {
+              "description": "J1 的PTH 焊盘 1 [LINK]",
+              "pos": {
+                "x": 30.0,
+                "y": 30.0
+              },
+              "uuid": "f585f41d-23f1-5d60-bea9-6d487feaa948"
+            }
+          ]
+        },
+        "why": "焊盘网络 (LINK) 与原理图 (/LINK) 指定的网络不匹配",
+        "change": "按位号与焊盘号对照原理图和 PCB。若原理图是当前设计依据，从原理图更新 PCB 并核对受影响布线",
+        "affected_checks": [
+          "DRC",
+          "布局与回流",
+          "原理图与 PCB 一致性"
+        ],
+        "verification": "复跑一致性检查、DRC 与网络连通验证",
+        "evidence_ids": [
+          "ev-9a14a89212b3583a4587"
+        ],
+        "finding_status": "confirmed",
+        "change_status": "proposal"
+      },
+      {
+        "check": "schematic_parity",
+        "finding": "net_conflict",
+        "severity": "P1",
+        "where": {
+          "object": "schematic_parity",
+          "items": [
+            {
+              "description": "J2 的PTH 焊盘 1 [LINK]",
+              "pos": {
+                "x": 40.0,
+                "y": 30.0
+              },
+              "uuid": "4de21c8d-f9ee-592f-a802-16b84f40aac6"
+            }
+          ]
+        },
+        "why": "焊盘网络 (LINK) 与原理图 (/LINK) 指定的网络不匹配",
+        "change": "按位号与焊盘号对照原理图和 PCB。若原理图是当前设计依据，从原理图更新 PCB 并核对受影响布线",
+        "affected_checks": [
+          "DRC",
+          "布局与回流",
+          "原理图与 PCB 一致性"
+        ],
+        "verification": "复跑一致性检查、DRC 与网络连通验证",
+        "evidence_ids": [
+          "ev-9a14a89212b3583a4587"
+        ],
+        "finding_status": "confirmed",
+        "change_status": "proposal"
+      }
+    ],
+    "report_path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-skill-011-global-7dpxlhag\\board\\.ehe\\reviews\\3a030252773b42379c183a45f9c5197f\\review.json"
+  },
+  "after_repair": {
+    "exit_code": 3,
+    "handoff_status": "inconclusive",
+    "bom": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-skill-011-global-7dpxlhag\\board\\.ehe\\reviews\\d299d524213941aeb43219b3f743636e\\bom.csv",
+    "status": "inconclusive",
+    "eda_status": "pass",
+    "coverage": {
+      "erc": "pass",
+      "drc": "pass",
+      "schematic_parity": "pass",
+      "board_outline": "pass",
+      "rails": "not_run",
+      "pins": "not_run",
+      "bom": "not_run",
+      "energy": "not_run",
+      "cost": "not_run",
+      "mechanical": "not_run",
+      "thermal": "not_run",
+      "transient": "not_run",
+      "tolerance": "not_run",
+      "optimization": "not_run",
+      "analog": "not_run",
+      "motor": "not_run",
+      "buck": "not_run",
+      "realtime": "not_run",
+      "fault": "not_run",
+      "return_path": "not_run",
+      "emi_loop": "not_run",
+      "si": "not_run",
+      "pdn": "not_run",
+      "physical": "not_run",
+      "design_bom": "inconclusive"
+    },
+    "outline": {
+      "min_mm": [
+        26.0,
+        25.0
+      ],
+      "max_mm": [
+        44.0,
+        35.0
+      ],
+      "width_mm": 18.0,
+      "height_mm": 10.0,
+      "nominal_board_thickness_mm": 1.6
+    },
+    "recommendations": [],
+    "report_path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-skill-011-global-7dpxlhag\\board\\.ehe\\reviews\\d299d524213941aeb43219b3f743636e\\review.json"
+  },
+  "native_inputs_unchanged_during_checks": true
+}

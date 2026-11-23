@@ -1,7 +1,7 @@
 """Read-only native KiCad checks in an isolated project copy."""
 from dataclasses import asdict
+import math
 from pathlib import Path, PureWindowsPath
-import json
 import os
 import shutil
 import subprocess
@@ -19,6 +19,18 @@ DOMAINS = {"schematic": ("sch", "erc", ".kicad_sch"), "pcb": ("pcb", "drc", ".ki
 NATIVE_SUFFIXES = {".kicad_sch", ".kicad_pcb", ".kicad_pro", ".kicad_dru", ".kicad_sym",
                    ".kicad_mod", ".kicad_wks", ".sch", ".lib", ".dcm"}
 NATIVE_TABLES = {"fp-lib-table", "sym-lib-table"}
+REMEDIATION = {
+    "unconnected_items": ("比较两端网络、焊盘号和层，恢复该网断点处的连续铜连接",
+                          "复跑 DRC，复核相连焊盘的网络及原理图一致性"),
+    "pin_not_connected": ("查看该脚的手册定义与同网对象。把连接端准确接到引脚栅格，或按手册确认后标注 NC",
+                          "复跑 ERC，逐一核对目标引脚与网络"),
+    "shorting_items": ("定位报告中的两个网络和坐标，纠正错误的铜连接或层间过孔",
+                        "复跑 DRC，检查两网络的间距、连通性和相邻回流"),
+    "net_conflict": ("按位号与焊盘号对照原理图和 PCB。若原理图是当前设计依据，从原理图更新 PCB 并核对受影响布线",
+                     "复跑一致性检查、DRC 与网络连通验证"),
+    "clearance": ("按报告定位冲突对象，核对净距规则。调整相对坐标或走线，保留网类要求",
+                  "复跑 DRC 并核对整改后的实际间距"),
+}
 
 
 def target_for(root: Path, domain: str) -> Path | None:
@@ -75,8 +87,72 @@ def _point(values: list) -> list[float]:
     return [number(float(entry), "KiCad coordinate") for entry in values[:2]]
 
 
+def _arc_extent(start, mid, end):
+    x1, y1 = (b - a for a, b in zip(start, mid))
+    x2, y2 = (b - a for a, b in zip(start, end))
+    det = 2 * (x1 * y2 - y1 * x2)
+    if det == 0:
+        raise ValueError("Collinear Edge.Cuts arc")
+    u, v = x1 * x1 + y1 * y1, x2 * x2 + y2 * y2
+    cx = start[0] + (u * y2 - v * y1) / det
+    cy = start[1] + (x1 * v - x2 * u) / det
+    radius = math.hypot(start[0] - cx, start[1] - cy)
+    a, b, c = (math.atan2(y - cy, x - cx) for x, y in (start, mid, end))
+    direction = 1 if (b - a) % math.tau <= (c - a) % math.tau else -1
+    sweep = (direction * (c - a)) % math.tau
+    extrema = [(cx + radius, cy), (cx, cy + radius), (cx - radius, cy), (cx, cy - radius)]
+    return [start, mid, end] + [
+        pt for i, pt in enumerate(extrema)
+        if (direction * (i * math.pi / 2 - a)) % math.tau <= sweep + 1e-12
+    ]
+
+
+def _outline(tree: list) -> dict:
+    points, unsupported = [], []
+    thickness = value(next(all_nodes(tree, "general"), []), "thickness")
+    for node in tree:
+        if not isinstance(node, list) or not node or value(node, "layer") != "Edge.Cuts":
+            continue
+        kind = node[0]
+        try:
+            if kind in {"gr_line", "gr_rect"}:
+                points.extend([_point(fields(node, "start")), _point(fields(node, "end"))])
+            elif kind == "gr_arc":
+                points.extend(_arc_extent(*[_point(fields(node, tag)) for tag in ("start", "mid", "end")]))
+            elif kind == "gr_circle":
+                center, end = [_point(fields(node, tag)) for tag in ("center", "end")]
+                r = math.dist(center, end)
+                points.extend([[axis - r for axis in center], [axis + r for axis in center]])
+            elif kind == "gr_poly":
+                vertices = [_point(pair[1:]) for pair in all_nodes(fields(node, "pts"), "xy")]
+                if len(vertices) < 3:
+                    raise ValueError("Incomplete Edge.Cuts polygon")
+                points.extend(vertices)
+            else:
+                unsupported.append(kind)
+        except (TypeError, ValueError, IndexError):
+            unsupported.append(kind)
+    if any(value(shape, "layer") == "Edge.Cuts"
+           for fp in all_nodes(tree, "footprint") for shape in fp
+           if isinstance(shape, list)):
+        unsupported.append("footprint Edge.Cuts")
+    metrics = {}
+    if points and all(len(point) == 2 for point in points):
+        xs, ys = zip(*points)
+        metrics = {"min_mm": [min(xs), min(ys)], "max_mm": [max(xs), max(ys)],
+                   "width_mm": max(xs) - min(xs), "height_mm": max(ys) - min(ys)}
+    if thickness is not None:
+        metrics["nominal_board_thickness_mm"] = number(float(thickness), "board thickness", 0)
+    measured = bool(metrics.get("width_mm") and metrics.get("height_mm")) and not unsupported
+    return {"status": "pass" if measured else "inconclusive", "metrics": metrics, "unsupported": sorted(set(unsupported)),
+            "scope": "Edge.Cuts coordinate envelope; contour validity is verified separately by DRC"}
+
+
 def geometry(path: Path) -> dict:
+    content = sha256(path)
     tree = read(path)
+    if content != sha256(path):
+        raise ValueError("KiCad layout changed while reading")
     if not tree or tree[0] != "kicad_pcb":
         raise ValueError("Input is not a native KiCad PCB")
     nets_by_id = {node[1]: node[2] for node in all_nodes(tree, "net") if len(node) == 3}
@@ -125,10 +201,11 @@ def geometry(path: Path) -> dict:
     names = set(nets_by_id.values())
     names.update(entry["net"] for entry in pins + geometries if entry["net"])
     return CanonicalProject(
-        project={"path": str(path), "sha256": sha256(path), "eda": "KiCad", "source_version": value(tree, "version")},
+        project={"path": str(path), "sha256": content, "eda": "KiCad", "source_version": value(tree, "version"),
+                 "outline": _outline(tree)},
         components=components, pins=pins, nets=[{"id": name, "name": name} for name in sorted(names) if name],
         layers=layers, geometry=geometries,
-        evidence=[asdict(Evidence.file(path, "kicad_pcb", "documented", "native_sexpr"))],
+        evidence=[asdict(Evidence.file(path, "kicad_pcb", "documented", "native_sexpr", content_sha256=content))],
         limitations=["E3 subset: no full layer-stack material model or resolved multi-polygon connectivity",
                      "Pads in footprint-local coordinates. No 3D bodies or coupled electromagnetic analysis."],
     ).to_dict()
@@ -155,7 +232,30 @@ def read_native_report(data: dict, check: str) -> list[dict]:
     return rows
 
 
-def run(root: Path, domain: str, timeout: float = 120) -> dict:
+def copy_inputs(root: Path, destination: Path, sources: list[Path]) -> dict[str, str]:
+    hashes = {}
+    for path in sources:
+        relative = path.relative_to(root)
+        copy = destination / relative
+        copy.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, copy)
+        hashes[relative.as_posix()] = sha256(copy)
+        check_references(copy)
+    return hashes
+
+
+def capture(argv: list[str], cwd: Path, timeout: float):
+    try:
+        run = subprocess.run(argv, cwd=cwd, capture_output=True, encoding="utf-8",
+                             errors="replace", timeout=timeout)
+        return run.returncode, run.stdout, run.stderr, None
+    except subprocess.TimeoutExpired as exc:
+        return None, (exc.stdout or b"").decode("utf-8", "replace"), (exc.stderr or b"").decode("utf-8", "replace"), "timeout"
+    except OSError as exc:
+        return None, "", "", str(exc)
+
+
+def run(root: Path, domain: str, timeout: float = 120, *, parity: bool = False) -> dict:
     root = root.resolve()
     subcommand, check, _ = DOMAINS[domain]
     target = target_for(root, domain)
@@ -163,14 +263,20 @@ def run(root: Path, domain: str, timeout: float = 120) -> dict:
                "evidence": [], "findings": [], "missing_evidence": []}
     if target is None:
         return {**outcome, "reason": "native_input_missing", "missing_evidence": [domain]}
+    if parity and (domain != "pcb" or target_for(root, "schematic") != target.with_suffix(".kicad_sch")
+                   or not target.with_suffix(".kicad_pro").is_file()):
+        return {**outcome, "reason": "parity_inputs_missing",
+                "missing_evidence": ["matching KiCad .kicad_sch/.kicad_pcb/.kicad_pro files"]}
     installed = kicad_probe()
     outcome["tool"] = installed
     if installed["status"] != "available":
         return {**outcome, "status": installed["status"], "reason": installed.get("reason", "tool_unavailable")}
     executable = Path(installed["path"])
     features = probe(executable, subcommand, check, "--help")
-    if features["status"] != "available" or not all(flag in features.get("stdout", "") for flag in
-                                                    ("--format", "--exit-code-violations", "--severity-error", "--severity-warning")):
+    required_flags = ["--format", "--exit-code-violations", "--severity-error", "--severity-warning"]
+    if parity:
+        required_flags.append("--schematic-parity")
+    if features["status"] != "available" or not all(flag in features.get("stdout", "") for flag in required_flags):
         return {**outcome, "status": "blocked", "reason": "native CLI options unavailable", "help_probe": features}
     inputs = native_inputs(root)
     if target not in inputs:
@@ -179,33 +285,16 @@ def run(root: Path, domain: str, timeout: float = 120) -> dict:
     artifacts = output_path(root, f"eda/{identity}")
     artifacts.mkdir(parents=True, exist_ok=False)
     raw = artifacts / f"{check}.json"
-    hashes = {}
     started = now()
     with TemporaryDirectory(prefix="ehe-kicad-") as folder:
         isolated = Path(folder) / "project"
-        for input_file in inputs:
-            relative = input_file.relative_to(root)
-            duplicate = isolated / relative
-            duplicate.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(input_file, duplicate)
-            hashes[relative.as_posix()] = sha256(duplicate)
-            check_references(duplicate)
+        hashes = copy_inputs(root, isolated, inputs)
         native_output = Path(folder) / f"{check}.json"
         relative_target = target.relative_to(root).as_posix()
         argv = [str(executable), subcommand, check, "--format", "json", "--units", "mm",
                 "--severity-error", "--severity-warning", "--exit-code-violations",
-                "--output", str(native_output), relative_target]
-        rc, stdout, stderr, error = None, "", "", None
-        try:
-            completed = subprocess.run(argv, cwd=isolated, capture_output=True, encoding="utf-8",
-                                       errors="replace", timeout=timeout)
-            rc, stdout, stderr = completed.returncode, completed.stdout, completed.stderr
-        except subprocess.TimeoutExpired as exc:
-            stdout = (exc.stdout or b"").decode("utf-8", "replace")
-            stderr = (exc.stderr or b"").decode("utf-8", "replace")
-            error = "timeout"
-        except OSError as exc:
-            error = str(exc)
+                *(["--schematic-parity"] if parity else []), "--output", str(native_output), relative_target]
+        rc, stdout, stderr, error = capture(argv, isolated, timeout)
         if native_output.is_file():
             shutil.copyfile(native_output, raw)
         execution = {"argv": argv, "cwd": str(isolated), "started_at": started, "finished_at": now(),
@@ -231,8 +320,9 @@ def run(root: Path, domain: str, timeout: float = 120) -> dict:
     evidence = asdict(Evidence.file(raw, f"{check}/violations", "tool_verified", f"kicad-cli {check}", installed["version"]))
     findings = []
     for row in violations:
-        issue = finding(row["type"], domain, row["description"], row["scope"],
-                        "定位对象并根据项目规则修正", "对变更版本重新运行原生规则检查",
+        action, verify = REMEDIATION.get(row["type"], ("定位对象并根据项目规则修正",
+                                                     "对变更版本重新运行原生规则检查"))
+        issue = finding(row["type"], domain, row["description"], row["scope"], action, verify,
                         "P0" if row["severity"] == "error" else "P1")
         issue["evidence_ids"] = [evidence["id"]]
         issue["scope"]["items"] = row.get("items", [])

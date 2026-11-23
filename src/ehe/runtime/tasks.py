@@ -24,4 +24,4 @@ def execute(root: Path, kind: str, time_left: float) -> dict:
         from ..advanced import CHECKS
     else:
         raise ValueError(f"Unknown task kind: {kind}")
-    return run_domain(engineering_path(root), CHECKS, include_missing=False)
+    return run_domain(engineering_path(root), CHECKS)

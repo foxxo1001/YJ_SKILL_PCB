@@ -1,0 +1,30 @@
+start_utc=2026-11-23T13:03:37.024133+00:00
+end_utc=2026-11-23T13:04:03.038158+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/probe_hosts.py", "--zcode"]
+exit_code=0
+
+[stdout]
+{
+  "codex": {
+    "status": "discovered",
+    "exit_code": 0,
+    "version": "codex-cli 0.171.0",
+    "skill": "embedded-hardware-engineer",
+    "discovered": true,
+    "activation": "not_run",
+    "reason": ""
+  },
+  "zcode": {
+    "status": "discovered",
+    "exit_code": 0,
+    "version": "0.18.0",
+    "skill": "embedded-hardware-engineer",
+    "discovered": true,
+    "activation": "not_run",
+    "path": "C:\\Users\\L\\AppData\\Local\\Temp\\ehe-skill-4bheajlz\\zcode\\.zcode\\skills\\embedded-hardware-engineer\\SKILL.md",
+    "reason": ""
+  }
+}
+
+[stderr]

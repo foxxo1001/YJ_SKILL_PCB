@@ -176,32 +176,47 @@ CHECKS = {"rails": rails, "pins": pins, "bom": bom, "energy": energy, "cost": co
 
 
 def status_of(checks) -> str:
-    statuses = {check["status"] for check in checks}
-    for status in ("fail", "blocked", "inconclusive", "not_run"):
-        if status in statuses:
-            return status
+    statuses = {check["status"] for check in checks} - {"not_applicable"}
+    if "fail" in statuses:
+        return "fail"
+    if "blocked" in statuses:
+        return "blocked"
     return "pass" if statuses == {"pass"} else "inconclusive"
 
 
 def run_domain(path: Path, checks=CHECKS, *, include_missing=True) -> dict:
-    if not path.is_file():
-        return {"status": "inconclusive", "checks": {}, "evidence": [], "findings": [],
-                "missing_evidence": [f"engineering input: {path}"]}
-    content = sha256(path)
-    data = load(path)
-    if content != sha256(path):
+    results, evidence = {}, []
+    content = sha256(path) if path.is_file() else None
+    data = load(path) if content is not None else {}
+    if content is not None and content != sha256(path):
         raise ValueError("Engineering model changed while reading")
     if not isinstance(data, dict):
         raise ValueError("Engineering input must be an object")
-    results, evidence = {}, []
+    exclusions = data.get("not_applicable", {})
+    if not isinstance(exclusions, dict) or any(
+        not isinstance(reason, str) or not reason.strip() for reason in exclusions.values()
+    ):
+        raise ValueError("not_applicable requires a reason for each named check")
+
     for name, function in checks.items():
-        if not include_missing and name not in data:
+        if name in exclusions:
+            if name in data:
+                raise ValueError(f"Check {name} has both model input and a not_applicable declaration")
+            outcome = {**result("not_applicable"), "reason": exclusions[name]}
+            locator = f"/not_applicable/{name}"
+            kind = "documented"
+        elif name not in data:
+            if include_missing:
+                results[name] = result("not_run", missing=[f"Engineering model input: {path}#/{name}"])
             continue
-        try:
-            outcome = function(data.get(name, [] if name in {"rails", "pins", "bom"} else {}))
-        except (KeyError, TypeError, ValueError, OverflowError, AttributeError) as exc:
-            outcome = result("inconclusive", missing=[f"{name}: {type(exc).__name__}: {exc}"])
-        ev = asdict(Evidence.file(path, f"/{name}", "derived", f"ehe.{name}", content_sha256=content))
+        else:
+            try:
+                outcome = function(data[name])
+            except (KeyError, TypeError, ValueError, OverflowError, AttributeError) as exc:
+                outcome = result("inconclusive", missing=[f"{name}: {type(exc).__name__}: {exc}"])
+            locator = f"/{name}"
+            kind = "derived"
+        ev = asdict(Evidence.file(path, locator, kind, f"ehe.{name}", content_sha256=content))
         for issue in outcome["findings"]:
             issue["evidence_ids"] = [ev["id"]]
         outcome["evidence_ids"] = [ev["id"]]
@@ -209,4 +224,5 @@ def run_domain(path: Path, checks=CHECKS, *, include_missing=True) -> dict:
         results[name] = outcome
     return {"status": status_of(results.values()), "checks": results, "evidence": evidence,
             "findings": [issue for check in results.values() for issue in check["findings"]],
-            "missing_evidence": [item for check in results.values() for item in check["missing_evidence"]]}
+            "missing_evidence": ([item for check in results.values() for item in check["missing_evidence"]]
+                                 if results or content is not None else [f"Engineering model input: {path}"])}

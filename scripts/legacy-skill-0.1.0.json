@@ -1,0 +1,15 @@
+{
+  "SKILL.md": "3261dddc9e342842f34da1f404c2d683a2c7521e9fe30e146e98af535806cf66",
+  "assets/acceptance.md": "dac2d9080f01a772411c0326df18f80a694b4f34e0719f04e3d86eaabec8b5a9",
+  "references/analog-and-measurement.md": "d0e5db1babe2c48d91f2876322b2694829394c72ad4b75cebee0b789ecdbd4e4",
+  "references/architecture-and-datasheets.md": "cf1b5e2fdf28683361374b442f7d471073fe8001c60938648bc1069c7c84b2fb",
+  "references/competition-and-requirements.md": "aa97fe21a12527f70ed0a8b0d03ce704da449fbdadd6cadf49404705de9dab6d",
+  "references/debugging-and-metrology.md": "d926283bb8b8d3ce6d8cf380bbd5e0131a4a25396ad1919e99cb0765fde683c3",
+  "references/emi-return-si-pi.md": "a2f12fee826c3aee04e45497dc8073d85165ad6e8daaffb5ba405ef1946b22a8",
+  "references/energy-cost-dfm-dft.md": "c75688011f819e4665cc7b86867eb29d9721a8ad38da3f7da30eeb50fa7e5baa",
+  "references/evidence-and-gates.md": "ca22201a0698a7eca3868d4ef7923d8c24015a4ac6b08ec1b80f2bc42b1cad6d",
+  "references/mcu-digital-and-timing.md": "36d981a9e978dead56135d3ce2a4aa623e1dee8bcb01f2f39fabf3d587bb569e",
+  "references/power-electronics-and-motor.md": "7468585c95bba739a943483d57835a32e336a2b6917cca707a34d5066c0d6f94",
+  "references/schematic-and-pcb-review.md": "d60057cb8fb698cd0ecfcea8d848d25160c3633a7c373e5747d5848bd7484ca9",
+  "references/thermal-mechanical-reality.md": "6eda71d8a35396676e109f8461e1750ab28a78962adc3e612ccbe45f4583d648"
+}

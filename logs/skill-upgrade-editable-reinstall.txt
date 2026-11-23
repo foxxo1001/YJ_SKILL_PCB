@@ -1,0 +1,31 @@
+start_utc=2026-11-23T12:29:01.592930+00:00
+end_utc=2026-11-23T12:29:09.205912+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "pip", "install", "-e", ".", "--no-deps", "--disable-pip-version-check"]
+exit_code=0
+
+[stdout]
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Obtaining file:///D:/AI_project/YJ_SKILLS/ehe
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: ehe-engineering
+  Building editable for ehe-engineering (pyproject.toml): started
+  Building editable for ehe-engineering (pyproject.toml): finished with status 'done'
+  Created wheel for ehe-engineering: filename=ehe_engineering-0.1.1-0.editable-py3-none-any.whl size=6869 sha256=e4d7e1e1f8fcdf40fb4811f7fc13827d1cc6d3d9e3fe86cea8fdda42ad4e0948
+  Stored in directory: C:\Users\L\AppData\Local\Temp\pip-ephem-wheel-cache-4k3eay20\wheels\b2\a9\3b\f48d81a83c935530fb104a6c872faf915eccf7ecb015d6c474
+Successfully built ehe-engineering
+Installing collected packages: ehe-engineering
+  Attempting uninstall: ehe-engineering
+    Found existing installation: ehe-engineering 0.1.0
+    Uninstalling ehe-engineering-0.1.0:
+      Successfully uninstalled ehe-engineering-0.1.0
+Successfully installed ehe-engineering-0.1.1
+
+[stderr]

@@ -16,6 +16,7 @@ from .domain import run_domain
 from .io import format_json, load
 from .project import engineering_path, init_project
 from .requirements import analyze, trace
+from .review import full_review
 from .report import render
 from .runtime import engine
 from .runtime.plan import impact
@@ -41,9 +42,14 @@ def parser_for_cli() -> argparse.ArgumentParser:
     budget.add_argument("project", type=Path)
     budget.add_argument("--scope", choices=("core", "reality", "advanced", "all"), default="core")
     review = commands.add_parser("review", help="Review native design files or structured exports")
-    review.add_argument("domain", choices=("schematic", "pcb", "export", "geometry"))
+    review.add_argument("domain", choices=("full", "schematic", "pcb", "export", "geometry"))
     review.add_argument("input", type=Path)
     review.add_argument("--producer", choices=("generic", "kicad", "easyeda", "altium"), default="generic")
+    review.add_argument("--model", type=Path, help="Read a separate engineering model for a full review")
+    design = commands.add_parser("design", help="Verify an authored KiCad design and produce BOM evidence")
+    design.add_argument("action", choices=("verify",))
+    design.add_argument("project", type=Path)
+    design.add_argument("--model", type=Path)
     loop = commands.add_parser("loop", help="Run or resume a persisted engineering plan")
     actions = loop.add_subparsers(dest="action", required=True)
     for action in ("run", "status", "resume", "decide", "cancel"):
@@ -126,9 +132,15 @@ def dispatch(args: argparse.Namespace) -> dict:
             checks = {**CHECKS, **reality.CHECKS, **advanced.CHECKS}
         else:
             checks = {"reality": reality.CHECKS, "advanced": advanced.CHECKS}[args.scope]
-        return run_domain(source, checks, include_missing=False)
+        return run_domain(source, checks)
+    if args.command == "design":
+        return full_review(args.project, args.model, design_verification=True)
     if args.command == "review":
         path = args.input.resolve()
+        if args.domain == "full":
+            return full_review(path, args.model)
+        if args.model:
+            raise ValueError("--model is available with review full")
         if args.domain == "export":
             return generic.ingest(path, args.producer)
         if args.domain == "geometry":

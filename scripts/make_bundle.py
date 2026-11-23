@@ -7,7 +7,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = ("docs", "examples", "logs", "schemas", "scripts", "skills", "src", "tests")
-FILES = (".gitignore", "LICENSE", "README.md", "pyproject.toml")
+FILES = (".gitignore", "AGENTS.md", "CHANGELOG.md", "LICENSE", "README.md", "pyproject.toml")
 SKIP = {"__pycache__", ".ehe", ".git", ".venv", "external_design"}
 
 

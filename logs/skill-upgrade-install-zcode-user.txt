@@ -1,0 +1,10 @@
+start_utc=2026-11-23T12:45:27.402389+00:00
+end_utc=2026-11-23T12:45:27.726927+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "scripts/install_skill.py", "--scope", "user", "--host", "zcode"]
+exit_code=0
+
+[stdout]
+zcode installed C:\Users\L\.zcode\skills\embedded-hardware-engineer
+
+[stderr]
