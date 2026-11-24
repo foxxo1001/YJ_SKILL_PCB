@@ -1,7 +1,12 @@
 # EHE 更新日志
 
-## 未发布 · 2026-11-23
+## 未发布 · 2026-11-24
 
+- **完整 Skill ZIP。** 打包 0.1.4 开发版源码、Skill 入口和参考、安装脚本、运行器 wheel、样例、测试及验证记录。归档包含文件哈希清单和使用说明。MotorSense 的原生嘉立创验收维持待验证状态。
+- **整改建议分节。** Skill 在给出修改建议、审批预览和改后复验时固定先列「必须修改」，再列「可以改进」。前者写明已确认的错误或违反的硬约束，后者写明收益、代价和是否可延后。证据不足另列「待核验」。同步更新整板审查说明和验收表。Codex 全局与工作区副本已安装，项目外发现及 9 项审查与安装测试通过。 [安装验证](logs/skill-remediation-headings-smoke.json)
+- **0.1.4 开发版重装。** 更新 Python 可编辑安装，重装 Codex 用户级和当前工作区 Skill，两处文件与源码一致。从项目外发现全局 Skill 并启动 0.1.4。电机采样样板离线试跑通过两页原理图连线读回和四层布局核对，嘉立创原生 ERC、DRC 和网表比对仍待验收。 [重装记录](logs/easyeda-0.1.4-editable-reinstall.txt) · [验证记录](logs/easyeda-0.1.4-reinstall-smoke.json)
+- **多层板 Skill。** 在整板审查和新板设计入口加入[多层板设计与复验](skills/embedded-hardware-engineer/references/multilayer-pcb.md)。记录关键网络的线宽、端到端长度或延迟、允许层、路径和禁区。先布置并锁定关键线路，按已选网络使用自动布线，重铺后核对实际铜、换层回流地过孔和散热路径。同步设计输入表和验收表。
+- **多层板验证与部署。** Codex 用户级和当前工作区副本已升级，从项目外验证全局可发现、内部参考链接有效，启动器解析到 EHE 0.1.3。51 项现有自动测试通过。新增检查是 Skill 工作流程，未开展四层样板上的故障注入实测。 [安装与发现记录](logs/skill-multilayer-smoke.json) · [测试日志](logs/skill-multilayer-tests.txt)
 - 建立更新日志，在 README 添加入口。项目规则要求每次更新后补记实际变更和验证。
 - **ZCode 宿主。** 安装器增加 `--host zcode`，把 Skill 装到 `.zcode/skills`；`--host all` 覆盖 Codex、Claude Code 和 ZCode，`both` 仍只含前两者。`probe_hosts.py --zcode` 检查 ZCode 在项目中的发现，只统计被测项目内的副本，已有用户级副本时不再误报。Codex 和 ZCode 的发现均已实测。 [探测记录](logs/skill-upgrade-probe-zcode.txt)
 - **安装范围。** 用户级 `.agents/skills` 由外部工具同步，直接装入的副本在 2026-11-23 被清除过，用户级安装因此改用各宿主自己的技能目录：Codex 用 `--codex-home` 装到 `~/.codex/skills`，ZCode 用 `--host zcode` 装到 `~/.zcode/skills`。两处用户级副本和本项目的 `.agents/skills` 副本与源码逐字节一致，启动器在项目外解析到 0.1.1。项目内已有 `.agents/skills` 副本时，ZCode 会把 Skill 列出两次。 [Codex 安装](logs/skill-upgrade-install-global.txt) · [ZCode 安装](logs/skill-upgrade-install-zcode-user.txt)

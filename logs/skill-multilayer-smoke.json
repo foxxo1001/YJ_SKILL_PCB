@@ -1,0 +1,18 @@
+{
+  "skill": "embedded-hardware-engineer",
+  "status": "pass",
+  "verified_skill_files": 20,
+  "verified_relative_links": 20,
+  "review_and_design_entrypoints": true,
+  "found_globally_outside_workspace": true,
+  "global_install": [
+    "upgraded",
+    "C:\\Users\\L\\.codex\\skills\\embedded-hardware-engineer"
+  ],
+  "project_install": [
+    "upgraded",
+    "D:\\AI_project\\YJ_SKILLS\\.agents\\skills\\embedded-hardware-engineer"
+  ],
+  "runtime_version": "0.1.3",
+  "multilayer_rule_behavior_on_real_board": "not_run"
+}

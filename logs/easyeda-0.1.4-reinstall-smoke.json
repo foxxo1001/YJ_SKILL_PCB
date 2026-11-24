@@ -1,0 +1,37 @@
+{
+  "status": "pass",
+  "runtime_package_version": "0.1.4",
+  "runtime": {
+    "status": "available",
+    "source": "installed",
+    "argv": [
+      "D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "ehe.cli"
+    ],
+    "version": "0.1.4"
+  },
+  "global_install": [
+    "upgraded",
+    "C:\\Users\\L\\.codex\\skills\\embedded-hardware-engineer"
+  ],
+  "workspace_install": [
+    "upgraded",
+    "D:\\AI_project\\YJ_SKILLS\\.agents\\skills\\embedded-hardware-engineer"
+  ],
+  "identical_skill_files": 20,
+  "discovered_in_unrelated_directory": true,
+  "offline_smoke": {
+    "sheets": 2,
+    "exit_code": 3,
+    "checks": {
+      "erc": "not_run",
+      "drc": "not_run",
+      "schematic_parity": "not_run",
+      "design_intent": "not_run",
+      "schematic_source_intent": "pass",
+      "multilayer_layout": "pass"
+    }
+  }
+}

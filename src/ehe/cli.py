@@ -8,7 +8,7 @@ from pathlib import Path
 import yaml
 
 from . import __version__, advanced, reality
-from .adapters import altium, easyeda, easyeda_design, easyeda_review, easyeda_source, generic, kicad
+from .adapters import altium, easyeda, easyeda_circuit, easyeda_design, easyeda_review, easyeda_source, generic, kicad
 from .evalops.suite import run_suite
 from .knowledge import admit, claims, holdout_registry, search
 from .doctor import doctor
@@ -50,7 +50,7 @@ def parser_for_cli() -> argparse.ArgumentParser:
     design.add_argument("action", choices=("verify", "generate"))
     design.add_argument("project", type=Path)
     design.add_argument("--model", type=Path)
-    design.add_argument("--output", type=Path, help="New directory for a generated EasyEDA board")
+    design.add_argument("--output", type=Path, help="New directory for a generated EasyEDA project")
     for command in (review, design):
         command.add_argument("--eda", choices=("auto", "kicad", "easyeda"), default="auto")
         command.add_argument("--pcb", help="PCB title or UUID inside an EasyEDA Pro project")
@@ -159,7 +159,10 @@ def dispatch(args: argparse.Namespace) -> dict:
     if args.command == "design":
         if args.action == "generate":
             if not args.output or args.eda == "kicad" or args.model or args.pcb or args.offline:
-                raise ValueError("Use design generate <spec> --output <new-directory> for an EasyEDA interconnect board")
+                raise ValueError("Use design generate <spec> --output <new-directory> for an EasyEDA project")
+            spec = load(args.project)
+            if isinstance(spec, dict) and spec.get("format") == easyeda_circuit.FORMAT:
+                return easyeda_circuit.generate(args.project, args.output)
             return easyeda_design.generate(args.project, args.output)
         if args.output:
             raise ValueError("--output applies to design generate")

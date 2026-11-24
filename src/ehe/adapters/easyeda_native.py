@@ -8,7 +8,7 @@ from tempfile import mkdtemp
 from time import monotonic, sleep
 
 from . import easyeda, easyeda_exports
-from .easyeda_source import Document, project_files
+from .easyeda_source import Document, project_files, sheet_locations
 from ..domain import finding, result, status_of
 from ..io import digest, load, save, sha256
 from ..models import Evidence
@@ -190,6 +190,7 @@ def _check_page(program, session, document: Document, kind, project, out, versio
                 save(evidence, {"document": document.id, "target": target, "version": version,
                                 "identity_verified": admitted, "execution": exported})
                 check["export_artifact"] = str(evidence)
+            check["document"] = document.id
             check["editor_project"] = target["project"]
             return check
         if (project is not None and _request_timed_out(activated)) or deadline - monotonic() <= 2:
@@ -213,7 +214,7 @@ def _schematic_pages(results):
 def _disabled(status: str, reason: str, receipt_path: Path | None = None) -> dict:
     receipt = {"session_receipt": str(receipt_path)} if receipt_path else {}
     return {name: {**result(status, missing=[reason]), **receipt}
-            for name in (*DOCUMENT_TYPES, "schematic_parity", "design_bom")}
+            for name in (*DOCUMENT_TYPES, "schematic_parity", "design_bom", "design_intent")}
 
 
 def _qualify_snapshot(check: dict, changed: list[str], receipt_path: Path) -> None:
@@ -238,7 +239,7 @@ def _index_digest(index: Path):
 
 
 def audit(index: Path, board: Document, pages: list[Document], sources: list[Path], inputs: dict, out: Path,
-          *, offline=False, bom=False) -> dict:
+          *, offline=False, bom=False, intent=None) -> dict:
     if offline:
         return _disabled("not_run", "Native checks disabled by --offline")
     target_dir = out / "easyeda"
@@ -285,20 +286,30 @@ def audit(index: Path, board: Document, pages: list[Document], sources: list[Pat
             return _disabled("blocked", f"Could not verify isolated EasyEDA session: {_native_message(opened)}",
                              receipt_path)
         session = session_id
-        deadline = monotonic() + 140
+        deadline = monotonic() + min(600, 140 + 30 * max(0, len(pages) - 1))
         # An empty folder project may have no focused sheet until the PCB opens.
         sleep(3)
-        drc = _check_page(program, session, board, "drc", None, target_dir, tool["version"], deadline,
+        project = None
+        sch = []
+        for page in pages:
+            observed = _check_page(program, session, page, "erc", project, target_dir, tool["version"],
+                                   min(deadline, monotonic() + 46), exports=True)
+            project = observed.get("editor_project") or project
+            sch.append(observed)
+        drc = _check_page(program, session, board, "drc", project, target_dir, tool["version"], deadline,
                           exports=bool(pages) or bom, bom=bom)
-        project = drc.get("editor_project")
-        sch = ([_check_page(program, session, page, "erc", project, target_dir, tool["version"], deadline,
-                            exports=len(pages) == 1) for page in pages] if project else
-               [result("blocked", missing=["Could not bind the native project to the selected PCB"])
-                for _ in pages])
-        checks = {"drc": drc, "erc": _schematic_pages(sch), "schematic_parity": easyeda_exports.parity(drc, sch)}
+        snapshot_sources = project_files(staged)
+        try:
+            page_index = sheet_locations(copy, pages, snapshot_sources)
+        except (OSError, TypeError, ValueError) as exc:
+            page_index = {"locations": {}, "unsupported": [f"Schematic source inventory: {exc}"]}
+        checks = {"drc": drc, "erc": _schematic_pages(sch),
+                  "schematic_parity": easyeda_exports.parity(drc, sch, page_index)}
+        if intent is not None:
+            checks["design_intent"] = easyeda_exports.design_intent(drc, sch, intent, page_index)
         if bom:
             checks["design_bom"] = easyeda_exports.bom(drc, out)
-        after = {path.relative_to(copy).as_posix(): sha256(path) for path in project_files(staged)}
+        after = {path.relative_to(copy).as_posix(): sha256(path) for path in snapshot_sources}
         changed = sorted(name for name in inputs.keys() | after.keys() if inputs.get(name) != after.get(name))
         substantive = list(changed)
         if changed:

@@ -1,0 +1,30 @@
+start_utc=2026-11-24T04:02:50.301722+00:00
+end_utc=2026-11-24T04:02:53.611267+00:00
+cwd=D:\AI_project\YJ_SKILLS\ehe
+argv=["D:\\AI_project\\YJ_SKILLS\\ehe\\.venv\\Scripts\\python.exe", "-m", "pip", "install", "--no-deps", "--no-build-isolation", "--force-reinstall", "-e", "."]
+exit_code=0
+
+[stdout]
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Obtaining file:///D:/AI_project/YJ_SKILLS/ehe
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: ehe-engineering
+  Building editable for ehe-engineering (pyproject.toml): started
+  Building editable for ehe-engineering (pyproject.toml): finished with status 'done'
+  Created wheel for ehe-engineering: filename=ehe_engineering-0.1.4-0.editable-py3-none-any.whl size=7731 sha256=a28e60e4c811e3ddc09204caf437ceec0fb5e08dfa1abcc50ec65a634c185a7b
+  Stored in directory: C:\Users\L\AppData\Local\Temp\pip-ephem-wheel-cache-4im2e14k\wheels\b2\a9\3b\f48d81a83c935530fb104a6c872faf915eccf7ecb015d6c474
+Successfully built ehe-engineering
+Installing collected packages: ehe-engineering
+  Attempting uninstall: ehe-engineering
+    Found existing installation: ehe-engineering 0.1.3
+    Uninstalling ehe-engineering-0.1.3:
+      Successfully uninstalled ehe-engineering-0.1.3
+Successfully installed ehe-engineering-0.1.4
+
+[stderr]
+
+[notice] A new release of pip is available: 26.1.1 -> 26.3
+[notice] To update, run: D:\AI_project\YJ_SKILLS\ehe\.venv\Scripts\python.exe -m pip install --upgrade pip

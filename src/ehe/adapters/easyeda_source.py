@@ -121,11 +121,11 @@ def _records(path: Path):
             yield head, body, index
 
 
-def _matching_records(path: Path, document: Document):
+def _matching_records(path: Path, document: Document, doc_type="PCB"):
     active, header, active_rows = False, None, {}
     for head, body, line in _records(path):
         if head["type"] == "DOCHEAD":
-            active = (body or {}).get("docType") == "PCB" and (body or {}).get("uuid") == document.id
+            active = (body or {}).get("docType") == doc_type and (body or {}).get("uuid") == document.id
             if active:
                 header = body
             continue
@@ -138,6 +138,99 @@ def _matching_records(path: Path, document: Document):
         if previous is None or rank >= previous[0]:
             active_rows[ident] = (rank, body, line)
     return header, {key: (item[1], item[2]) for key, item in active_rows.items() if item[1] is not None}
+
+
+def sheet_locations(root: Path, pages: list[Document], sources: list[Path]) -> dict:
+    """Bind flat schematic instances to page source, independently of exported nets."""
+    locations = {}
+    unsupported = []
+    if len({page.schematic for page in pages}) > 1:
+        unsupported.append("Selected PCB has more than one associated schematic")
+    for page in pages:
+        matches = []
+        for path in sources:
+            if path.suffix.lower() == ".esch2":
+                header, rows = _matching_records(path, page, "SCH_PAGE")
+                if header:
+                    matches.append((path, rows))
+        if len(matches) != 1:
+            unsupported.append(f"Could not locate exactly one source for sheet {page.name} ({page.id})")
+            continue
+        path, rows = matches[0]
+        attrs = defaultdict(dict)
+        for (kind, _), (body, _) in rows.items():
+            if kind == "ATTR" and body.get("parentId"):
+                attrs[body["parentId"]][body.get("key")] = body.get("value")
+        for (kind, ident), (body, line) in rows.items():
+            if kind != "COMPONENT":
+                continue
+            props = {**(body.get("attrs") or {}), **attrs[ident]}
+            ref = props.get("Designator")
+            if props.get("Reuse Block") or props.get("CBB"):
+                unsupported.append(f"Hierarchical component {ref or ident} on sheet {page.name}")
+            if not ref or str(props.get("Convert to PCB", "")).lower() == "no":
+                continue
+            if ref in locations:
+                unsupported.append(f"Ambiguous designator {ref!r} across schematic instances")
+                continue
+            locations[ref] = {"page": page.name, "sheet_id": page.id, "schematic_id": page.schematic,
+                              "instance_id": ident, "file": path.relative_to(root).as_posix(), "line": line}
+    return {"locations": locations, "unsupported": unsupported}
+
+
+def authored_schematic_graph(root: Path, pages: list[Document], sources: list[Path]):
+    """Read the exact subset used by the circuit author, flat symbols and explicit named wires."""
+    index = sheet_locations(root, pages, sources)
+    if index["unsupported"]:
+        raise ValueError("; ".join(index["unsupported"]))
+    footprints, connections = {}, {}
+    for page in pages:
+        records = next(((path, rows) for path in sources if path.suffix.lower() == ".esch2"
+                        for header, rows in [_matching_records(path, page, "SCH_PAGE")] if header), None)
+        if records is None:
+            raise ValueError(f"Missing authored page {page.name}")
+        path, rows = records
+        attributes = defaultdict(dict)
+        wires = []
+        for (kind, _), (row, _) in rows.items():
+            if kind == "ATTR" and row.get("parentId"):
+                attributes[row["parentId"]][row["key"]] = row["value"]
+            elif kind == "LINE" and row.get("lineGroup"):
+                wires.append(row)
+        labeled = []
+        for wire in wires:
+            net = attributes[wire["lineGroup"]].get("NET")
+            if not isinstance(net, str) or not net:
+                raise ValueError("An authored wire is missing its explicit label")
+            x, y, a, b = (wire[key] for key in ("startX", "startY", "endX", "endY"))
+            if x != a and y != b:
+                raise ValueError("The authored flat-wire reader requires orthogonal wires")
+            labeled.append((min(x, a), min(y, b), max(x, a), max(y, b), net))
+
+        for ref, loc in index["locations"].items():
+            if loc["sheet_id"] != page.id:
+                continue
+            component = rows["COMPONENT", loc["instance_id"]][0]
+            if component.get("rotation") != 0 or component.get("isMirror"):
+                raise ValueError(f"The authored flat-wire reader cannot rotate or mirror {ref}")
+            props = attributes[loc["instance_id"]]
+            footprints[ref] = props["Footprint"]
+            symbol = Document(props["Symbol"], ref, None, None)
+            header, pins = _matching_records(path, symbol, "SYMBOL")
+            if not header:
+                raise ValueError(f"Missing embedded symbol for {ref}")
+            numbers = {row["parentId"]: row["value"] for (t, _), (row, _) in pins.items()
+                       if t == "ATTR" and row.get("key") == "Pin Number"}
+            for (kind, ident), (row, _) in pins.items():
+                if kind != "PIN" or row["partId"] != component["partId"]:
+                    continue
+                x, y = component["x"] + row["x"], component["y"] + row["y"]
+                touched = {net for x0, y0, x1, y1, net in labeled if x0 <= x <= x1 and y0 <= y <= y1}
+                if len(touched) > 1:
+                    raise ValueError(f"Conflicting explicit nets at {ref}.{numbers[ident]}")
+                if touched:
+                    connections[(ref, numbers[ident])] = touched.pop()
+    return (footprints, connections), index["locations"]
 
 
 def _mil(value) -> float:
@@ -154,10 +247,11 @@ def _structured_id(ident: str, kind: str, length: int) -> list:
 def _outline(geometries: list[dict]) -> dict:
     outlines = [g for g in geometries if g["kind"] == "board_outline"]
     metrics, missing = {}, []
-    if len(outlines) != 1:
+    outer = [g for g in outlines if isinstance(g["path"], list) and g["path"][:1] == ["R"]]
+    if len(outer) != 1:
         missing.append("One unambiguous board outline contour is required for nominal size")
     else:
-        obj = outlines[0]
+        obj = outer[0]
         path = obj["path"]
         if isinstance(path, list) and len(path) >= 6 and path[0] == "R":
             _, x, y, width, height, rotation, *_ = path
@@ -168,6 +262,21 @@ def _outline(geometries: list[dict]) -> dict:
                 if w > 0 and h > 0:
                     metrics = {"width_mm": w, "height_mm": h, "anchor_mm": [_mil(x), _mil(y)],
                                "primitive_id": obj["id"]}
+                    if len(outlines) > 1:
+                        holes = []
+                        for child in outlines:
+                            if child is obj:
+                                continue
+                            p = child["path"]
+                            if (rotation != 0 or not isinstance(p, list) or len(p) != 4 or p[0] != "CIRCLE"
+                                    or p[3] <= 0 or not x < p[1] - p[3] < p[1] + p[3] < x + width
+                                    or not y - height < p[2] - p[3] < p[2] + p[3] < y):
+                                metrics = {}
+                                break
+                            holes.append({"id": child["id"], "at_mm": [_mil(p[1]), _mil(p[2])],
+                                          "diameter_mm": _mil(2 * p[3])})
+                        if metrics:
+                            metrics["internal_circular_cutouts"] = holes
         if not metrics:
             missing.append("Review the native editor for this non-rectangular or rotated board outline")
     return {**result("pass" if metrics else "inconclusive", metrics, missing=missing),
@@ -234,7 +343,17 @@ def geometry(index: Path, board: Document, sources: list[Path], inputs: dict[str
             shapes.append({"kind": "via", "id": ident, "net": body.get("netName") or None,
                            "at_mm": [_mil(body["centerX"]), _mil(body["centerY"])],
                            "size_mm": _mil(body["viaDiameter"]), "drill_mm": _mil(body["holeDiameter"]),
+                           "through": body.get("viaType") in {"NORMAL", "SUTURE"} and not body.get("ruleName"),
+                           "excluded_layers": body.get("unusedInnerLayers", []),
                            "locator": loc})
+        elif kind == "FILL" and body.get("fillStyle") == "SOLID":
+            paths = body.get("path", [])
+            if len(paths) == 1 and len(paths[0]) >= 6 and paths[0][0] == "R" and paths[0][5] == 0:
+                _, x, y, w, h, *_ = paths[0]
+                if w > 0 and h > 0:
+                    shapes.append({"kind": "copper_fill_rect", "id": ident, "net": body.get("netName"),
+                                   "layer": str(body["layerId"]), "box_mm": [_mil(v) for v in (x, y-h, x+w, y)],
+                                   "locator": loc})
         elif kind == "POLY" and body.get("polyType") == "BOARD_OUTLINE":
             shapes.append({"kind": "board_outline", "id": ident, "layer": str(body["layerId"]),
                            "path": body.get("path"), "locator": loc})
@@ -245,7 +364,7 @@ def geometry(index: Path, board: Document, sources: list[Path], inputs: dict[str
                  "source_version": header.get("editVersion"), "sha256": content, "outline": outlines},
         components=components, parts=parts, pins=pins, nets=[{"id": n, "name": n} for n in sorted(nets)],
         layers=layers, geometry=shapes, evidence=[evidence],
-        limitations=["Source-object subset: routing arcs, copper-fill geometry, pad XY transforms and 3D assembly are not resolved.",
+        limitations=["Source-object subset: no routed arcs, arbitrary regenerated pour polygons, full pad XY transforms or 3D assembly.",
                      "PAD_NET mappings describe design intent. Physical copper continuity requires a rule check."],
     )
     return canonical.to_dict()

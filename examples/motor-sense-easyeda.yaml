@@ -1,0 +1,122 @@
+format: ehe-easyeda-circuit-v1
+name: MotorSense
+sheets: [Power, Logic]
+packages:
+  SOIC8:
+    source: https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/ATtiny202-204-402-404-406-DataSheet-DS40002318A.pdf
+    body_mm: [4.0, 5.0]
+    pads:
+      "1": {name: VDD, kind: POWER, xy: [-2.7, 1.905], size: [1.50, 0.65]}
+      "2": {name: PA6, kind: IN, xy: [-2.7, 0.635], size: [1.50, 0.65]}
+      "3": {name: PA7, kind: OUT, xy: [-2.7, -0.635], size: [1.50, 0.65]}
+      "4": {name: PA1, kind: OUT, xy: [-2.7, -1.905], size: [1.50, 0.65]}
+      "5": {name: PA2, kind: OUT, xy: [2.7, -1.905], size: [1.50, 0.65]}
+      "6": {name: PA0_UPDI, kind: BI, xy: [2.7, -0.635], size: [1.50, 0.65]}
+      "7": {name: PA3, kind: BI, xy: [2.7, 0.635], size: [1.50, 0.65]}
+      "8": {name: GND, kind: POWER, xy: [2.7, 1.905], size: [1.50, 0.65]}
+  WSON8-DSG:
+    source: https://www.ti.com/lit/ds/symlink/drv8837.pdf
+    body_mm: [2.0, 2.0]
+    pads:
+      "1": {name: VM, kind: POWER, xy: [-0.95, 0.75], size: [0.50, 0.25]}
+      "2": {name: OUT1, kind: OUT, xy: [-0.95, 0.25], size: [0.50, 0.25]}
+      "3": {name: OUT2, kind: OUT, xy: [-0.95, -0.25], size: [0.50, 0.25]}
+      "4": {name: GND, kind: POWER, xy: [-0.95, -0.75], size: [0.50, 0.25]}
+      "5": {name: IN2, kind: IN, xy: [0.95, -0.75], size: [0.50, 0.25]}
+      "6": {name: IN1, kind: IN, xy: [0.95, -0.25], size: [0.50, 0.25]}
+      "7": {name: SLEEP_N, kind: IN, xy: [0.95, 0.25], size: [0.50, 0.25]}
+      "8": {name: VCC, kind: POWER, xy: [0.95, 0.75], size: [0.50, 0.25]}
+      "9": {name: EP_GND, kind: POWER, xy: [0, 0], size: [0.90, 1.60], thermal: true}
+  Chip0603:
+    source: https://www.murata.com/en-us/products/productdetail?partno=GRM188R71C104KA01D
+    body_mm: [1.6, 0.8]
+    pads:
+      "1": {name: A, kind: PASSIVE, xy: [-0.75, 0], size: [0.8, 0.9]}
+      "2": {name: B, kind: PASSIVE, xy: [0.75, 0], size: [0.8, 0.9]}
+  Chip0805:
+    source: https://www.murata.com/en-us/products/productdetail?partno=GRM21BR71E106KA73L
+    body_mm: [2.0, 1.25]
+    pads:
+      "1": {name: A, kind: PASSIVE, xy: [-0.95, 0], size: [0.9, 1.35]}
+      "2": {name: B, kind: PASSIVE, xy: [0.95, 0], size: [0.9, 1.35]}
+  XH2:
+    source: https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+    body_mm: [5.75, 5.70]
+    pads:
+      "1": {name: P1, kind: PASSIVE, xy: [0, 1.25], size: [1.65, 1.65], drill: 0.95}
+      "2": {name: P2, kind: PASSIVE, xy: [0, -1.25], size: [1.65, 1.65], drill: 0.95}
+  XH3:
+    source: https://www.jst-mfg.com/product/pdf/eng/eXH.pdf
+    body_mm: [7.5, 5.75]
+    pads:
+      "1": {name: P1, kind: PASSIVE, xy: [-2.5, 0], size: [1.65, 1.65], drill: 0.95}
+      "2": {name: P2, kind: PASSIVE, xy: [0, 0], size: [1.65, 1.65], drill: 0.95}
+      "3": {name: P3, kind: PASSIVE, xy: [2.5, 0], size: [1.65, 1.65], drill: 0.95}
+  R0603:
+    source: https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+    body_mm: [1.6, 0.8]
+    pads:
+      "1": {name: A, kind: PASSIVE, xy: [-0.75, 0], size: [0.8, 0.9]}
+      "2": {name: B, kind: PASSIVE, xy: [0.75, 0], size: [0.8, 0.9]}
+parts:
+  U2: {sheet: Power, package: WSON8-DSG, mpn: DRV8837DSGR, at_mm: [15, 16]}
+  C1: {sheet: Power, package: Chip0603, mpn: GRM188R71C104KA01D, value: 100nF, at_mm: [14.5, 18.9]}
+  C2: {sheet: Power, package: Chip0603, mpn: GRM188R71C104KA01D, value: 100nF, at_mm: [18.2, 18.8]}
+  C3: {sheet: Power, package: Chip0805, mpn: GRM21BR71E106KA73L, value: 10uF, at_mm: [10, 22]}
+  J1: {sheet: Power, package: XH3, mpn: B3B-XH-A, value: VM-5V-GND, at_mm: [13, 29]}
+  J2: {sheet: Power, package: XH2, mpn: B2B-XH-A, value: MOTOR, at_mm: [5, 16]}
+  U1: {sheet: Logic, package: SOIC8, mpn: ATTINY202-SSNR, at_mm: [32, 16]}
+  C4: {sheet: Logic, package: Chip0603, mpn: GRM188R71C104KA01D, value: 100nF, at_mm: [30.2, 22]}
+  J3: {sheet: Logic, package: XH3, mpn: B3B-XH-A, value: UPDI-VDD-GND, at_mm: [42, 7]}
+  J4: {sheet: Logic, package: XH2, mpn: B2B-XH-A, value: ADC-IN, at_mm: [48, 24]}
+  R1: {sheet: Logic, package: R0603, mpn: RC0603FR-0710KL, value: 10k, at_mm: [40, 24.5]}
+  R2: {sheet: Logic, package: R0603, mpn: RC0603FR-0710KL, value: 10k, at_mm: [39, 21.5]}
+  C5: {sheet: Logic, package: Chip0603, mpn: GRM188R71C104KA01D, value: 100nF, at_mm: [35, 25]}
+no_connect: [[U1, "7"]]
+nets:
+  VM: [[J1, "1"], [C3, "1"], [C1, "1"], [U2, "1"]]
+  VLOGIC: [[J1, "2"], [C2, "1"], [U2, "8"], [C4, "1"], [U1, "1"], [J3, "2"]]
+  GND: [[J1, "3"], [C3, "2"], [C1, "2"], [C2, "2"], [U2, "4"], [U2, "9"], [C4, "2"], [U1, "8"], [J3, "3"], [J4, "2"], [R2, "2"], [C5, "2"]]
+  MOUT1: [[U2, "2"], [J2, "1"]]
+  MOUT2: [[U2, "3"], [J2, "2"]]
+  MOTOR_IN1: [[U1, "4"], [U2, "6"]]
+  MOTOR_IN2: [[U1, "5"], [U2, "5"]]
+  MOTOR_EN: [[U1, "3"], [U2, "7"]]
+  SENSOR_IN: [[J4, "1"], [R1, "1"]]
+  ADC_SENSE: [[R1, "2"], [R2, "1"], [C5, "1"], [U1, "2"]]
+  UPDI: [[U1, "6"], [J3, "1"]]
+layout:
+  size_mm: [54, 36]
+  clearance_mm: 0.14
+  edge_mm: 0.55
+  via_outer_mm: 0.5
+  via_drill_mm: 0.25
+  ground_net: GND
+  holes: [[3, 3, 2.8], [51, 3, 2.8], [3, 33, 2.8], [51, 33, 2.8]]
+  keepouts:
+    - {name: J1_cable_reserve, kind: component, box: [8, 32.2, 18, 36]}
+    - {name: J2_cable_reserve, kind: component, box: [0, 12, 2, 20]}
+    - {name: Keep_ADC_out_of_motor_switch_region, kind: copper, box: [9, 14.5, 13, 17.5], layers: [2]}
+  priority: [VM, MOUT1, MOUT2, ADC_SENSE, VLOGIC]
+  rules:
+    GND: {role: reference_and_power_return}
+    VM: {width_mm: 0.22, max_branch_mm: 22, layers: [1]}
+    MOUT1: {width_mm: 0.22, max_branch_mm: 20, layers: [1]}
+    MOUT2: {width_mm: 0.22, max_branch_mm: 20, layers: [1]}
+    VLOGIC: {width_mm: 0.18, max_branch_mm: 45, layers: [1, 2]}
+    MOTOR_IN1: {width_mm: 0.18, max_branch_mm: 38, layers: [1, 2]}
+    MOTOR_IN2: {width_mm: 0.18, max_branch_mm: 38, layers: [1, 2]}
+    MOTOR_EN: {width_mm: 0.18, max_branch_mm: 38, layers: [1, 2]}
+    ADC_SENSE: {width_mm: 0.18, max_branch_mm: 32, layers: [1], keepout_boxes_mm: [[0, 0, 22, 36]]}
+    SENSOR_IN: {width_mm: 0.18, max_branch_mm: 19, layers: [1, 2]}
+    UPDI: {width_mm: 0.18, max_branch_mm: 35, layers: [1, 2]}
+acceptance:
+  scope: "原创低电压工程验收样板。独立受限实验电源，未实物验收。"
+  supply: "逻辑用外部稳压 5 V，电机用独立限流 5 V，两路共地。"
+  peak_current_assumption_a: 0.25
+  sensor: "输入 0–5 V，10k/10k 分压及 100 nF 滤波。用实测 ADC 校验采样时间和增益。"
+  copper: "内层两张连续 GND 参考面。外层信号、通过孔换层、邻近回流地孔。"
+  fab_inputs_to_confirm: "用目标板厂四层叠层、铜厚与实际工艺复核。WSON 散热焊盘内孔需填孔盖帽，检查焊盘和钢网。"
+  droop_test: {point: "U1.1 对 U1.8 及 U2.1 对 U2.4", condition: "两路 5 V，记录实际启动和受限堵转，峰值暂定 0.25 A", criterion: "台架目标 VLOGIC 4.75–5.25 V，VM 4.5–5.5 V"}
+  thermal_test: {point: "U2 顶部与封装旁铜面", condition: "40 °C 环境、0.15 A 持续负载至稳态", criterion: "按已验证热模型估算的结温不高于台架设计目标 110 °C"}
+  emc_test: {point: "U2/C1 回路及电机线束", condition: "相同线束、探头位置、负载及最坏 PWM 配置", criterion: "预扫峰值较复核过的对照板不增加 3 dB。适用的正式限值尚待确认"}

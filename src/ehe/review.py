@@ -188,7 +188,10 @@ def full_review(path: Path, model: Path | None = None, *, design_verification=Fa
             "inconclusive", missing=["Project or engineering input changed during review. Review the new revision."])}
     native_keys = ("erc", "drc", "schematic_parity")
     eda_status = status_of(coverage[name] for name in native_keys) if consistent else "inconclusive"
-    handoff_status = (status_of(coverage[name] for name in (*native_keys, "board_outline", "design_bom"))
+    handoff_keys = (*native_keys, "board_outline", "design_bom")
+    handoff_keys += tuple(name for name in ("design_intent", "schematic_source_intent", "multilayer_layout")
+                          if name in coverage)
+    handoff_status = (status_of(coverage[name] for name in handoff_keys)
                       if consistent else "inconclusive") if design_verification else None
     report = {
         "status": status_of(coverage.values()), "profile": profile, "project": str(root), "eda_status": eda_status,

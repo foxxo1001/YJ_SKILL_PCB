@@ -1,6 +1,6 @@
 ---
 name: embedded-hardware-engineer
-description: Design, review, repair and verify embedded schematics and PCBs in KiCad and EasyEDA Pro for NUEDC, embedded competitions and prototypes. Use for board bring-up, component choices, power and analog design, EMI and return paths, mechanical clearance, worst-case calculations, and turning findings into verifiable changes.
+description: Design, review and repair embedded schematics and multilayer PCBs in KiCad and EasyEDA Pro. Use for NUEDC, prototypes, bring-up, component choices, power and analog design, routing, copper pours, return vias, thermal paths and mechanical clearance.
 license: MIT
 ---
 
@@ -17,13 +17,17 @@ license: MIT
 ## 审查与整改
 
 - 整板审查运行 `review full <project>`，并使用[完整审查要求](references/full-board-review.md)核对报告。首轮答复必须覆盖 ERC/DRC、EMI/回流、板框与装配、最坏工况/器差/温升。机器能量出的板框和真实物理装配分开说明。补充模型可从独立文件通过 `--model` 提供。
+- 整板审查多层 PCB 时必须读[多层板设计与复验](references/multilayer-pcb.md)。首轮逐项报告关键线宽、端到端线长或延迟、路由位置、实际铺铜、参考面与回流地过孔、散热路径。每项交代证据和缺口。定点审查按用户指定范围选用对应检查。
 - 逐项说明已核验、仅估算、缺资料或不适用。不适用须给出项目依据。将工具运行结果、设计判断和实测分开写；用可定位的证据支持结论。优先汇报会影响功能、安全、制造或装配的发现。
-- 每条关键建议给出**位置、机理、具体改动、影响、复验**。有症状但根因未证实时，先给能区分原因的检查。按[整改方法](references/remediation.md)写出证据和判据。获得批准后，在工作副本修改并复验。
+- 给出修改建议、提交整改预览或汇报改后的结果时，必须先写 **必须修改**，再写 **可以改进**，使用两个独立小节。前者列已确认的错误或硬约束超限，后者列当前已满足要求、仍有收益的优化。即使其中一组为空也保留标题并说明。证据不足的事项另列为 **待核验**，点明缺什么、怎么确认。按[整改方法](references/remediation.md)确定分类。
+- 每条关键建议给出**位置、机理、具体改动、影响、复验**，附证据和判据。有症状但根因未证实时，先给能区分原因的检查。获得批准后，在工作副本修改并复验。
 - KiCad 定点规则检查用 `review schematic` 或 `review pcb`，多轮复验或有审批时用 `loop run/status/resume`。嘉立创从所选 PCB 的整板报告读取原生规则结果，复验时重新运行同一目标的 `review full` 并比较两轮证据。只有 PCB 截图时按可见信息定位风险。
 
 ## 从零设计
 
 阅读[新板设计流程](references/new-board-design.md)，把输入整理成目标工况、硬约束和验收标准。有实质取舍时比较两条方案。按完整料号与厂家资料确认引脚、工作条件和封装。
+
+开始多层板布局或布线前读[多层板设计与复验](references/multilayer-pcb.md)。先定叠层和关键网约束，预留铜区与过孔空间，布好并锁定关键线路。自动布线仅处理明确列入的网络。以重铺后的实际铜形状验收回流、载流和热扩散。
 
 在新工程或获批副本完成方案、所选 EDA 的原理图、PCB、BOM 和测试点。先定板框、固定孔、接口和叠层，再放置功率闭环与敏感模拟链，最后布线。交付前执行 `design verify <project>`，结合整板审查和[验收表](assets/acceptance.md)解释每项验收状态。嘉立创可按[生成与改版流程](references/easyeda-pro.md)生成简单的测试或转接 PCB。需要编辑原有嘉立创工程时，先生成变更预览，取得对该提案的明确审批后再提交到工作副本。关键资料缺失时明确保留假设，并说明缺项会阻断的交付状态。
 

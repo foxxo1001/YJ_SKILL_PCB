@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "skill_files_matched": 20,
+  "checked_output_documents": [
+    "SKILL.md",
+    "assets/acceptance.md",
+    "references/full-board-review.md",
+    "references/remediation.md"
+  ],
+  "global_install": [
+    "upgraded",
+    "C:\\Users\\L\\.codex\\skills\\embedded-hardware-engineer"
+  ],
+  "workspace_install": [
+    "upgraded",
+    "D:\\AI_project\\YJ_SKILLS\\.agents\\skills\\embedded-hardware-engineer"
+  ],
+  "codex_discovered_from_outside_workspace": true,
+  "runtime_version": "0.1.4"
+}

@@ -1,4 +1,4 @@
-# Embedded Hardware Engineering System 0.1.3
+# Embedded Hardware Engineering System 0.1.4 开发版
 
 竞赛硬件工程的可运行预览版。唯一产品基线为 [PRD v3.0](docs/PRD_v3.0.md)。
 包内含 Codex / Claude Code 共享 Skill、Python CLI、独立 Loop、真实 KiCad ERC/DRC、嘉立创EDA专业版只读审查、
@@ -22,6 +22,7 @@ py -m venv .venv
 Python 依赖版本在 pyproject.toml 固定。KiCad 使用系统安装的本机工具，如未探测到，
 将 `EHE_KICAD_CLI` 设为实际可执行文件的绝对路径。默认注册表探测覆盖 Windows 自定义安装路径。
 原生 JSON E2 实测版本为 10.0.6。若从安装 wheel 部署，可用 pip 安装同版本 wheel。
+完整 ZIP 内的 Windows 安装包可用 `.\.venv\Scripts\python.exe -m pip install .\dist\ehe_engineering-0.1.4-py3-none-any.whl` 安装运行器，再执行上面的 Skill 安装命令。解压目录需要保留 Skill 与安装脚本。
 
 安装器默认将 Skill 复制到项目目录的 `.agents/skills` 与 `.claude/skills`。全局安装使用
 `--scope user --host codex`，升级已安装的旧版使用 `--upgrade`。如当前项目存在旧版项目级副本，也应升级。
@@ -73,6 +74,7 @@ ehe review full ./RA6E2.eprj3 --pcb PCB3
 ehe review full ./RA6E2.eprj3 --pcb PCB3 --offline
 ehe design verify ./RA6E2.eprj3 --pcb PCB3
 ehe design generate ./examples/easyeda-interconnect.json --output ./my-interconnect
+ehe design generate ./examples/motor-sense-easyeda.yaml --output ./my-motor-sense
 ```
 
 原生原理图规则检查和 PCB DRC 使用隔离副本，原始设计文件保持不变。报告和审计日志写入
@@ -80,8 +82,8 @@ ehe design generate ./examples/easyeda-interconnect.json --output ./my-interconn
 若客户端安装在自定义路径且自动探测失败，`EHE_EASYEDA_CLI` 可以指定实际的 `lceda-pro.exe`。
 多板选择、支持的几何范围和待验证项目见 [兼容性矩阵](docs/compatibility-matrix.md)。
 
-整板审查会比对所选 PCB 与单页关联原理图的原生网表，`design verify` 会额外保存所选
-PCB 的原生 BOM。新板生成器适用于给定焊盘位置的单面铜测试板或简易转接板。
+整板审查会比对所选 PCB 与关联原理图的原生网表，`design verify` 会额外保存所选
+PCB 的原生 BOM。0.1.4 开发版包含平铺多页网表比对和受约束四层板生成。MotorSense 样例的两页原理图连线与 PCB 布局已离线核对，嘉立创原生 ERC、DRC 和整板网表一致性仍待验收。
 已有 PCB 的线宽调整或同 UUID 文件替换可走 [嘉立创改版与复验流程](skills/embedded-hardware-engineer/references/easyeda-pro.md)，经审批后写入版本化工作副本。
 
 ## CLI 合约
@@ -94,7 +96,7 @@ PCB 的原生 BOM。新板生成器适用于给定焊盘位置的单面铜测试
 | review full | KiCad 或嘉立创专业版文件夹工程的整板覆盖、网表一致性检查与整改建议 |
 | review schematic / pcb | 定点 ERC / DRC，输入为目录中唯一的 KiCad 原生文件或 project.json 显式选择的相对路径 |
 | design verify | 作者交付验证。KiCad 和嘉立创路径导出原生 BOM 并列出缺采购料号的器件 |
-| design generate | 从明确的几何和节点规格生成单面铜嘉立创测试或转接板，尝试原生 DRC |
+| design generate | 生成单面铜测试或转接板，或按结构化电路和几何约束生成原理图与四层 PCB，并尝试原生验证 |
 | change propose / decide / apply / rollback | 嘉立创 PCB 受控改版，预览、明确审批、写副本、复验与版本恢复 |
 | review export | BOM CSV/TSV、KiCad XML 网表、KiCad JSON 或 ehe-rule-report-v1。--producer 仅记录声明来源 |
 | review geometry | KiCad 或嘉立创专业版 PCB 的原生对象子集 |

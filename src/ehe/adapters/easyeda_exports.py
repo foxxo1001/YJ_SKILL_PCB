@@ -55,34 +55,51 @@ def _netlist(raw):
     return parts, pins
 
 
-def parity(pcb, pages):
+def parity(pcb, pages, page_index=None):
     if not pages:
         return result("not_run", missing=["Selected PCB has no linked schematic sheet"])
-    if len(pages) != 1:
-        return result("inconclusive", missing=["Netlist comparison currently requires exactly one linked schematic sheet"])
+    locations = (page_index or {}).get("locations", {})
+    unsupported = (page_index or {}).get("unsupported", [])
+    if len(pages) > 1 and (page_index is None or unsupported):
+        return result("inconclusive", missing=unsupported or ["Missing source location inventory for multiple sheets"])
     try:
         pcb_text, pcb_ev = _export(pcb, "netlist")
-        sch_text, sch_ev = _export(pages[0], "netlist")
+        schematic_exports = [_export(page, "netlist") for page in pages]
+        graphs = [_netlist(text) for text, _ in schematic_exports]
         actual_parts, actual_pins = _netlist(pcb_text)
-        expected_parts, expected_pins = _netlist(sch_text)
+        expected_parts, expected_pins = graphs[0]
     except (KeyError, TypeError, AttributeError, OSError, ValueError) as exc:
         return result("blocked", missing=[str(exc)])
-    evidence = [sch_ev, pcb_ev]
+    evidence = [ev for _, ev in schematic_exports] + [pcb_ev]
+    if len(pages) > 1 and (any(graph != graphs[0] for graph in graphs[1:]) or expected_parts.keys() != locations.keys()):
+        return {**result("inconclusive", {"pages_exported": len(pages)},
+                         missing=["Native exports do not attest to the same complete linked flat schematic. "
+                                  "Check the selected board, sheet scopes and transfer-to-PCB attributes."]),
+                "evidence": evidence}
     if not actual_parts and not expected_parts:
         return {**result("inconclusive", missing=["Both native netlists contain no components"]), "evidence": evidence}
+    compared = compare_graphs(graphs[0], (actual_parts, actual_pins), locations, evidence)
+    compared["metrics"]["pages_exported"] = len(pages)
+    compared["scope"] = "complete flat linked schematic" if len(pages) > 1 else "one linked sheet"
+    return compared
+
+
+def compare_graphs(expected, actual, locations, evidence, *, actual_label="pcb", expected_label="schematic"):
+    expected_parts, expected_pins = expected
+    actual_parts, actual_pins = actual
 
     def issue(code, ref, reason, **scope):
         row = finding(code, "schematic", reason, ref,
-                      "在原理图和 PCB 中核对所列位号与焊盘，明确设计依据后同步受影响的连接。",
-                      "重新导出同一板的两份网表并复跑原生 ERC 与 DRC。")
-        row["scope"].update(scope)
+                      "按设计连接核对所列位号和引脚，修正错误的连线或标注。",
+                      "重新导出原生网表，对照端点并复跑相关规则。")
+        row["scope"].update(schematic_location=locations.get(ref), checked_document=actual_label, **scope)
         row["evidence_ids"] = [item["id"] for item in evidence]
         return row
 
     issues = []
     for ref in sorted(expected_parts.keys() | actual_parts.keys()):
         if ref not in expected_parts or ref not in actual_parts:
-            side = "schematic" if ref in expected_parts else "pcb"
+            side = expected_label if ref in expected_parts else actual_label
             issues.append(issue("easyeda_component_mismatch", ref, f"{ref} 仅出现在 {side} 网表", present_on=side))
         elif expected_parts[ref] and actual_parts[ref] and expected_parts[ref] != actual_parts[ref]:
             issues.append(issue("easyeda_footprint_mismatch", ref, f"{ref} 的封装标识不同",
@@ -92,19 +109,50 @@ def parity(pcb, pages):
     for table, groups in ((actual_pins, actual_groups), (expected_pins, expected_groups)):
         for pin, name in table.items():
             groups.setdefault(name, set()).add(pin)
+    renames, topology = 0, 0
     for pin in sorted(expected_pins.keys() | actual_pins.keys()):
         ref, number = pin
         if ref not in common:
             continue
         a, b = actual_pins.get(pin), expected_pins.get(pin)
-        same_unnamed_net = bool(a and b and a.startswith("$") and b.startswith("$")
-                                and actual_groups[a] == expected_groups[b])
-        if a != b and not same_unnamed_net:
-            issues.append(issue("easyeda_net_mismatch", ref, f"{ref}.{number} 的网络不同",
+        a_group, b_group = actual_groups.get(a, set()), expected_groups.get(b, set())
+        if a_group != b_group:
+            topology += 1
+            issues.append(issue("easyeda_net_mismatch", ref, f"{ref}.{number} 的实际连接端点不同", pin=number,
+                                schematic_net=b, pcb_net=a, missing_endpoints=sorted(b_group - a_group),
+                                unexpected_endpoints=sorted(a_group - b_group)))
+        elif a != b and not (a.startswith("$") and b.startswith("$")):
+            renames += 1
+            issues.append(issue("easyeda_net_name_changed", ref, f"{ref}.{number} 的端点相同，网名不同",
                                 pin=number, schematic_net=b, pcb_net=a))
     metrics = {"schematic_components": len(expected_parts), "pcb_components": len(actual_parts),
-               "schematic_connected_pins": len(expected_pins), "pcb_connected_pins": len(actual_pins)}
+               "schematic_connected_pins": len(expected_pins), "pcb_connected_pins": len(actual_pins),
+               "connectivity_mismatches": topology, "named_endpoint_differences": renames}
     return {**result("fail" if issues else "pass", metrics, issues), "level": "E1", "evidence": evidence}
+
+
+def intent_graph(intent):
+    return ({ref: part["footprint"] for ref, part in intent["parts"].items()},
+            {(ref, str(pin)): net for net, endpoints in intent["nets"].items() for ref, pin in endpoints})
+
+
+def design_intent(pcb, pages, intent, page_index):
+    try:
+        expected = intent_graph(intent)
+        native = [("schematic:" + str(page.get("document")), page) for page in pages] + [("pcb", pcb)]
+        checks = {}
+        for name, document in native:
+            text, evidence = _export(document, "netlist")
+            checks[name] = compare_graphs(expected, _netlist(text), page_index["locations"], [evidence],
+                                          actual_label=name, expected_label="design")
+    except (KeyError, TypeError, AttributeError, OSError, ValueError) as exc:
+        return result("blocked", missing=[str(exc)])
+    if not pages:
+        return result("not_run", missing=["Design intent requires native schematic pages"])
+    return {**result("fail" if any(row["status"] == "fail" for row in checks.values()) else "pass",
+                     {"native_documents_compared": len(checks)},
+                     [item for row in checks.values() for item in row["findings"]]),
+            "evidence": [item for row in checks.values() for item in row["evidence"]], "documents": checks}
 
 
 def bom(pcb, out):
